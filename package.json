@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/DOXOPOKC/middle.messenger.praktikum.yandex/issues"
   },
-  "homepage": "https://github.com/DOXOPOKC/middle.messenger.praktikum.yandex#readme"
+  "homepage": "https://github.com/DOXOPOKC/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
 }
