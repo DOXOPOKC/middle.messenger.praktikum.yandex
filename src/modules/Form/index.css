@@ -1,0 +1,28 @@
+.form {
+    position: absolute;
+    width: 340px;
+    height: 450px;
+    left: 470px;
+    top: 135px;
+
+    background: black;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+    border-radius: 12px;
+    z-index: 9999;
+}
+
+.form__main {}
+
+.form__title.title {}
+
+.form__main {}
+
+.input-field {}
+
+.input-field.input-field__password {}
+
+.form__actions {}
+
+.button {}
+
+.button.button_text {}
