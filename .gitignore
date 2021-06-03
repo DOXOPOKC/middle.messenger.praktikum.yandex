@@ -4,5 +4,6 @@ node_modules
 # logs
 npm-debug.log
 
-#parcel
+#cache
+.cache
 .parcel-cache
