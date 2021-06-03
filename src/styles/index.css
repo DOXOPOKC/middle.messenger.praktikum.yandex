@@ -1,0 +1,26 @@
+@import "./font.css";
+
+@import "./variables.css";
+
+@import "./form.css";
+@import "./dialog.css";
+@import "./button.css";
+@import "./input.css";
+
+
+html {
+    height: 100%;
+    font-size:100%;
+}
+
+body {
+    height: 100%;
+    background: #fff;
+    font-family: var(--font);
+    font-size: 13px;
+    font-style: normal;
+    font-weight: normal;
+    color: #1E1E1E;
+    margin: 0;
+    padding: 0;
+}

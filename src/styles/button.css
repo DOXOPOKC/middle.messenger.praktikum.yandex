@@ -1,0 +1,18 @@
+
+.button {
+    height: 37px;
+    background: #3369F3;
+    border-radius: 8px;
+    border: none;
+
+    line-height: 13px;
+    text-align: center;
+
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.button.button_text {
+    background: #FFFFFF;
+    color: #3369F3;
+}

@@ -1,9 +1,10 @@
-.form
+form.form(action="#")
+  h1.form__title.title #{title}
   .form__main
-    .form__title.title
-    .form__main
-      .input-field
-      .input-field.input-field__password
+    each field in fields
+      .input
+        label.input__label.form__label(for=field.name)= field.label
+        input.input__field(type=field.type, value=field.value, name=field.name)
   .form__actions
-    .button
-    .button.button_text
+    button.button(type="submit") #{firstBtnLabel}
+    button.button.button_text(type="button") #{secondBtnLabel}

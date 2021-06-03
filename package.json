@@ -4,9 +4,9 @@
   "scripts": {
     "prebuild": "rm -rf ./dist",
     "backend": "node server.js",
-    "dev": "npm run prebuild && npm run build && parcel src/pages/index.pug src/pages/**/index.pug --no-cache --no-autoinstall --port 3000 --open",
+    "dev": "npm run prebuild && npm run build && parcel src/pages/**/index.pug --no-cache --no-autoinstall --port 3000",
     "start": "npm run prebuild && npm run build && npm run backend",
-    "build": "parcel build src/pages/index.pug src/pages/**/index.pug --no-source-maps"
+    "build": "parcel build src/pages/**/index.pug --no-source-maps"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,8 @@
     "autoprefixer": "^10.2.6",
     "express": "^4.17.1",
     "parcel": "^2.0.0-beta.2",
+    "postcss": "^8.3.0",
+    "postcss-css-variables": "^0.18.0",
     "postcss-import": "^14.0.2",
     "postcss-modules": "^4.0.0",
     "postcss-url": "^10.1.3",

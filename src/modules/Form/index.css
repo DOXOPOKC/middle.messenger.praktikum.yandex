@@ -1,28 +1,97 @@
 .form {
-    position: absolute;
-    width: 340px;
-    height: 450px;
-    left: 470px;
-    top: 135px;
-
-    background: black;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
-    border-radius: 12px;
-    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: stretch;
+    padding: 50px 30px 0;
 }
 
-.form__main {}
+.form__main {
+    flex: 0 1 auto;
+    align-self: auto;
+}
 
-.form__title.title {}
+.form__title {
+    flex: 0 1 auto;
+    align-self: auto;
+    margin-bottom: 40px;
+}
 
-.form__main {}
+.title {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
 
-.input-field {}
+    color: #1E1E1E;
+}
 
-.input-field.input-field__password {}
+.input {
+    margin-bottom: 16px;
+}
 
-.form__actions {}
+.input__label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 9px;
+    line-height: 9px;
+    color: gray;
+}
 
-.button {}
+.input__field {
+    display: block;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    color: #1E1E1E;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #3369F3;
+}
 
-.button.button_text {}
+.input-field__password {}
+
+.input__message {
+    display: none;
+    font-size: 8px; 
+    color: red;
+}
+
+.input__message_show {
+    display: block;
+}
+
+.form__actions {
+    display: flex;
+    flex: 1 1 auto;
+    align-self: auto;
+    flex-direction: column;
+}
+
+.button {
+    height: 37px;
+    background: #3369F3;
+    border-radius: 8px;
+    border: none;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: center;
+
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.button.button_text {
+    background: #FFFFFF;
+    color: #3369F3;
+}

@@ -1,0 +1,11 @@
+{
+  locals: {
+    title: "Вход",
+    firstBtnLabel: "Авторизоваться",
+    secondBtnLabel: "Нет аккаунта?",
+    fields: [
+      { name: "login", type: "text", label: "Логин", value: "ivanivanov" },
+      { name: "password", type: "password", label: "Пароль", value: "qweqweqweqwe" },
+    ],
+  }
+}

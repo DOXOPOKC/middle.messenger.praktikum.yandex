@@ -1,8 +1,0 @@
-@import "./Home/index.css";
-@import "./Login/index.css";
-@import "./Profile/index.css";
-@import "./SignIn/index.css";
-
-body {
-  background: rgb(221, 206, 206);
-}

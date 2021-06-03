@@ -5,6 +5,7 @@
       "grid": true
     },
     "postcss-import": {},
-    "postcss-url": {}
+    "postcss-url": {},
+    "postcss-css-variables": {}
   }
 }

@@ -1,3 +1,10 @@
-.test {
-    color: red;
+@import "../../modules/dialog/index.css";
+@import "../../modules/form/index.css";
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+.content {}

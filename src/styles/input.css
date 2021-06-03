@@ -1,0 +1,42 @@
+.input {
+    margin-bottom: 16px;
+}
+
+.input__label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 9px;
+    line-height: 9px;
+    color: gray;
+}
+
+.input__field {
+    display: block;
+    width: 100%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 20px;
+    color: #1E1E1E;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #1E1E1E;
+    transition: all 0.3s;
+}
+
+.input__field:focus-visible {
+    border-bottom: 1px solid #3369F3;
+    outline: none;
+}
+
+.input-field__password {}
+
+.input__message {
+    display: none;
+    font-size: 8px; 
+    color: red;
+}
+
+.input__message_show {
+    display: block;
+}

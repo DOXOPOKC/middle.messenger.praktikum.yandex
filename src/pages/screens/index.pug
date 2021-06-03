@@ -1,0 +1,11 @@
+extends ../../layouts/default
+
+append head
+  title Список экранов
+block content
+  ul
+    -
+      var links = [ "Home", "SignIn", "SignUp", "Profile" ];
+    each link in links
+      li
+        a(href='http://localhost:3000/' + link.toLowerCase() + '/index.html')=link
