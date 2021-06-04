@@ -1,0 +1,28 @@
+.list {}
+
+ul.list__inner {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+li.list__item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    border-bottom: 1px solid #EAEAEA;
+    padding: 10px 0;
+}
+
+li.list__item:last-child {
+    border-bottom: none;
+}
+
+.list__text_left {}
+
+.list__text_right {
+    color: #999999;
+    border: none;
+}

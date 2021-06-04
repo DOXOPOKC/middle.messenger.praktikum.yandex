@@ -5,7 +5,7 @@ append head
 block content
   ul
     -
-      var links = [ "Home", "SignIn", "SignUp", "Profile" ];
+      var links = [ "404", "500", "Chats", "SignIn", "SignUp", "Profile", "Profile-edit", "Profile-password" ];
     each link in links
       li
         a(href='http://localhost:3000/' + link.toLowerCase() + '/index.html')=link

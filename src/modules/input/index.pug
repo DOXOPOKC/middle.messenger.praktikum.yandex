@@ -1,0 +1,25 @@
+mixin form({ firstBtn, secondBtn, isRow })
+  form.form(action="#")
+    h1.form__title.title #{title}
+    .form__main
+      if (!isRow)
+        each field in fields
+          .input
+            label.input__label.form__label(for=field.name)= field.label
+            input.input__field(type=field.type, value=field.value, name=field.name)
+      else
+        .list
+          ul.list__inner
+            each field in fields
+              li.list__item
+                label.list__text_left= field.label
+                input.list__text_right(
+                  type=field.type,
+                  value=field.value,
+                  name=field.name
+                )
+    .form__actions
+      if (firstBtn)
+        button.button(type="submit") #{firstBtnLabel}
+      if (secondBtn)
+        button.button.button_text(type="button") #{secondBtnLabel}

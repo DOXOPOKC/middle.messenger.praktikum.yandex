@@ -6,11 +6,11 @@
     fields: [
       { name: "email", type: "email", label: "Почта", value: "pochta@yandex.ru" },
       { name: "login", type: "text", label: "Логин", value: "ivanivanov" },
-      { name: "email", type: "email", label: "Имя", value: "Иван" },
-      { name: "email", type: "email", label: "Фамилия", value: "Иванов" },
-      { name: "email", type: "email", label: "Телефон", value: "+ 7 (909) 967 30 30" },
+      { name: "firstname", type: "text", label: "Имя", value: "Иван" },
+      { name: "lastname", type: "text", label: "Фамилия", value: "Иванов" },
+      { name: "phone", type: "phone", label: "Телефон", value: "+ 7 (909) 967 30 30" },
       { name: "password", type: "password", label: "Пароль", value: "qweqweqweqwe" },
-      { name: "password", type: "password", label: "Пароль (еще раз)", value: "qweqweqweqwe" },
+      { name: "second-password", type: "password", label: "Пароль (еще раз)", value: "qweqweqweqwe" },
     ],
   }
 }

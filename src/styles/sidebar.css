@@ -1,0 +1,16 @@
+.sidebar {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 64px;
+    background-color: #FBFBFB;
+    border-right: 1px solid #EAEAEA;
+}
+
+.sidebar__button {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}

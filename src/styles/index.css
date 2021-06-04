@@ -6,7 +6,17 @@
 @import "./dialog.css";
 @import "./button.css";
 @import "./input.css";
+@import "./list.css";
+@import "./sidebar.css";
+@import "./profile.css";
+@import "./avatar.css";
 
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 html {
     height: 100%;
@@ -21,6 +31,24 @@ body {
     font-style: normal;
     font-weight: normal;
     color: #1E1E1E;
-    margin: 0;
-    padding: 0;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+.content {
+    padding-left: 64px;
+}
+
+.text_light {
+    color: #FFFFFF
+}
+
+.text_action {
+    color: #3369F3;
+}
+
+.text_error {
+    color: #FF0000;
 }

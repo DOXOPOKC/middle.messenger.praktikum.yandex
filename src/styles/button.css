@@ -12,7 +12,16 @@
     cursor: pointer;
 }
 
-.button.button_text {
+.button_text {
     background: #FFFFFF;
     color: #3369F3;
+}
+
+.rounded-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #3369F3;
+    height: 100%;
+    border-radius: 50%;
 }
