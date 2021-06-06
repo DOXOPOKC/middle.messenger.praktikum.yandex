@@ -1,6 +1,7 @@
 {
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
+  "private": false,
   "scripts": {
     "prebuild": "rm -rf ./dist",
     "backend": "node server.js",
