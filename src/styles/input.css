@@ -11,10 +11,11 @@
 }
 
 .input__field {
-    display: block;
-    width: 100%;
+    font-family: inherit;
     font-style: normal;
     font-weight: normal;
+    display: block;
+    width: 100%;
     color: #1E1E1E;
     padding: 5px 0;
     background: none;

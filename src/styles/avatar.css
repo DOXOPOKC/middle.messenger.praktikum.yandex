@@ -22,7 +22,9 @@
     z-index: 1;
 }
 
-.profile__avatar {}
+.profile__avatar {
+    width: 40px;
+}
 
 .profile__change-avatar {
     display: none;

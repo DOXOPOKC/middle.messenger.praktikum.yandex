@@ -13,6 +13,8 @@
 @import "./error.css";
 @import "./text.css";
 @import "./message.css";
+@import "./dropdown.css";
+@import "./chat.css";
 
 
 *, *::before, *::after {
@@ -33,7 +35,6 @@ body {
     font-size: 13px;
     line-height: 13px;
     font-style: normal;
-    font-weight: normal;
     color: #1E1E1E;
 }
 
@@ -45,6 +46,23 @@ a {
     text-decoration: none;
 }
 
+.content, .content_chat {
+    height: 100vh;
+}
+
 .content {
     padding-left: 64px;
+}
+
+.content_chat {
+    padding-left: 310px;
+    height: 100vh;
+}
+
+.image {
+    width: 100%;
+}
+
+.icon {
+    height: 100%;
 }
