@@ -1,9 +1,15 @@
 extends ../../layouts/default
-include ../../modules/input/index.pug
+include ../../modules/form/index.pug
+include ../../modules/dialog/index.pug
 
 append head
-  title Список экранов
+  title Профиль
 block content
+  +dialog()
+    +Slot('content')
+      span(class=dialog.content.classes)= dialog.content.text
+    +Slot('actions')
+      button.button.text-light Поменять
   aside.sidebar
     .sidebar__button
       .rounded-button
@@ -27,7 +33,13 @@ block content
           .blur-background
           span.text_light.avatar__text Поменять аватар
         .profile__avatar
-          svg(width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg")
+          svg(
+            width="40"
+            height="40"
+            viewBox="0 0 40 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          )
             path(
               fill-rule="evenodd"
               clip-rule="evenodd"
@@ -36,11 +48,7 @@ block content
             )
       .profile__title.title Иван
       .profile__main
-        +form({
-          firstBtn: false,
-          secondBtn: false,
-          isRow: true
-        })
+        +form({ firstBtn: false, secondBtn: false, isRow: true })
       .profile__actions
         .list
           ul.list__inner
