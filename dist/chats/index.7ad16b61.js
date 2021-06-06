@@ -1,0 +1,1 @@
+(()=>{const e=document.forms.item(0);e&&e.addEventListener("submit",(t=>{t.preventDefault();const n=new FormData(e),o=Object.fromEntries(n.entries());console.log(o)}))})();
