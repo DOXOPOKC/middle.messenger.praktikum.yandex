@@ -1,10 +1,10 @@
 .input {
-    margin-bottom: 16px;
+    margin-bottom: 2px;
 }
 
 .input__label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 1px;
     font-size: 9px;
     line-height: 9px;
     color: gray;
@@ -15,9 +15,8 @@
     width: 100%;
     font-style: normal;
     font-weight: normal;
-    font-size: 13px;
-    line-height: 20px;
     color: #1E1E1E;
+    padding: 5px 0;
     background: none;
     border: none;
     border-bottom: 1px solid #3369F3;
@@ -27,16 +26,4 @@
 .input__field:focus-visible {
     border-bottom: 1px solid #3369F3;
     outline: none;
-}
-
-.input-field__password {}
-
-.input__message {
-    display: none;
-    font-size: 8px; 
-    color: red;
-}
-
-.input__message_show {
-    display: block;
 }

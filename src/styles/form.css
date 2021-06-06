@@ -13,15 +13,8 @@
 }
 
 .form__title {
-    margin-bottom: 40px;
-}
-
-.title {
-    font-size: 20px;
-    font-weight: normal;
-    line-height: 20px;
     text-align: center;
-    color: #1E1E1E;
+    margin-bottom: 40px;
 }
 
 .form__actions {
@@ -29,3 +22,5 @@
     align-self: auto;
     flex-direction: column;
 }
+
+.form__label {}

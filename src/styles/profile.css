@@ -12,6 +12,7 @@
 }
 
 .profile__main {
+    min-height: 255px;
     margin-bottom: 60px;
 }
 

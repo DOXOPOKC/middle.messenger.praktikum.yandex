@@ -24,5 +24,6 @@ li.list__item:last-child {
 
 .list__text_right {
     color: #999999;
+    text-align: end;
     border: none;
 }

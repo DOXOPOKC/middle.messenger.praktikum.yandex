@@ -10,6 +10,9 @@
 @import "./sidebar.css";
 @import "./profile.css";
 @import "./avatar.css";
+@import "./error.css";
+@import "./text.css";
+@import "./message.css";
 
 
 *, *::before, *::after {
@@ -28,6 +31,7 @@ body {
     background: #fff;
     font-family: var(--font);
     font-size: 13px;
+    line-height: 13px;
     font-style: normal;
     font-weight: normal;
     color: #1E1E1E;
@@ -37,18 +41,10 @@ ul, ol {
     list-style: none;
 }
 
+a {
+    text-decoration: none;
+}
+
 .content {
     padding-left: 64px;
-}
-
-.text_light {
-    color: #FFFFFF
-}
-
-.text_action {
-    color: #3369F3;
-}
-
-.text_error {
-    color: #FF0000;
 }
