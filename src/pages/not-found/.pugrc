@@ -1,0 +1,7 @@
+{
+  locals: {
+    title: "404",
+    description: "Не туда попали",
+    linkText: "Назад к чатам"
+  }
+}
