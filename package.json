@@ -6,7 +6,7 @@
     "backend": "node server.js",
     "dev": "npm run prebuild && npm run build && parcel src/pages/**/index.pug --port 3000",
     "start": "npm run prebuild && npm run build && npm run backend",
-    "build": "npm run cleanup && parcel build src/pages/**/index.pug --no-source-maps"
+    "build": "parcel build src/pages/**/index.pug --no-source-maps"
   },
   "repository": {
     "type": "git",
