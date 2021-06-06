@@ -6,13 +6,13 @@ include ../../modules/dropdown/index.pug
 append head
   title Чаты
 block content
-  //- +dialog()
-  //-   +Slot('content')
-  //-     +form({
-  //-       firstBtn: true,
-  //-       secondBtn: false,
-  //-       isRow: false
-  //-     })
+  +dialog()
+    +Slot('content')
+      +form({
+        firstBtn: true,
+        secondBtn: false,
+        isRow: false
+      })
 
   aside.sidebar
     .sidebar__header
