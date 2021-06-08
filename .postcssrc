@@ -1,0 +1,14 @@
+{
+  "extends": "@parcel/config-default",
+  "plugins": {
+    "autoprefixer": {
+      "grid": true
+    },
+    "postcss-import": {},
+    "postcss-url": {},
+    "postcss-custom-properties": {}
+  },
+  "transforms": {
+    "*.js": ["@parcel/transformer-babel", "@parcel/transformer-js"]
+  }
+}

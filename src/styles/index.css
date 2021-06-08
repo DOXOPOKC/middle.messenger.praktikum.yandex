@@ -1,0 +1,68 @@
+@import "./font.css";
+
+@import "./variables.css";
+
+@import "./form.css";
+@import "./dialog.css";
+@import "./button.css";
+@import "./input.css";
+@import "./list.css";
+@import "./sidebar.css";
+@import "./profile.css";
+@import "./avatar.css";
+@import "./error.css";
+@import "./text.css";
+@import "./message.css";
+@import "./dropdown.css";
+@import "./chat.css";
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    font-size:100%;
+}
+
+body {
+    height: 100%;
+    background: #fff;
+    font-family: var(--font);
+    font-size: 13px;
+    line-height: 13px;
+    font-style: normal;
+    color: #1E1E1E;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.content, .content_chat {
+    height: 100vh;
+}
+
+.content {
+    padding-left: 64px;
+}
+
+.content_chat {
+    padding-left: 310px;
+    height: 100vh;
+}
+
+.image {
+    width: 100%;
+}
+
+.icon {
+    height: 100%;
+}

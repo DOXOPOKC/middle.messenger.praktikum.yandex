@@ -1,0 +1,11 @@
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log
+
+#cache
+.cache
+.parcel-cache
+
+dist/

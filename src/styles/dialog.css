@@ -1,0 +1,58 @@
+.dialog {
+    display: flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.blur-background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000000;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.dialog__window {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin: auto;
+    width: 340px;
+    height: 257px;
+    padding: 50px 30px 18px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+    border-radius: 12px;
+    z-index: 2;
+    background-color: #FFFFFF;
+}
+
+.dialog__title {
+    text-align: center;
+    font-weight: normal;
+}
+
+.dialog__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.dialog__messages {
+    margin-top: 7px;
+    text-align: center;
+}
+
+.dialog__window_medium {
+    height: 450px;
+}
+
+.dialog__window_large {
+    height: 615px;
+}

@@ -1,0 +1,9 @@
+extends ../../layouts/default
+
+append head
+  title 404
+block content
+  .error-block
+    h1.error-block__title.headline= title
+    p.error-block__description= description
+    a.error-block__link.caption(href="/")= linkText

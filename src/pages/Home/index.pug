@@ -1,0 +1,10 @@
+extends ../../layouts/default
+
+append head
+  title Список экранов
+block content
+  ul
+    - var links = [ "not-found", "server-error", "Chats", "Sign-In", "Sign-Up", "Profile", "Profile-edit", "Profile-password" ];
+    each link in links
+      li
+        a(href='http://localhost:3000/' + link.toLowerCase() + '/index.html')=link

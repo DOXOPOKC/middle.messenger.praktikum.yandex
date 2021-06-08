@@ -1,0 +1,7 @@
+{
+  locals: {
+    title: "500",
+    description: "Мы уже фиксим",
+    linkText: "Назад к чатам"
+  }
+}

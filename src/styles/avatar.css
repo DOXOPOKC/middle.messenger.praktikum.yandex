@@ -1,0 +1,42 @@
+.profile__avatar-wrapper {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 0 20px;
+    background-color: #EFEFEF;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile__avatar-wrapper:hover {
+    cursor: pointer;
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar__text {
+    z-index: 1;
+}
+
+.profile__avatar {
+    width: 40px;
+}
+
+.profile__change-avatar {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.profile__avatar-wrapper:hover .profile__change-avatar {
+    display: flex;
+}

@@ -1,0 +1,23 @@
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 60px 0;
+}
+
+.profile__title {
+    margin-bottom: 60px;
+}
+
+.profile__main {
+    min-height: 255px;
+    margin-bottom: 60px;
+}
+
+.profile__main, .profile__actions {
+    width: 510px;
+}
+
+.profile__actions {}

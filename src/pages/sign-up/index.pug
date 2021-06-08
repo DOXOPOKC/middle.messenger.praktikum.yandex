@@ -1,0 +1,13 @@
+extends ../../layouts/default
+include ../../modules/form/index.pug
+
+append head
+  title Список экранов
+block content
+  .dialog
+    .dialog__window.dialog__window_large
+      +form({
+          firstBtn: true,
+          secondBtn: true,
+          isRow: false
+      })

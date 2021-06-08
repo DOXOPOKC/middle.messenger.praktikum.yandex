@@ -1,0 +1,33 @@
+extends ../../layouts/default
+include ../../modules/form/index.pug
+include ../../modules/dialog/index.pug
+
+append head
+  title Профиль
+block content
+  +dialog()
+    +Slot('content')
+      span(class=dialog.content.classes)= dialog.content.text
+    +Slot('actions')
+      button.button.text-light Поменять
+  aside.sidebar.sidebar_mini
+    .sidebar__button
+      .rounded-button
+        include ../../../static/icons/arrow-left.svg
+  main.content
+    .profile
+      .profile__avatar-wrapper.avatar
+        .profile__change-avatar
+          .blur-background
+          span.text-light.avatar__text Поменять аватар
+        .profile__avatar
+          include ../../../static/icons/image.svg
+      .profile__title.title Иван
+      .profile__main
+        +form({ firstBtn: false, secondBtn: false, isRow: true })
+      .profile__actions
+        .list
+          ul.list__inner
+            each action in actions
+              li.list__item
+                span.list__text_left(class=action.classes)= action.label

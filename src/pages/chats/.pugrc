@@ -1,0 +1,20 @@
+{
+  locals: {
+    firstBtnLabel: "Добавить",
+    dialog: {
+      title: { text: "Добавить пользователя", classes: [""] },
+      content: { text: "pic.jpg", classes: ["text-grey"] },
+      messages: []
+    },
+    fields: [
+      {
+        name: "login",
+        type: "text",
+        label: "Логин",
+        value: "ivanivanov",
+        classes: [],
+        messages: []
+      },
+    ]
+  }
+}

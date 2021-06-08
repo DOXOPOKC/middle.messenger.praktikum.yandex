@@ -1,0 +1,30 @@
+.input {
+    margin-bottom: 2px;
+}
+
+.input__label {
+    display: block;
+    margin-bottom: 1px;
+    font-size: 9px;
+    line-height: 9px;
+    color: gray;
+}
+
+.input__field {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: normal;
+    display: block;
+    width: 100%;
+    color: #1E1E1E;
+    padding: 5px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #3369F3;
+    transition: all 0.3s;
+}
+
+.input__field:focus-visible {
+    border-bottom: 1px solid #3369F3;
+    outline: none;
+}
