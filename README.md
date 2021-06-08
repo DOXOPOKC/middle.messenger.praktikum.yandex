@@ -2,7 +2,6 @@
 
 Учебный проект Яндекс.Практикума
 
-### Также не забудьте проверить, что репозиторий публичный.
 ### Добавьте ниже ссылку на открытый pull request.
 https://github.com/DOXOPOKC/middle.messenger.praktikum.yandex/pull/1
 
