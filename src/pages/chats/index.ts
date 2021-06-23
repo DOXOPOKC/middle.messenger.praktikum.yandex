@@ -1,5 +1,5 @@
-import { compile } from "pug";
-import Block, { renderBlock } from '../../core/block';
+import {compile} from 'pug';
+import Block, {renderBlock} from '../../core/block';
 
 const source = `
 aside.sidebar
@@ -79,8 +79,8 @@ class Chats extends Block {
     super('div', {
       classNames: 'chats',
       events: {
-        click: (e: Event) => this.handleClick(e)
-      }
+        click: (e: Event) => this.handleClick(e),
+      },
     });
   }
 
@@ -93,7 +93,6 @@ class Chats extends Block {
     return template(this.props);
   }
 }
-
 
 const page = new Chats();
 

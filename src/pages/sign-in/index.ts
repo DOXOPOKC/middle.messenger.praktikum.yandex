@@ -1,9 +1,9 @@
-import Form from "../../components/form/index";
-import Dialog from "../../components/dialog/index";
-import { compile } from "pug";
+import Form from '../../components/form/index';
+import Dialog from '../../components/dialog/index';
+import {compile} from 'pug';
 import Block, {renderBlock} from '../../core/block';
-import { Button } from '../../components/button';
-import { Input } from '../../components/input';
+import {Button} from '../../components/button';
+import {Input} from '../../components/input';
 
 const source = `
 .dialog
@@ -15,42 +15,42 @@ const template = compile(source);
 
 const formProps = {
   classNames: 'form',
-  title: "Вход",
+  title: 'Вход',
   isRow: false,
   firstBtn: (new Button({
     classNames: 'button body-1 text-light',
     attrs: {
-      type: 'submit'
+      type: 'submit',
     },
-    text: 'Авторизоваться'
+    text: 'Авторизоваться',
   })).getTemplate(),
   secondBtn: (new Button({
     classNames: 'button button-light caption text-link',
     text: 'Нет аккаунта?',
     attrs: {
-      type: 'button'
-    }
+      type: 'button',
+    },
   })).getTemplate(),
   fields: [
     (new Input({
       classNames: 'input',
-      name: "login",
-      type: "text",
-      label: "Логин",
-      value: "ivanivanov",
+      name: 'login',
+      type: 'text',
+      label: 'Логин',
+      value: 'ivanivanov',
       classes: [],
-      messages: ["Неверный логин"],
+      messages: ['Неверный логин'],
     })).getTemplate(),
     (new Input({
       classNames: 'input',
-      name: "password",
-      type: "password",
-      label: "Пароль",
-      value: "qweqweqweqwe",
+      name: 'password',
+      type: 'password',
+      label: 'Пароль',
+      value: 'qweqweqweqwe',
       classes: [],
       messages: [],
     })).getTemplate(),
-  ]
+  ],
 };
 
 class SignIn extends Block {
@@ -60,8 +60,8 @@ class SignIn extends Block {
       form: (new Form(formProps)).getTemplate(),
       events: {
         focusout: (e: Event) => this.handleInputBlur(e),
-        click: (e: Event) => this.handleClick(e)
-      }
+        click: (e: Event) => this.handleClick(e),
+      },
     });
   }
 
@@ -85,7 +85,7 @@ class SignIn extends Block {
   }
 }
 
-// const dialogProps = {
+// Const dialogProps = {
 //   hasBackground: false,
 //   title: '123',
 //   titleClasses: ['123'],

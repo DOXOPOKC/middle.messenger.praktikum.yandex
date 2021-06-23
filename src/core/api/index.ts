@@ -6,7 +6,7 @@ const METHODS = {
   GET: 'GET',
   PUT: 'PUT',
   POST: 'POST',
-  DELETE: 'DELETE'
+  DELETE: 'DELETE',
 };
 
 export type Options = {
@@ -18,9 +18,7 @@ export type Options = {
 
 export function queryStringify(data: PlainObject) {
   const keys = Object.keys(data);
-  return keys.reduce((result, key, index) => {
-    return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
-  }, '?');
+  return keys.reduce((result, key, index) => `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`, '?');
 }
 
 export default class HTTPTransport {
@@ -30,38 +28,30 @@ export default class HTTPTransport {
     this.baseURL = baseURL;
   }
 
-  get = (url: string, options?: Options) => {
-    return options ? this.request(this.baseURL + url + queryStringify(options.data), {
-        ...options,
-        method: METHODS.GET
-      }, options.timeout)
-      : this.request(this.baseURL + url, {method: METHODS.GET});
-  };
+  get = (url: string, options?: Options) => options ? this.request(this.baseURL + url + queryStringify(options.data), {
+    ...options,
+    method: METHODS.GET,
+  }, options.timeout)
+    : this.request(this.baseURL + url, {method: METHODS.GET});
 
-  put = (url: string, options: Options = {}) => {
-    return this.request(this.baseURL + url, {...options, method: METHODS.PUT}, options.timeout);
-  };
+  put = (url: string, options: Options = {}) => this.request(this.baseURL + url, {...options, method: METHODS.PUT}, options.timeout);
 
-  post = (url: string, options: Options = {}) => {
-    return this.request(this.baseURL + url, {...options, method: METHODS.POST}, options.timeout);
-  };
+  post = (url: string, options: Options = {}) => this.request(this.baseURL + url, {...options, method: METHODS.POST}, options.timeout);
 
-  delete = (url: string, options: Options) => {
-    return this.request(this.baseURL + url, {...options, method: METHODS.DELETE}, options.timeout);
-  };
+  delete = (url: string, options: Options) => this.request(this.baseURL + url, {...options, method: METHODS.DELETE}, options.timeout);
 
   request = (url: string, options: Options = {}, timeout: number | unknown = 5000) => {
     const {method, data, headers} = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      if (typeof method === "string") {
+      if (typeof method === 'string') {
         xhr.open(method, url);
       }
 
-      xhr.setRequestHeader('content-type', 'application/json')
+      xhr.setRequestHeader('content-type', 'application/json');
 
-      if (typeof timeout === "number") {
+      if (typeof timeout === 'number') {
         xhr.timeout = timeout;
       }
 

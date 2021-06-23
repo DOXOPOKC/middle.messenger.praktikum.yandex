@@ -1,6 +1,6 @@
-import { compile } from "pug";
-import Block from "../../core/block";
-import template from "./template";
+import {compile} from 'pug';
+import Block from '../../core/block';
+import template from './template';
 
 export default class Dialog extends Block {
   constructor(props: {
@@ -11,11 +11,11 @@ export default class Dialog extends Block {
     actions: string | null,
     messages: string[] | null
   }) {
-      super("div", template, props);
+    super('div', template, props);
   }
 
   componentDidMount() {
-    this.getContent().setAttribute("class", "dialog");
+    this.getContent().setAttribute('class', 'dialog');
   }
 
   render(): string {

@@ -1,5 +1,5 @@
-import { compile } from "pug";
-import Block, { renderBlock } from '../../core/block';
+import {compile} from 'pug';
+import Block, {renderBlock} from '../../core/block';
 
 const source = `
 aside.sidebar.sidebar_mini
@@ -30,8 +30,8 @@ class Profile extends Block {
     super('div', {
       classNames: 'profile-page',
       events: {
-        click: (e: Event) => this.handleClick(e)
-      }
+        click: (e: Event) => this.handleClick(e),
+      },
     });
   }
 
@@ -44,7 +44,6 @@ class Profile extends Block {
     return template(this.props);
   }
 }
-
 
 const page = new Profile();
 

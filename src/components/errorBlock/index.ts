@@ -1,5 +1,5 @@
-import Block from "../../core/block";
-import {template} from "./template";
+import Block from '../../core/block';
+import {template} from './template';
 
 export class ErrorBlock extends Block {
   constructor(props: {
@@ -8,7 +8,7 @@ export class ErrorBlock extends Block {
     description: string;
     linkText: string;
   }) {
-    super("div", props);
+    super('div', props);
   }
 
   render(): string {

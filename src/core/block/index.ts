@@ -1,23 +1,24 @@
-import EventBus from "../eventBus";
+import EventBus from '../eventBus';
 
 export default class Block {
   static EVENTS = {
-    INIT: "init",
-    FLOW_CDM: "flow:component-did-mount",
-    FLOW_CDU: "flow:component-did-update",
-    FLOW_RENDER: "flow:render"
+    INIT: 'init',
+    FLOW_CDM: 'flow:component-did-mount',
+    FLOW_CDU: 'flow:component-did-update',
+    FLOW_RENDER: 'flow:render',
   };
+
   eventBus: () => EventBus;
   _element: HTMLElement | null = null;
   readonly meta: { tagName: string, props: Record<string, unknown> }
   props: { [key: string]: any };
   oldProps: { [key: string]: any };
 
-  constructor(tagName: string = "div", props: {} = {}) {
+  constructor(tagName: string = 'div', props: {} = {}) {
     const eventBus = new EventBus();
     this.meta = {
       tagName,
-      props
+      props,
     };
     console.log('propspropspropspropsprops', props);
 
@@ -56,7 +57,9 @@ export default class Block {
 
   private _componentDidUpdate(): void {
     const response = this.componentDidUpdate(this.oldProps, this.props);
-    if (response) this._componentDidMount();
+    if (response) {
+      this._componentDidMount();
+    }
   }
 
   componentDidUpdate(oldProps: { [key: string]: any }, newProps: { [key: string]: any }): boolean {
@@ -67,11 +70,12 @@ export default class Block {
     if (!nextProps) {
       return;
     }
-    this.oldProps = Object.assign({}, this.props);
+
+    this.oldProps = {...this.props};
 
     Object.keys(nextProps).forEach(key => {
       this.props[key] = nextProps[key];
-    })
+    });
     this.eventBus().emit(Block.EVENTS.FLOW_CDU);
   };
 
@@ -82,7 +86,7 @@ export default class Block {
   getTemplate() {
     this._element.innerHTML = this.render();
 
-    return this._element?.outerHTML
+    return this._element?.outerHTML;
   }
 
   private addEvents() {
@@ -102,14 +106,14 @@ export default class Block {
   }
 
   private _render() {
-    const { classNames, attrs } = this.props;
+    const {classNames, attrs} = this.props;
 
     this.removeEvents();
 
     if (classNames) {
       classNames.split(' ').forEach((className: string) => {
         this._element.classList.add(className);
-      })
+      });
     }
 
     if (attrs) {
@@ -117,7 +121,7 @@ export default class Block {
 
       attrKeys.forEach((attrKey: string) => {
         this._element.classList.add(attrKey, attrs[attrKey]);
-      })
+      });
     }
 
     this.addEvents();
@@ -135,8 +139,9 @@ export default class Block {
         if (prop.indexOf('_') === 0) {
           throw new Error('Отказано в доступе');
         }
+
         const value = target[prop];
-        return typeof value === "function" ? value.bind(target) : value;
+        return typeof value === 'function' ? value.bind(target) : value;
       },
       set(target: { [key: string]: any }, prop: string, value: any) {
         target[prop] = value;
@@ -144,7 +149,7 @@ export default class Block {
       },
       deleteProperty() {
         throw new Error('Отказано в доступе');
-      }
+      },
     });
   }
 
@@ -153,14 +158,15 @@ export default class Block {
   }
 
   show() {
-    this.getContent().style.display = "block";
+    this.getContent().style.display = 'block';
   }
 
   hide() {
-    this.getContent().style.display = "none";
+    this.getContent().style.display = 'none';
   }
 }
 
+// TODO: перенести в utils
 export function renderBlock(query: string, block: Block) {
   const root = document.querySelector(query);
 

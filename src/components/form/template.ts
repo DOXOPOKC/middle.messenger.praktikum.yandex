@@ -1,4 +1,4 @@
-import { compile } from "pug";
+import {compile} from 'pug';
 
 export const source = `
 h1.form__title.title= title

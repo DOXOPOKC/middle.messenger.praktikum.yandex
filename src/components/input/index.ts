@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import { template } from './template';
+import {template} from './template';
 
 export type inputType = {
   [key: string]: any
@@ -7,7 +7,7 @@ export type inputType = {
 
 export class Input extends Block {
   constructor(props: inputType) {
-    super("div", props);
+    super('div', props);
   }
 
   render() {
