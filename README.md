@@ -1,3 +1,7 @@
+
+## **PULL REQUEST**
+https://github.com/DOXOPOKC/middle.messenger.praktikum.yandex/pull/2
+
 ## **Описание**
 
 Учебный проект Яндекс.Практикума
