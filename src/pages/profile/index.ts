@@ -5,7 +5,7 @@ const source = `
 aside.sidebar.sidebar_mini
   .sidebar__button
     .rounded-button
-      include ../../../static/icons/arrow-left.svg
+      arrow-left.svg
 main.content
   .profile
     .profile__avatar-wrapper.avatar
@@ -13,16 +13,14 @@ main.content
         .blur-background
         span.text-light.avatar__text Поменять аватар
       .profile__avatar
-        include ../../../static/icons/image.svg
+        image.svg
     .profile__title.title Иван
     .profile__main
-      +form({ firstBtn: false, secondBtn: false, isRow: true })
     .profile__actions
       .list
         ul.list__inner
-          each action in actions
             li.list__item
-              span.list__text_left(class=action.classes)= action.label
+              span.list__text_left
 `;
 
 const template = compile(source);
@@ -30,7 +28,7 @@ const template = compile(source);
 class Profile extends Block {
   constructor() {
     super('div', {
-      classNames: 'profile',
+      classNames: 'profile-page',
       events: {
         click: (e: Event) => this.handleClick(e)
       }

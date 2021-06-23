@@ -5,7 +5,7 @@ const source = `
 aside.sidebar.sidebar_mini
   .sidebar__button
     .rounded-button
-      include ../../../static/icons/arrow-left.svg
+      arrow-left.svg
 main.content
   .profile
     .profile__avatar-wrapper.avatar
@@ -13,10 +13,9 @@ main.content
         .blur-background
         span.text-light.avatar__text Поменять аватар
       .profile__avatar
-        include ../../../static/icons/image.svg
+        image.svg
     .profile__title.title Иван
     .profile__main
-      +form({ firstBtn: false, secondBtn: false, isRow: true })
     .profile__actions
       button.profile__button.button.text-light Сохранить
 `;

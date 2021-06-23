@@ -1,4 +1,4 @@
-import {compile} from "pug";
+import { compile } from "pug";
 import Block, { renderBlock } from '../../core/block';
 
 const source = `
@@ -39,16 +39,6 @@ main.content_chat
           )
         span.chat__username Вадим
       .chat__header-dropdown
-        +dropdown("header-dropdown", ["dropdown_right", "dropdown_top"])
-          +Slot('icon')
-            vertical-dots.svg
-          +Slot('actions')
-            li.dropdown__item
-              append.svg
-              span.dropdown__item-text Добавить пользователя
-            li.dropdown__item
-              delete.svg
-              span.dropdown__item-text Удалить пользователя
     .chat__content
       .chat__block
         .chat__date.text-grey 19 июня
@@ -76,19 +66,6 @@ main.content_chat
                 span.chat__message-time.overline-1.text-link 12:00
     .chat__controls
       .chat__attach
-        +dropdown("controls-dropdown", ["dropdown_left", "dropdown_bottom"])
-          +Slot('icon')
-            attach.svg
-          +Slot('actions')
-            li.dropdown__item
-              append.svg
-              span.dropdown__item-text Фото или Видео
-            li.dropdown__item
-              delete.svg
-              span.dropdown__item-text Файл
-            li.dropdown__item
-              delete.svg
-              span.dropdown__item-text Локация
       input.chat__input(placeholder="Сообщение")
       .chat__send-button
         button.rounded-button
