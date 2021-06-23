@@ -1,16 +1,8 @@
 export default class EventBus {
-    private static __instance: EventBus;
-
     listeners: Record<string, Function[]>;
 
     constructor() {
-        if (EventBus.__instance) {
-            return EventBus.__instance;
-        }
-
         this.listeners = {};
-
-        EventBus.__instance = this;
     }
 
     on(event: string, callback: Function): void {

@@ -1,4 +1,7 @@
-export default `
-div(class=className)
-  != child
-`;
+import { compile } from "pug";
+
+const source = `
+button(class="#{className}")
+    != text`;
+
+export const template = compile(source);

@@ -2,12 +2,8 @@
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
   "scripts": {
-    "backend": "node server.js",
-    "dev": "parcel src/pages/**/index.pug --port 3000",
-    "start": "npm run build && npm run backend",
-    "build": "parcel build src/pages/**/index.pug --no-source-maps",
-    "lint": "eslint .",
-    "stylelint": "stylelint src/styles/*.css"
+    "start": "parcel build src/pages/not-found/index.pug --no-cache && node server.js",
+    "lint": "eslint . --fix --ext .ts && stylelint --fix **/*.css"
   },
   "repository": {
     "type": "git",
