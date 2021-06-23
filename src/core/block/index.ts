@@ -79,11 +79,16 @@ export default class Block {
     return this._element;
   }
 
+  getTemplate() {
+    this._element.innerHTML = this.render();
+
+    return this._element?.outerHTML
+  }
+
   private addEvents() {
     const {events = {}} = this.props;
 
     Object.keys(events).forEach(eventName => {
-      // console.log('eventseventseventsevents', events, this._element);
       this._element!.addEventListener(eventName, events[eventName]);
     });
   }
@@ -97,21 +102,28 @@ export default class Block {
   }
 
   private _render() {
-    const block: string = this.render();
+    const { classNames, attrs } = this.props;
+
     this.removeEvents();
 
-    if (this.props.classNames) {
-      this.props.classNames.split(' ').forEach((className: string) => {
-        this._element!.classList.add(className);
+    if (classNames) {
+      classNames.split(' ').forEach((className: string) => {
+        this._element.classList.add(className);
       })
     }
 
-    this._element!.innerHTML = block;
+    if (attrs) {
+      const attrKeys = Object.keys(attrs);
+
+      attrKeys.forEach((attrKey: string) => {
+        this._element.classList.add(attrKey, attrs[attrKey]);
+      })
+    }
+
     this.addEvents();
   }
 
-  render(): void {
-  }
+  render(): void {}
 
   getContent(): HTMLElement | null {
     return this.element;
@@ -151,6 +163,8 @@ export default class Block {
 
 export function renderBlock(query: string, block: Block) {
   const root = document.querySelector(query);
+
+  console.log(block.getTemplate());
 
   root.appendChild(block.getContent());
   return root;

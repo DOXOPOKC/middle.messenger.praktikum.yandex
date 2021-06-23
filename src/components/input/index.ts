@@ -7,7 +7,6 @@ export type inputType = {
 
 export class Input extends Block {
   constructor(props: inputType) {
-    console.log(props, template(props));
     super("div", props);
   }
 

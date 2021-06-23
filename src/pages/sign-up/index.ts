@@ -1,9 +1,8 @@
-import Form from "../../components/form/index";
-import Dialog from "../../components/dialog/index";
 import { compile } from "pug";
-import Block, {renderBlock} from '../../core/block';
+import Block, { renderBlock } from '../../core/block';
 import { Button } from '../../components/button';
 import { Input } from '../../components/input';
+import Form from "../../components/form";
 
 const source = `
 .dialog
@@ -15,18 +14,18 @@ const template = compile(source);
 
 const formProps = {
   classNames: 'form',
-  title: "Вход",
+  title: "Регистрация",
   isRow: false,
   firstBtn: (new Button({
     classNames: 'button body-1 text-light',
     attrs: {
       type: 'submit'
     },
-    text: 'Авторизоваться'
+    text: 'Зарегистрироваться'
   })).getTemplate(),
   secondBtn: (new Button({
     classNames: 'button button-light caption text-link',
-    text: 'Нет аккаунта?',
+    text: 'Войти',
     attrs: {
       type: 'button'
     }
@@ -34,45 +33,59 @@ const formProps = {
   fields: [
     (new Input({
       classNames: 'input',
-      name: "login",
-      type: "text",
-      label: "Логин",
-      value: "ivanivanov",
-      classes: [],
-      messages: ["Неверный логин"],
+      name: "email",
+      type: "email",
+      label: "Почта",
+      value: "pochta@yandex.ru"
     })).getTemplate(),
     (new Input({
       classNames: 'input',
-      name: "password",
-      type: "password",
-      label: "Пароль",
-      value: "qweqweqweqwe",
-      classes: [],
-      messages: [],
+      name: "login",
+      type: "text",
+      label: "Логин",
+      value: "ivanivanov"
     })).getTemplate(),
+    (new Input({
+      classNames: 'input',
+      name: "firstname",
+      type: "text",
+      label: "Имя",
+      value: "Иван"
+    })).getTemplate(),
+    (new Input({
+      classNames: 'input',
+      name: "lastname",
+      type: "text",
+      label: "Фамилия",
+      value: "Иванов"
+    })).getTemplate(),
+    (new Input({
+      classNames: 'input',
+      name: "phone",
+      type: "phone",
+      label: "Телефон",
+      value: "+ 7 (909) 967 30 30"
+    })).getTemplate(),
+    (new Input({
+      name: "second-password",
+      type: "password",
+      label: "Пароль (еще раз)",
+      value: "qweqweqweqwe",
+      classes: ["text-error"],
+      messages: ["Пароли не совпадают"]
+    })).getTemplate()
   ]
 };
 
-class SignIn extends Block {
+class SignUp extends Block {
   constructor() {
     super('div', {
       classNames: 'sign-in',
       form: (new Form(formProps)).getTemplate(),
       events: {
-        focusout: (e: Event) => this.handleInputBlur(e),
         click: (e: Event) => this.handleClick(e)
       }
     });
-  }
-
-  handleSubmit(e: Event) {
-    e.preventDefault();
-    console.log(e);
-  }
-
-  handleInputBlur(e: Event) {
-    e.stopPropagation();
-    console.log(e);
   }
 
   handleClick(e: Event) {
@@ -85,17 +98,6 @@ class SignIn extends Block {
   }
 }
 
-// const dialogProps = {
-//   hasBackground: false,
-//   title: '123',
-//   titleClasses: ['123'],
-//   content: form.render(),
-//   actions: null,
-//   messages: null
-// }
+const page = new SignUp();
 
-// const dialog = new Dialog(dialogProps);
-
-const signInPage = new SignIn();
-
-renderBlock('.app', signInPage);
+renderBlock('.app', page);
