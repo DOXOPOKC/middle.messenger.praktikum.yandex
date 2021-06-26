@@ -2,8 +2,8 @@
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
   "scripts": {
-    "dev": "parcel serve 'src/pages/**/index.pug' --no-cache --port 3000",
-    "start": "parcel build 'src/pages/**/index.pug' --no-cache --no-source-maps && node server.js",
+    "dev": "parcel serve src/pages/**/index.pug --no-cache --port 3000",
+    "start": "parcel build src/pages/**/index.pug --no-cache --no-source-maps && node server.js",
     "lint": "eslint . --fix --ext .ts && stylelint --fix **/*.css"
   },
   "repository": {
