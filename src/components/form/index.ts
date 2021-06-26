@@ -1,6 +1,6 @@
 import Block from '../../core/block';
-import {template} from './template';
-import {Button} from '../button';
+import Button from '../button';
+import { template } from './template';
 
 export default class Form extends Block {
   constructor(props: {
@@ -27,7 +27,7 @@ export default class Form extends Block {
     super('form', props);
   }
 
-  render() {
-    return template(this.props);
+  render(newProps = this.props) {
+    return template(newProps);
   }
 }

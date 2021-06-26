@@ -1,7 +1,7 @@
 import Block from '../../core/block';
 import {template} from './template';
 
-export class ErrorBlock extends Block {
+export default class ErrorBlock extends Block {
   constructor(props: {
     classNames: string;
     title: string;
@@ -11,7 +11,7 @@ export class ErrorBlock extends Block {
     super('div', props);
   }
 
-  render(): string {
-    return template(this.props);
+  render(newProps = this.props) {
+    return template(newProps);
   }
 }

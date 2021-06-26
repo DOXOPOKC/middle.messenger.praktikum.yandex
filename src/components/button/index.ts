@@ -1,12 +1,12 @@
 import Block from '../../core/block';
-import {template} from './template';
+import { template } from './template';
 
-export class Button extends Block {
+export default class Button extends Block {
   constructor(props: {}) {
     super('button', props);
   }
 
-  render() {
-    return template(this.props);
+  render(newProps = this.props) {
+    return template(newProps);
   }
 }
