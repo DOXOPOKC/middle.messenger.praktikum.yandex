@@ -106,13 +106,13 @@ export default class Block {
   }
 
   private _render() {
-    const {classNames, attrs} = this.props;
+    const { classNames, attrs } = this.props;
 
     this.removeEvents();
 
     if (classNames) {
       classNames.split(' ').forEach((className: string) => {
-        this._element.classList.add(className);
+        this._element?.classList.add(className);
       });
     }
 
@@ -120,7 +120,7 @@ export default class Block {
       const attrKeys = Object.keys(attrs);
 
       attrKeys.forEach((attrKey: string) => {
-        this._element.classList.add(attrKey, attrs[attrKey]);
+        this._element?.setAttribute(attrKey, attrs[attrKey]);
       });
     }
 
