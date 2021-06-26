@@ -20,7 +20,6 @@ export default class Block {
       tagName,
       props,
     };
-    console.log('propspropspropspropsprops', props);
 
     this.props = this.makePropsProxy(props);
     this.oldProps = {};
@@ -145,6 +144,9 @@ export default class Block {
       },
       set(target: { [key: string]: any }, prop: string, value: any) {
         target[prop] = value;
+
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU);
+
         return true;
       },
       deleteProperty() {
@@ -164,14 +166,4 @@ export default class Block {
   hide() {
     this.getContent().style.display = 'none';
   }
-}
-
-// TODO: перенести в utils
-export function renderBlock(query: string, block: Block) {
-  const root = document.querySelector(query);
-
-  console.log(block.getTemplate());
-
-  root.appendChild(block.getContent());
-  return root;
 }
