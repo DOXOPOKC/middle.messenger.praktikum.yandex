@@ -1,9 +1,10 @@
 import Form from '../../components/form/index';
 import Dialog from '../../components/dialog/index';
-import {compile} from 'pug';
-import Block, {renderBlock} from '../../core/block';
+import { compile } from 'pug';
+import { render } from '../../utils';
+import Block from '../../core/block';
 import {Button} from '../../components/button';
-import {Input} from '../../components/input';
+import { Input } from '../../components/input';
 
 const source = `
 .dialog
@@ -37,9 +38,9 @@ const formProps = {
       name: 'login',
       type: 'text',
       label: 'Логин',
-      value: 'ivanivanov',
+      value: '',
       classes: [],
-      messages: ['Неверный логин'],
+      messages: [],
     })).getTemplate(),
     (new Input({
       classNames: 'input',
@@ -59,25 +60,39 @@ class SignIn extends Block {
       classNames: 'sign-in',
       form: (new Form(formProps)).getTemplate(),
       events: {
-        focusout: (e: Event) => this.handleInputBlur(e),
-        click: (e: Event) => this.handleClick(e),
+        focusin: (e: Event) => this.onfocus(e),
+        focusout: (e: Event) => this.onBlur(e),
+        submit: (e: Event) => {
+          e.preventDefault();
+
+          console.log('submitted')
+        },
       },
     });
   }
 
-  handleSubmit(e: Event) {
+  onBlur(e: Event) {
     e.preventDefault();
-    console.log(e);
+
+    if (e.target.name === 'login') {
+      console.log('login', e.target)
+    }
+
+    if (e.target.name === 'password') {
+      console.log('password', e.target)
+    }
   }
 
-  handleInputBlur(e: Event) {
-    e.stopPropagation();
-    console.log(e);
-  }
-
-  handleClick(e: Event) {
+  onfocus(e: Event) {
     e.preventDefault();
-    console.log(e);
+
+    if (e.target.name === 'login') {
+      console.log('login', e.target)
+    }
+
+    if (e.target.name === 'password') {
+      console.log('password', e.target)
+    }
   }
 
   render() {
@@ -98,4 +113,4 @@ class SignIn extends Block {
 
 const signInPage = new SignIn();
 
-renderBlock('.app', signInPage);
+render('.app', signInPage);
