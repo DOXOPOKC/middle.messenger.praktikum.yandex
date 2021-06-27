@@ -1,93 +1,49 @@
-import {compile} from 'pug';
-import {render} from '../../utils';
 import Block from '../../core/block';
+import {render} from '../../utils';
+import {template} from './template';
+import {Dropdown} from '../../components';
 
-const source = `
-aside.sidebar
-  .sidebar__header
-    a.sidebar__profile-link.body-2 Профиль >
-    input.sidebar__search.search(placeholder="Поиск")
-  .sidebar__chats
-    ul.sidebar__list
-      li.sidebar__chat
-        .sidebar__chat-inner
-          .sidebar__avatar.avatar
-            img.image(src="../../../static/img/chatuseravatar.png", alt="chat user")
-          .sidebar__info
-            .sidebar__username Андрей
-            .sidebar__last-message.body-2.text-grey Друзья, у меня для вас особенный выпуск новостей!...
-          .sidebar__right
-            .sidebar__last-message-time.overline-1.text-grey 10:49
-            .sidebar__messages-counter.rounded-button.caption.text-light 1
-      li.sidebar__chat
-        .sidebar__chat-inner
-          .sidebar__avatar.avatar
-            img(src="../../../static/img/chatuseravatar.png", alt="chat user")
-          .sidebar__info
-            .sidebar__username Андрей
-            .sidebar__last-message.body-2.text-grey Друзья, у меня для вас особенный выпуск новостей!...
-          .sidebar__right
-            .sidebar__last-message-time.overline-1.text-grey 10:49
-            .sidebar__messages-counter.rounded-button.caption.text-light 1
-main.content_chat
-  .chat
-    .chat__header
-      .chat__user
-        .chat__avatar.avatar
-          img.image(
-            src="../../../static/img/chatuseravatar.png",
-            alt="chat user"
-          )
-        span.chat__username Вадим
-      .chat__header-dropdown
-    .chat__content
-      .chat__block
-        .chat__date.text-grey 19 июня
-        ul.chat__messages
-          li.chat__message.chat__message_from
-            .chat__message-content
-              p.chat__message-content-text
-                | Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
-                br
-                br
-                | Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.
-              .chat__message-info
-                .chat__message-time.overline-1.text-grey 11:56
-          li.chat__message.chat__message_image
-            img.image(
-              src="../../../static/img/message-camera.png",
-              alt="Фото камеры в сообщении от Вадима"
-            )
-          li.chat__message.chat__message_to
-            .chat__message-content
-              p.chat__message-content-text.body-2 Круто!
-              .chat__message-info
-                .chat__message-status
-                  message-done.svg
-                span.chat__message-time.overline-1.text-link 12:00
-    .chat__controls
-      .chat__attach
-      input.chat__input(placeholder="Сообщение")
-      .chat__send-button
-        button.rounded-button
-          arrow-left.svg
-`;
+import verticalDotsIcon from "url:../../assets/icons/vertical-dots.svg";
+import attachIcon from "url:../../assets/icons/attach.svg";
+import appendIcon from "url:../../assets/icons/append.svg";
+import deleteIcon from "url:../../assets/icons/delete.svg";
 
-const template = compile(source);
+
+const topDropdown = new Dropdown({
+  classNames: 'dropdown dropdown_right dropdown_top',
+  id: 'controls-dropdown',
+  icon: verticalDotsIcon,
+  actions: [
+    {icon: appendIcon, text: 'qwe'},
+    {icon: deleteIcon, text: 'ewq'},
+  ]
+});
+
+const bottomDropdown = new Dropdown({
+  classNames: 'dropdown dropdown_left dropdown_bottom',
+  id: 'controls-dropdown',
+  icon: attachIcon,
+  actions: [
+    {icon: appendIcon, text: 'qwe'},
+    {icon: deleteIcon, text: 'ewq'},
+  ]
+});
 
 class Chats extends Block {
   constructor() {
     super('div', {
       classNames: 'chats',
+      topDropdown,
+      bottomDropdown,
       events: {
-        click: (e: Event) => this.handleClick(e),
+        click: (e: Event) => {
+          e.preventDefault();
+          console.log(e);
+
+          if (e.target.className === 'dropdown__label') {}
+        },
       },
     });
-  }
-
-  handleClick(e: Event) {
-    e.preventDefault();
-    console.log(e);
   }
 
   render() {
