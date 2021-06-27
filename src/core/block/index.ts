@@ -31,7 +31,7 @@ export default class Block {
       props,
     };
 
-    this.props = this.makePropsProxy({ ...props, __id: this._id });
+    this.props = this.makePropsProxy({...props, __id: this._id});
     this.eventBus = () => eventBus;
 
     this.registerEvents(eventBus);
@@ -46,11 +46,11 @@ export default class Block {
     const propsKeys = Object.keys(props);
 
     if (propsKeys.length) {
-      for (let propKey in props) {
+      for (const propKey in props) {
         if (props[propKey] instanceof Block) {
           props[propKey] = props[propKey].getTemplate();
         } else if (props[propKey] instanceof Array) {
-          props[propKey] = props[propKey].map((prop: Block | unknown) => prop instanceof Block && prop.getTemplate());
+          props[propKey] = props[propKey].map((prop: Block | unknown) => prop instanceof Block ? prop.getTemplate() : prop);
         }
       }
     }
@@ -117,7 +117,7 @@ export default class Block {
   }
 
   private _render(newProps = this.props) {
-    const { classNames, attrs, __id } = this.props;
+    const {classNames, attrs, __id} = this.props;
 
     this.removeEvents();
 
@@ -154,7 +154,7 @@ export default class Block {
         return typeof value === 'function' ? value.bind(target) : value;
       },
       set: (target: IProps, prop: string, value: unknown) => {
-        const oldProps = { ...target };
+        const oldProps = {...target};
 
         target = this.templateAdapter(target);
         target[prop] = value;

@@ -1,5 +1,6 @@
 import {compile} from 'pug';
-import Block, {renderBlock} from '../../core/block';
+import {render} from '../../utils';
+import Block from '../../core/block';
 
 const source = `
 aside.sidebar.sidebar_mini
@@ -47,4 +48,4 @@ class Profile extends Block {
 
 const page = new Profile();
 
-renderBlock('.app', page);
+render('.app', page);

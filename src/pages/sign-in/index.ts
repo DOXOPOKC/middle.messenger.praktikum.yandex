@@ -1,115 +1,96 @@
-import Form from '../../components/form/index';
-import Dialog from '../../components/dialog/index';
-import { compile } from 'pug';
-import { render } from '../../utils';
 import Block from '../../core/block';
-import {Button} from '../../components/button';
-import { Input } from '../../components/input';
+import {Input, Button, Form} from '../../components';
+import {render, checkField} from '../../utils';
+import {template} from './template';
 
-const source = `
-.dialog
-  .dialog__window.dialog__window_medium
-    != form
-`;
+const firstField = new Input({
+  classNames: 'input',
+  name: 'login',
+  type: 'text',
+  label: 'Логин',
+  value: '',
+  classes: [],
+  messages: [],
+  settings: {withInternalID: true}});
 
-const template = compile(source);
+const secondField = new Input({
+  classNames: 'input',
+  name: 'password',
+  type: 'password',
+  label: 'Пароль',
+  value: '',
+  classes: [],
+  messages: [],
+  settings: {withInternalID: true}
+});
+
+const firstBtn = new Button({
+  classNames: 'button body-1 text-light',
+  text: 'Авторизоваться',
+  attrs: {type: 'submit'},
+  settings: {withInternalID: true}
+});
+
+const secondBtn = new Button({
+  classNames: 'button button-light caption text-link',
+  text: 'Нет аккаунта?',
+  attrs: {type: 'button'},
+  settings: {withInternalID: true}
+});
 
 const formProps = {
   classNames: 'form',
   title: 'Вход',
   isRow: false,
-  firstBtn: (new Button({
-    classNames: 'button body-1 text-light',
-    attrs: {
-      type: 'submit',
-    },
-    text: 'Авторизоваться',
-  })).getTemplate(),
-  secondBtn: (new Button({
-    classNames: 'button button-light caption text-link',
-    text: 'Нет аккаунта?',
-    attrs: {
-      type: 'button',
-    },
-  })).getTemplate(),
-  fields: [
-    (new Input({
-      classNames: 'input',
-      name: 'login',
-      type: 'text',
-      label: 'Логин',
-      value: '',
-      classes: [],
-      messages: [],
-    })).getTemplate(),
-    (new Input({
-      classNames: 'input',
-      name: 'password',
-      type: 'password',
-      label: 'Пароль',
-      value: 'qweqweqweqwe',
-      classes: [],
-      messages: [],
-    })).getTemplate(),
-  ],
+  firstBtn,
+  secondBtn,
+  fields: [firstField, secondField],
+  settings: {withInternalID: true}
 };
+
+const form = new Form(formProps);
 
 class SignIn extends Block {
   constructor() {
     super('div', {
       classNames: 'sign-in',
-      form: (new Form(formProps)).getTemplate(),
+      form,
       events: {
-        focusin: (e: Event) => this.onfocus(e),
-        focusout: (e: Event) => this.onBlur(e),
-        submit: (e: Event) => {
+        focusout: (e: Event) => {
+          const {name, value} = e.target;
+
           e.preventDefault();
 
-          console.log('submitted')
+          if (name === 'login') {
+            checkField(firstField, value, 'password');
+          }
+
+          if (name === 'password') {
+            checkField(secondField, value, 'password');
+          }
+        },
+        submit: (e: Event) => {
+          const login: HTMLInputElement | null = document.querySelector('input[name=\'login\']');
+          const password: HTMLInputElement | null = document.querySelector('input[name=\'password\']');
+
+          e.preventDefault();
+
+          if (login) {
+            checkField(firstField, login.value, 'login');
+          }
+
+          if (password) {
+            checkField(secondField, password.value, 'password');
+          }
         },
       },
     });
-  }
-
-  onBlur(e: Event) {
-    e.preventDefault();
-
-    if (e.target.name === 'login') {
-      console.log('login', e.target)
-    }
-
-    if (e.target.name === 'password') {
-      console.log('password', e.target)
-    }
-  }
-
-  onfocus(e: Event) {
-    e.preventDefault();
-
-    if (e.target.name === 'login') {
-      console.log('login', e.target)
-    }
-
-    if (e.target.name === 'password') {
-      console.log('password', e.target)
-    }
   }
 
   render() {
     return template(this.props);
   }
 }
-
-// Const dialogProps = {
-//   hasBackground: false,
-//   title: '123',
-//   titleClasses: ['123'],
-//   content: form.render(),
-//   actions: null,
-//   messages: null
-// }
-
-// const dialog = new Dialog(dialogProps);
 
 const signInPage = new SignIn();
 

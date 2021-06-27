@@ -1,96 +1,155 @@
-import {compile} from 'pug';
-import Block, {renderBlock} from '../../core/block';
-import {Button} from '../../components/button';
-import {Input} from '../../components/input';
-import Form from '../../components/form';
+import Block from '../../core/block';
+import {Input, Button, Form} from '../../components';
+import {render, checkField} from '../../utils';
+import {template} from './template';
 
-const source = `
-.dialog
-  .dialog__window.dialog__window_medium
-    != form
-`;
+const emailField = new Input({
+  classNames: 'input',
+  name: 'email',
+  type: 'email',
+  label: 'Почта',
+  value: 'pochta@yandex.ru',
+  classes: [],
+  messages: [],
+  settings: {withInternalID: true},
+});
 
-const template = compile(source);
+const loginField = new Input({
+  classNames: 'input',
+  name: 'login',
+  type: 'text',
+  label: 'Логин',
+  value: 'ivanivanov',
+  classes: [],
+  messages: [],
+  settings: {withInternalID: true}
+});
+
+const firstNameField = new Input({
+  classNames: 'input',
+  name: 'firstname',
+  type: 'text',
+  label: 'Имя',
+  value: 'Иван',
+  classes: [],
+  messages: [],
+  settings: {withInternalID: true}
+});
+
+const lastNameField = new Input({
+  classNames: 'input',
+  name: 'lastname',
+  type: 'text',
+  label: 'Фамилия',
+  value: 'Иванов',
+  classes: [],
+  messages: [],
+  settings: {withInternalID: true}
+});
+
+const phoneField = new Input({
+  classNames: 'input',
+  name: 'phone',
+  type: 'phone',
+  label: 'Телефон',
+  value: '+ 7 (909) 967 30 30',
+  classes: [],
+  messages: [],
+  settings: {withInternalID: true}
+});
+
+const passwordField = new Input({
+  name: 'second-password',
+  type: 'password',
+  label: 'Пароль',
+  value: 'qweqweqweqwe',
+  classes: [],
+  messages: [],
+  settings: {withInternalID: true}
+});
+
+const secondPasswordField = new Input({
+  name: 'second-password',
+  type: 'password',
+  label: 'Пароль (еще раз)',
+  value: 'qweqweqweqwe',
+  classes: ['text-error'],
+  messages: ['Пароли не совпадают'],
+  settings: {withInternalID: true}
+});
+
+const firstBtn = new Button({
+  classNames: 'button body-1 text-light',
+  text: 'Зарегистрироваться',
+  attrs: { type: 'submit' },
+  settings: {withInternalID: true}
+});
+
+const secondBtn = new Button({
+  classNames: 'button button-light caption text-link',
+  text: 'Войти',
+  attrs: {type: 'button'},
+  settings: {withInternalID: true}
+});
 
 const formProps = {
   classNames: 'form',
   title: 'Регистрация',
   isRow: false,
-  firstBtn: (new Button({
-    classNames: 'button body-1 text-light',
-    attrs: {
-      type: 'submit',
-    },
-    text: 'Зарегистрироваться',
-  })).getTemplate(),
-  secondBtn: (new Button({
-    classNames: 'button button-light caption text-link',
-    text: 'Войти',
-    attrs: {
-      type: 'button',
-    },
-  })).getTemplate(),
+  firstBtn,
+  secondBtn,
   fields: [
-    (new Input({
-      classNames: 'input',
-      name: 'email',
-      type: 'email',
-      label: 'Почта',
-      value: 'pochta@yandex.ru',
-    })).getTemplate(),
-    (new Input({
-      classNames: 'input',
-      name: 'login',
-      type: 'text',
-      label: 'Логин',
-      value: 'ivanivanov',
-    })).getTemplate(),
-    (new Input({
-      classNames: 'input',
-      name: 'firstname',
-      type: 'text',
-      label: 'Имя',
-      value: 'Иван',
-    })).getTemplate(),
-    (new Input({
-      classNames: 'input',
-      name: 'lastname',
-      type: 'text',
-      label: 'Фамилия',
-      value: 'Иванов',
-    })).getTemplate(),
-    (new Input({
-      classNames: 'input',
-      name: 'phone',
-      type: 'phone',
-      label: 'Телефон',
-      value: '+ 7 (909) 967 30 30',
-    })).getTemplate(),
-    (new Input({
-      name: 'second-password',
-      type: 'password',
-      label: 'Пароль (еще раз)',
-      value: 'qweqweqweqwe',
-      classes: ['text-error'],
-      messages: ['Пароли не совпадают'],
-    })).getTemplate(),
+    emailField,
+    loginField,
+    firstNameField,
+    lastNameField,
+    phoneField,
+    passwordField,
+    secondPasswordField,
   ],
 };
+
+const form = new Form(formProps);
 
 class SignUp extends Block {
   constructor() {
     super('div', {
       classNames: 'sign-in',
-      form: (new Form(formProps)).getTemplate(),
+      form,
       events: {
-        click: (e: Event) => this.handleClick(e),
-      },
-    });
-  }
+        focusout: (e: Event) => {
+          const {name, value} = e.target;
 
-  handleClick(e: Event) {
-    e.preventDefault();
-    console.log(e);
+          e.preventDefault();
+
+          console.log(e);
+
+          if (name === 'login') {
+            // checkField(firstField, value, 'password');
+          }
+
+          if (name === 'password') {
+            // checkField(secondField, value, 'password');
+          }
+        },
+        submit: (e: Event) => {
+          const login = document.querySelector('input[name=\'login\']');
+          const password = document.querySelector('input[name=\'password\']');
+
+          console.log(e);
+
+          e.preventDefault();
+
+          if (login) {
+            // checkField(firstField, login.value, 'login');
+          }
+
+          if (password) {
+            // checkField(secondField, password.value, 'password');
+          }
+        },
+      }
+    });
   }
 
   render() {
@@ -100,4 +159,4 @@ class SignUp extends Block {
 
 const page = new SignUp();
 
-renderBlock('.app', page);
+render('.app', page);

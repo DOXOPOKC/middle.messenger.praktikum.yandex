@@ -1,5 +1,5 @@
-import {ErrorBlock} from '../../components/errorBlock';
-import {renderBlock} from '../../core/block';
+import {ErrorBlock} from '../../components';
+import {render} from '../../utils';
 
 const page = new ErrorBlock({
   classNames: 'error-block',
@@ -8,4 +8,4 @@ const page = new ErrorBlock({
   linkText: 'Назад к чатам',
 });
 
-renderBlock('.app', page);
+render('.app', page);

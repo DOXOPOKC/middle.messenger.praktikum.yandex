@@ -1,5 +1,6 @@
 import {compile} from 'pug';
-import Block, {renderBlock} from '../../core/block';
+import {render} from '../../utils';
+import Block from '../../core/block';
 
 const source = `
 aside.sidebar
@@ -96,4 +97,4 @@ class Chats extends Block {
 
 const page = new Chats();
 
-renderBlock('.app', page);
+render('.app', page);

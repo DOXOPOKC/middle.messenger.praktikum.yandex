@@ -10,9 +10,10 @@ label.input__label.form__label(for=name)= label
   )
   .messages
     .messages__wrapper
-      if (messages)
+      if (messages.length)
         each message in messages
-          .messages__message.text-error.overline-2= message
+          .messages__message.text-error.overline-2
+            !=message
 `;
 
 export const template = compile(source);

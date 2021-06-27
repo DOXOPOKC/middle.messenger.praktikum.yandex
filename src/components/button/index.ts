@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import { template } from './template';
+import {template} from './template';
 
 export default class Button extends Block {
   constructor(props: {}) {

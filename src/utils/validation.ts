@@ -22,7 +22,6 @@ enum errorMessages {
   password = 'Неверный пароль'
 }
 
-
 export default (value: string, type: string) => {
   let errorMessage = '';
   let isValid = false;
@@ -51,5 +50,5 @@ export default (value: string, type: string) => {
       break;
   }
 
-  return { isValid, errorMessage };
+  return {isValid, errorMessage};
 };

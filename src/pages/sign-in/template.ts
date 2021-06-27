@@ -1,7 +1,9 @@
 import {compile} from 'pug';
 
 const source = `
-!= text
+.dialog
+  .dialog__window
+    != form
 `;
 
 export const template = compile(source);
