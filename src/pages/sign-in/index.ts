@@ -32,7 +32,7 @@ const firstBtn = new Button({
 });
 
 const secondBtn = new Button({
-  classNames: 'button button-light caption text-link',
+  classNames: 'button button_light caption text-link',
   text: 'Нет аккаунта?',
   attrs: {type: 'button'},
   settings: {withInternalID: true}

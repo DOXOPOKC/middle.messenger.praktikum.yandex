@@ -21,8 +21,6 @@ li.list__item:last-child {
 }
 
 .list__text_left {
-  width: 100%;
-  height: 100%;
   display: flex;
   justify-content: space-between;
 }

@@ -1,7 +1,12 @@
 import Block from '../../core/block';
-import {Form, Input} from '../../components';
+import {Form, Input, Sidebar} from '../../components';
 import {render} from '../../utils';
 import {template} from './template';
+
+const sidebar = new Sidebar({
+  mini: true,
+  classNames: 'sidebar sidebar_mini',
+});
 
 
 const emailField = new Input({
@@ -64,30 +69,8 @@ const phoneField = new Input({
   settings: {withInternalID: true}
 });
 
-const passwordField = new Input({
-  isRow: true,
-  classNames: 'input',
-  name: 'second-password',
-  type: 'password',
-  label: 'Пароль',
-  value: 'qweqweqweqwe',
-  classes: [],
-  messages: [],
-  settings: {withInternalID: true}
-});
-
-const secondPasswordField = new Input({
-  isRow: true,
-  classNames: 'input',
-  name: 'second-password',
-  type: 'password',
-  label: 'Пароль (еще раз)',
-  value: 'qweqweqweqwe',
-  classes: [],
-  settings: {withInternalID: true}
-});
-
 const formProps = {
+  isRow: true,
   classNames: 'form',
   fields: [
     emailField,
@@ -95,8 +78,6 @@ const formProps = {
     firstNameField,
     lastNameField,
     phoneField,
-    passwordField,
-    secondPasswordField,
   ],
   settings: {withInternalID: true}
 };
@@ -107,6 +88,7 @@ class Profile extends Block {
   constructor() {
     super('div', {
       classNames: 'profile-page',
+      sidebar,
       form,
       actions: [
         { classes: ["text", "text-link"], text: 'Изменить данные' },

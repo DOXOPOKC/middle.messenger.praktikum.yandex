@@ -14,12 +14,13 @@ main.content
     .profile__title.title Иван
     .profile__main
       != form
-    .profile__actions
-      .list
-        ul.list__inner
-          each action in actions
-            li.list__item
-              a.list__text_left(class=action.classes href="#")= action.text
+    if (actions)
+      .profile__actions
+        .list
+          ul.list__inner
+            each action in actions
+              li.list__item
+                a.list__text_left(class=action.classes href="#")= action.text
 `;
 
 export const template = compile(source);

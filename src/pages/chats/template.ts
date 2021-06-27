@@ -49,7 +49,7 @@ main.content_chat
         != bottomDropdown
       input.chat__input(placeholder="Сообщение")
       .chat__send-button
-        button.rounded-button
+        button.rounded_button
           img(src="${arrowLeft}")
 `;
 

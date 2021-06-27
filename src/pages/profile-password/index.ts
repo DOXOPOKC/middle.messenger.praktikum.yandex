@@ -1,41 +1,82 @@
-import {compile} from 'pug';
-import {render} from '../../utils';
 import Block from '../../core/block';
+import {Button, Form, Input, Sidebar} from '../../components';
+import {render} from '../../utils';
+import {template} from './template';
 
-const source = `
-aside.sidebar.sidebar_mini
-  .sidebar__button
-    .rounded-button
-      arrow-left.svg
-main.content
-  .profile
-    .profile__avatar-wrapper.avatar
-      .profile__change-avatar
-        .blur-background
-        span.text_light.avatar__text Поменять аватар
-      .profile__avatar
-        image.svg
-    .profile__title.title Иван
-    .profile__main
-    .profile__actions
-      button.profile__button.button.text-light Сохранить
-`;
 
-const template = compile(source);
+const firstBtn = new Button({
+  classNames: 'button body-1 text-light button_profile',
+  text: 'Сохранить',
+  attrs: {type: 'submit'},
+  settings: {withInternalID: true}
+});
+
+const sidebar = new Sidebar({
+  mini: true,
+  classNames: 'sidebar sidebar_mini',
+});
+
+const oldPasswordField = new Input({
+  isRow: true,
+  classNames: 'input',
+  name: 'old-password',
+  type: 'password',
+  label: 'Старый пароль',
+  value: 'qweqweqwe',
+  classes: [],
+  messages: [],
+  settings: {withInternalID: true}
+});
+
+const newPasswordField = new Input({
+  isRow: true,
+  classNames: 'input',
+  name: 'new-password',
+  type: 'password',
+  label: 'Новый пароль',
+  value: 'qweqweqweqwe',
+  classes: [],
+  messages: [],
+  settings: {withInternalID: true}
+});
+
+const repeatPasswordField = new Input({
+  isRow: true,
+  classNames: 'input',
+  name: 'repeat-password',
+  type: 'password',
+  label: 'Повторите новый пароль',
+  value: 'qweqweqweqwe',
+  classes: [],
+  settings: {withInternalID: true}
+});
+
+const formProps = {
+  isRow: true,
+  classNames: 'form',
+  firstBtn,
+  fields: [
+    oldPasswordField,
+    newPasswordField,
+    repeatPasswordField,
+  ],
+  settings: {withInternalID: true}
+};
+
+const form = new Form(formProps);
 
 class Profile extends Block {
   constructor() {
     super('div', {
-      classNames: 'profile',
+      classNames: 'profile-page',
+      sidebar,
+      form,
       events: {
-        click: (e: Event) => this.handleClick(e),
+        click: (e: Event) => {
+          console.log(e);
+        },
       },
     });
-  }
-
-  handleClick(e: Event) {
-    e.preventDefault();
-    console.log(e);
   }
 
   render() {

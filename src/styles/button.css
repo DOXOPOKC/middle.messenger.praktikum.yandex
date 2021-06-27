@@ -14,11 +14,15 @@ button {
   margin: 0 auto;
 }
 
-.button-light {
+.button_light {
   background-color: #FFFFFF;
 }
 
-.rounded-button {
+.button_profile {
+  margin-top: 60px;
+}
+
+.rounded_button {
   display: flex;
   justify-content: center;
   align-items: center;
