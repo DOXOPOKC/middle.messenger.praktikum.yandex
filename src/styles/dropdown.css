@@ -2,6 +2,11 @@
   height: 100%;
 }
 
+.dropdown .image {
+  height: 100%;
+  width: 100%;
+}
+
 .dropdown_right .dropdown__submenu {
   right: 10px;
 }
@@ -22,11 +27,16 @@ input.dropdown__input, .dropdown__submenu  {
   display: none;
 }
 
-.dropdown__icon {}
+.dropdown__icon {
+  height: 100%;
+  width: 22px;
+}
 
-label.dropdown__label {
+.dropdown__btn {
+  background: none;
   cursor: pointer;
   height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
 }

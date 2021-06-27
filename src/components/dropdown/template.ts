@@ -1,15 +1,14 @@
 import {compile} from 'pug';
 
 const source = `
-input.dropdown__input(id=id, type="checkbox", name="menu")
-if icon
-  button.dropdown__label
-    img(src=icon)
+a.dropdown__btn
+  img.dropdown__image.image(src=icon)
 if actions
   ul.dropdown__submenu
     each action in actions
       li.dropdown__item
-        img(src=action.icon)
+        .dropdown__icon
+          img.image(src=action.icon)
         span.dropdown__item-text= action.text
 `;
 

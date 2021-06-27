@@ -1,7 +1,7 @@
 import Block from '../../core/block';
 import {render} from '../../utils';
 import {template} from './template';
-import {Dropdown} from '../../components';
+import {Dropdown, Sidebar} from '../../components';
 
 import verticalDotsIcon from "url:../../assets/icons/vertical-dots.svg";
 import attachIcon from "url:../../assets/icons/attach.svg";
@@ -29,18 +29,31 @@ const bottomDropdown = new Dropdown({
   ]
 });
 
+const sidebar = new Sidebar({
+  classNames: 'sidebar',
+});
+
 class Chats extends Block {
   constructor() {
     super('div', {
       classNames: 'chats',
+      sidebar,
       topDropdown,
       bottomDropdown,
       events: {
         click: (e: Event) => {
           e.preventDefault();
-          console.log(e);
 
-          if (e.target.className === 'dropdown__label') {}
+          if (e.target.className === 'dropdown__image image') {
+            const dropdown = e.target.parentNode;
+            const dropdownList = dropdown.nextElementSibling;
+
+            if (dropdownList.style.display) {
+              dropdownList.style.display = dropdownList.style.display === 'none' ? 'block' : 'none';
+            } else {
+              dropdownList.style.display = 'block'
+            }
+          }
         },
       },
     });
