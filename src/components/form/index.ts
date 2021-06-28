@@ -1,4 +1,4 @@
-import Block, { IProps } from '../../core/block';
+import Block, {IProps} from '../../core/block';
 import {template} from './template';
 
 export default class Form extends Block {

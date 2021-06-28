@@ -21,21 +21,21 @@ const secondField = new Input({
   value: '',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const firstBtn = new Button({
   classNames: 'button body-1 text-light',
   text: 'Авторизоваться',
   attrs: {type: 'submit'},
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const secondBtn = new Button({
   classNames: 'button button_light caption text-link',
   text: 'Нет аккаунта?',
   attrs: {type: 'button'},
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const formProps = {
@@ -45,7 +45,7 @@ const formProps = {
   firstBtn,
   secondBtn,
   fields: [firstField, secondField],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 };
 
 const form = new Form(formProps);

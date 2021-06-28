@@ -3,12 +3,11 @@ import {Button, Form, Input, Sidebar} from '../../components';
 import {render} from '../../utils';
 import {template} from './template';
 
-
 const firstBtn = new Button({
   classNames: 'button body-1 text-light button_profile',
   text: 'Сохранить',
   attrs: {type: 'submit'},
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const sidebar = new Sidebar({
@@ -37,7 +36,7 @@ const loginField = new Input({
   value: 'ivanivanov',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const firstNameField = new Input({
@@ -49,7 +48,7 @@ const firstNameField = new Input({
   value: 'Иван',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const lastNameField = new Input({
@@ -61,7 +60,7 @@ const lastNameField = new Input({
   value: 'Иванов',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const userNameField = new Input({
@@ -73,7 +72,7 @@ const userNameField = new Input({
   value: 'Иван',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const phoneField = new Input({
@@ -85,7 +84,7 @@ const phoneField = new Input({
   value: '+ 7 (909) 967 30 30',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const formProps = {
@@ -98,9 +97,9 @@ const formProps = {
     firstNameField,
     lastNameField,
     userNameField,
-    phoneField
+    phoneField,
   ],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 };
 
 const form = new Form(formProps);

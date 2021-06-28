@@ -3,12 +3,11 @@ import {Button, Form, Input, Sidebar} from '../../components';
 import {render} from '../../utils';
 import {template} from './template';
 
-
 const firstBtn = new Button({
   classNames: 'button body-1 text-light button_profile',
   text: 'Сохранить',
   attrs: {type: 'submit'},
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const sidebar = new Sidebar({
@@ -25,7 +24,7 @@ const oldPasswordField = new Input({
   value: 'qweqweqwe',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const newPasswordField = new Input({
@@ -37,7 +36,7 @@ const newPasswordField = new Input({
   value: 'qweqweqweqwe',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const repeatPasswordField = new Input({
@@ -48,7 +47,7 @@ const repeatPasswordField = new Input({
   label: 'Повторите новый пароль',
   value: 'qweqweqweqwe',
   classes: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const formProps = {
@@ -60,7 +59,7 @@ const formProps = {
     newPasswordField,
     repeatPasswordField,
   ],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 };
 
 const form = new Form(formProps);
@@ -70,7 +69,7 @@ class Profile extends Block {
     super('div', {
       classNames: 'profile-page',
       sidebar,
-      form
+      form,
     });
   }
 

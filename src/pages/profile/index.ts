@@ -8,7 +8,6 @@ const sidebar = new Sidebar({
   classNames: 'sidebar sidebar_mini',
 });
 
-
 const emailField = new Input({
   isRow: true,
   classNames: 'input',
@@ -30,7 +29,7 @@ const loginField = new Input({
   value: 'ivanivanov',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const firstNameField = new Input({
@@ -42,7 +41,7 @@ const firstNameField = new Input({
   value: 'Иван',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const lastNameField = new Input({
@@ -54,7 +53,7 @@ const lastNameField = new Input({
   value: 'Иванов',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const phoneField = new Input({
@@ -66,7 +65,7 @@ const phoneField = new Input({
   value: '+ 7 (909) 967 30 30',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const formProps = {
@@ -79,7 +78,7 @@ const formProps = {
     lastNameField,
     phoneField,
   ],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 };
 
 const form = new Form(formProps);
@@ -91,9 +90,9 @@ class Profile extends Block {
       sidebar,
       form,
       actions: [
-        { classes: ["text", "text-link"], text: 'Изменить данные' },
-        { classes: ["text", "text-link"], text: 'Изменить пароль' },
-        { classes: ["text", "text-error"], text: 'Выйти' },
+        {classes: ['text', 'text-link'], text: 'Изменить данные'},
+        {classes: ['text', 'text-link'], text: 'Изменить пароль'},
+        {classes: ['text', 'text-error'], text: 'Выйти'},
       ],
     });
   }

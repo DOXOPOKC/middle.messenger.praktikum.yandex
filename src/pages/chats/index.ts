@@ -3,11 +3,10 @@ import {render} from '../../utils';
 import {template} from './template';
 import {Dropdown, Sidebar} from '../../components';
 
-import verticalDotsIcon from "url:../../assets/icons/vertical-dots.svg";
-import attachIcon from "url:../../assets/icons/attach.svg";
-import appendIcon from "url:../../assets/icons/append.svg";
-import deleteIcon from "url:../../assets/icons/delete.svg";
-
+import verticalDotsIcon from 'url:../../assets/icons/vertical-dots.svg';
+import attachIcon from 'url:../../assets/icons/attach.svg';
+import appendIcon from 'url:../../assets/icons/append.svg';
+import deleteIcon from 'url:../../assets/icons/delete.svg';
 
 const topDropdown = new Dropdown({
   classNames: 'dropdown dropdown_right dropdown_top',
@@ -16,7 +15,7 @@ const topDropdown = new Dropdown({
   actions: [
     {icon: appendIcon, text: 'qwe'},
     {icon: deleteIcon, text: 'ewq'},
-  ]
+  ],
 });
 
 const bottomDropdown = new Dropdown({
@@ -26,7 +25,7 @@ const bottomDropdown = new Dropdown({
   actions: [
     {icon: appendIcon, text: 'qwe'},
     {icon: deleteIcon, text: 'ewq'},
-  ]
+  ],
 });
 
 const sidebar = new Sidebar({
@@ -51,7 +50,7 @@ class Chats extends Block {
             if (dropdownList.style.display) {
               dropdownList.style.display = dropdownList.style.display === 'none' ? 'block' : 'none';
             } else {
-              dropdownList.style.display = 'block'
+              dropdownList.style.display = 'block';
             }
           }
         },

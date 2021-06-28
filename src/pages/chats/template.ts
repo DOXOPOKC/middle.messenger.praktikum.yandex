@@ -1,9 +1,8 @@
 import {compile} from 'pug';
-import messageCamera from "url:../../assets/img/message-camera.png";
-import chatUserAvatar from "url:../../assets/img/chatuseravatar.png";
-import messageDone from "url:../../assets/icons/message-done.svg";
-import arrowLeft from "url:../../assets/icons/arrow-left.svg";
-
+import messageCamera from 'url:../../assets/img/message-camera.png';
+import chatUserAvatar from 'url:../../assets/img/chatuseravatar.png';
+import messageDone from 'url:../../assets/icons/message-done.svg';
+import arrowLeft from 'url:../../assets/icons/arrow-left.svg';
 
 const source = `
 != sidebar

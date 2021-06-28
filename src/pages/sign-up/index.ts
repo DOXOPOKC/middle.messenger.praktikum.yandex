@@ -22,7 +22,7 @@ const loginField = new Input({
   value: 'ivanivanov',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const firstNameField = new Input({
@@ -33,7 +33,7 @@ const firstNameField = new Input({
   value: 'Иван',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const lastNameField = new Input({
@@ -44,7 +44,7 @@ const lastNameField = new Input({
   value: 'Иванов',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const phoneField = new Input({
@@ -55,7 +55,7 @@ const phoneField = new Input({
   value: '+ 7 (909) 967 30 30',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const passwordField = new Input({
@@ -65,7 +65,7 @@ const passwordField = new Input({
   value: 'qweqweqweqwe',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const secondPasswordField = new Input({
@@ -75,21 +75,21 @@ const secondPasswordField = new Input({
   value: 'qweqweqweqwe',
   classes: ['text-error'],
   messages: ['Пароли не совпадают'],
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const firstBtn = new Button({
   classNames: 'button body-1 text-light',
   text: 'Зарегистрироваться',
-  attrs: { type: 'submit' },
-  settings: {withInternalID: true}
+  attrs: {type: 'submit'},
+  settings: {withInternalID: true},
 });
 
 const secondBtn = new Button({
   classNames: 'button button_light caption text-link',
   text: 'Войти',
   attrs: {type: 'button'},
-  settings: {withInternalID: true}
+  settings: {withInternalID: true},
 });
 
 const formProps = {
@@ -134,7 +134,7 @@ class SignUp extends Block {
           if (login) {}
           if (password) {}
         },
-      }
+      },
     });
   }
 

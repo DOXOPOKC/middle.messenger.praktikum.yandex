@@ -1,5 +1,5 @@
 import {compile} from 'pug';
-import profileIcon from "url:../../assets/icons/image.svg";
+import profileIcon from 'url:../../assets/icons/image.svg';
 
 const source = `
 != sidebar

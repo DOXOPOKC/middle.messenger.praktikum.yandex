@@ -1,7 +1,6 @@
 import {compile} from 'pug';
-import chatUserAvatar from "url:../../assets/img/chatuseravatar.png";
-import arrowLeftIcon from "url:../../assets/icons/arrow-left.svg";
-
+import chatUserAvatar from 'url:../../assets/img/chatuseravatar.png';
+import arrowLeftIcon from 'url:../../assets/icons/arrow-left.svg';
 
 const source = `
 if (mini)

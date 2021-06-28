@@ -1,5 +1,5 @@
-import Block from "../core/block";
-import validate from "./validation";
+import Block from '../core/block';
+import validate from './validation';
 
 export default function checkField(field: Block, value: string, type: string) {
   const validation = validate(value, type);

@@ -2,7 +2,6 @@ import {v4 as makeUUID} from 'uuid';
 import EventBus from '../eventBus';
 import {cloneDeep} from '../../utils';
 
-
 export interface IProps {
   [key: string]: any
 }
