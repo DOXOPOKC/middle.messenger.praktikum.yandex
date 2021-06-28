@@ -1,7 +1,13 @@
-import EventBus from '../eventBus';
 import {v4 as makeUUID} from 'uuid';
+import EventBus from '../eventBus';
+import {cloneDeep} from '../../utils';
 
-interface IProps {
+
+export interface IProps {
+  __id: string,
+  classNames: string,
+  events: Record<string, Function>,
+  attrs: Record<string, any>,
   [key: string]: any
 }
 
@@ -17,9 +23,9 @@ export default class Block {
   private readonly _id: string;
   readonly meta: { tagName: string, props: Record<string, unknown> }
   eventBus: () => EventBus;
-  props: ProxyHandler<IProps>;
+  props: IProps;
 
-  constructor(tagName: string = 'div', props: IProps = {}) {
+  constructor(tagName: string = 'div', props: IProps) {
     const eventBus = new EventBus();
 
     this._id = makeUUID();
@@ -47,10 +53,12 @@ export default class Block {
 
     if (propsKeys.length) {
       for (const propKey in props) {
-        if (props[propKey] instanceof Block) {
-          props[propKey] = props[propKey].getTemplate();
-        } else if (props[propKey] instanceof Array) {
-          props[propKey] = props[propKey].map((prop: Block | unknown) => prop instanceof Block ? prop.getTemplate() : prop);
+        if (props.hasOwnProperty(propKey)) {
+          if (props[propKey] instanceof Block) {
+            props[propKey] = props[propKey].getTemplate();
+          } else if (props[propKey] instanceof Array) {
+            props[propKey] = props[propKey].map((prop: Block | unknown) => prop instanceof Block ? prop.getTemplate() : prop);
+          }
         }
       }
     }
@@ -104,7 +112,7 @@ export default class Block {
     const {events = {}} = this.props;
 
     Object.keys(events).forEach(eventName => {
-      this.element!.addEventListener(eventName, events[eventName]);
+      this.element?.addEventListener(eventName, events[eventName]);
     });
   }
 
@@ -112,7 +120,7 @@ export default class Block {
     const {events = {}} = this.props;
 
     Object.keys(events).forEach(eventName => {
-      this.element.removeEventListener(eventName, events[eventName]);
+      this.element?.removeEventListener(eventName, events[eventName]);
     });
   }
 
@@ -122,12 +130,12 @@ export default class Block {
     this.removeEvents();
 
     if (__id) {
-      this.element.setAttribute('data-id', this._id);
+      this.element?.setAttribute('data-id', this._id);
     }
 
     if (classNames) {
       classNames.split(' ').forEach((className: string) => {
-        this.element.classList.add(className);
+        this.element?.classList.add(className);
       });
     }
 
@@ -135,18 +143,22 @@ export default class Block {
       const attrKeys = Object.keys(attrs);
 
       attrKeys.forEach((attrKey: string) => {
-        this.element.setAttribute(attrKey, attrs[attrKey]);
+        this.element?.setAttribute(attrKey, attrs[attrKey]);
       });
     }
 
     this.addEvents();
 
-    this.element.innerHTML = this.render(newProps);
+    if (this.element) {
+      this.element.innerHTML = this.render(newProps);
+    }
   }
 
-  render(): void {}
+  render(newProps: IProps): string {
+    return '';
+  }
 
-  private makePropsProxy(props: object): ProxyHandler<object> {
+  private makePropsProxy(props: object): ProxyHandler<IProps> {
     return new Proxy(props, {
       get: (target: IProps, prop: string) => {
         const value = target[prop];
@@ -154,7 +166,7 @@ export default class Block {
         return typeof value === 'function' ? value.bind(target) : value;
       },
       set: (target: IProps, prop: string, value: unknown) => {
-        const oldProps = {...target};
+        const oldProps = cloneDeep(target);
 
         target = this.templateAdapter(target);
         target[prop] = value;
@@ -180,7 +192,7 @@ export default class Block {
   };
 
   getTemplate(): string {
-    return this.element.outerHTML;
+    return this.element?.outerHTML || '';
   }
 
   getContent(): HTMLElement | null {

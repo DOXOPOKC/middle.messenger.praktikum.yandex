@@ -1,8 +1,8 @@
-import Block from '../../core/block';
+import Block, {IProps} from '../../core/block';
 import {template} from './template';
 
 export default class Button extends Block {
-  constructor(props: {}) {
+  constructor(props: IProps) {
     super('button', props);
   }
 
