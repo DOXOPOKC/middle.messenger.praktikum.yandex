@@ -122,31 +122,17 @@ class SignUp extends Block {
 
           e.preventDefault();
 
-          console.log(e);
-
-          if (name === 'login') {
-            // checkField(firstField, value, 'password');
-          }
-
-          if (name === 'password') {
-            // checkField(secondField, value, 'password');
-          }
+          if (name === 'login') {}
+          if (name === 'password') {}
         },
         submit: (e: Event) => {
           const login = document.querySelector('input[name=\'login\']');
           const password = document.querySelector('input[name=\'password\']');
 
-          console.log(e);
-
           e.preventDefault();
 
-          if (login) {
-            // checkField(firstField, login.value, 'login');
-          }
-
-          if (password) {
-            // checkField(secondField, password.value, 'password');
-          }
+          if (login) {}
+          if (password) {}
         },
       }
     });

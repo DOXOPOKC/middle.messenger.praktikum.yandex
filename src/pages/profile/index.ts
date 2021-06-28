@@ -95,11 +95,6 @@ class Profile extends Block {
         { classes: ["text", "text-link"], text: 'Изменить пароль' },
         { classes: ["text", "text-error"], text: 'Выйти' },
       ],
-      events: {
-        click: (e: Event) => {
-          console.log(e);
-        },
-      },
     });
   }
 

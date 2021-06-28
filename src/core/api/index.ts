@@ -56,6 +56,10 @@ export default class HTTPTransport {
       }
 
       xhr.onload = function () {
+        if (xhr.status != 200) {
+          throw new Error(`Error ${xhr.status}: ${xhr.statusText}`);
+        }
+
         resolve(xhr);
       };
 

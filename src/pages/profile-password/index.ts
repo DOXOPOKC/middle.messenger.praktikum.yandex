@@ -70,12 +70,7 @@ class Profile extends Block {
     super('div', {
       classNames: 'profile-page',
       sidebar,
-      form,
-      events: {
-        click: (e: Event) => {
-          console.log(e);
-        },
-      },
+      form
     });
   }
 

@@ -4,10 +4,6 @@ import {cloneDeep} from '../../utils';
 
 
 export interface IProps {
-  __id: string,
-  classNames: string,
-  events: Record<string, Function>,
-  attrs: Record<string, any>,
   [key: string]: any
 }
 
@@ -23,7 +19,7 @@ export default class Block {
   private readonly _id: string;
   readonly meta: { tagName: string, props: Record<string, unknown> }
   eventBus: () => EventBus;
-  props: IProps;
+  props: ProxyHandler<IProps>;
 
   constructor(tagName: string = 'div', props: IProps) {
     const eventBus = new EventBus();
@@ -200,11 +196,15 @@ export default class Block {
   }
 
   show() {
-    this.getContent().style.display = 'block';
+    if (this.element) {
+      this.element.classList.add('visible');
+    }
   }
 
   hide() {
-    this.getContent().style.display = 'none';
+    if (this.element) {
+      this.element.classList.add('hidden');
+    }
   }
 
   get element(): HTMLElement | null {

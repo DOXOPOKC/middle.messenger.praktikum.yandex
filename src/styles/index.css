@@ -66,3 +66,11 @@ a {
 .icon {
   height: 100%;
 }
+
+.hidden {
+  display: none !important;
+}
+
+.visible {
+  display: block !important;
+}

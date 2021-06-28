@@ -1,4 +1,6 @@
-export default `
+import {compile} from 'pug';
+
+export const source = `
 if (hasBackground)
   .blur-background
 .dialog__window
@@ -14,3 +16,5 @@ if (hasBackground)
         each message in messages
           .messages__message.text-error.caption= message
 `;
+
+export const template = compile(source);

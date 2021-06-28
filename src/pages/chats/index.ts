@@ -44,7 +44,7 @@ class Chats extends Block {
         click: (e: Event) => {
           e.preventDefault();
 
-          if (e.target.className === 'dropdown__image image') {
+          if (e.target?.className === 'dropdown__image image') {
             const dropdown = e.target.parentNode;
             const dropdownList = dropdown.nextElementSibling;
 

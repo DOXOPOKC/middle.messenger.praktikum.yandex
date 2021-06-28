@@ -1,12 +1,8 @@
-import Block from '../../core/block';
+import Block, {IProps} from '../../core/block';
 import {template} from './template';
 
-export type inputType = {
-  [key: string]: any
-}
-
 export default class Input extends Block {
-  constructor(props: inputType) {
+  constructor(props: IProps) {
     super('div', props);
   }
 

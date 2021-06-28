@@ -111,11 +111,6 @@ class Profile extends Block {
       classNames: 'profile-page',
       sidebar,
       form,
-      events: {
-        click: (e: Event) => {
-          console.log(e);
-        },
-      },
     });
   }
 
