@@ -4,7 +4,12 @@ append head
   title Список экранов
 block content
   ul
-    - var links = [ "not-found", "server-error", "chats", "sign-in", "sign-up", "profile", "profile-edit", "profile-password" ];
-    each link in links
-      li
-        a(href=`${link.toLowerCase()}`)=link
+    li
+      a(href="https://hardcore-yalow-bf2127.netlify.app/not-found/index.html") not-found
+      a(href="https://hardcore-yalow-bf2127.netlify.app/server-error/index.html") server-error
+      a(href="https://hardcore-yalow-bf2127.netlify.app/chats/index.html") chats
+      a(href="https://hardcore-yalow-bf2127.netlify.app/sign-in/index.html") sign-in
+      a(href="https://hardcore-yalow-bf2127.netlify.app/sign-up/index.html") sign-up
+      a(href="https://hardcore-yalow-bf2127.netlify.app/profile/index.html") profile
+      a(href="https://hardcore-yalow-bf2127.netlify.app/profile-edit/index.html") profile-edit
+      a(href="https://hardcore-yalow-bf2127.netlify.app/profile-password/index.html") profile-password
