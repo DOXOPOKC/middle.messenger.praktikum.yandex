@@ -4,7 +4,7 @@ append head
   title Список экранов
 block content
   ul
-    - var links = [ "not-found", "server-error", "chats", "sign-In", "sign-Up", "profile", "profile-edit", "profile-password" ];
+    - var links = [ "not-found", "server-error", "chats", "sign-in", "sign-up", "profile", "profile-edit", "profile-password" ];
     each link in links
       li
-        a(href=link.toLowerCase() + '/index.html')=link
+        a(href=`${link.toLowerCase()}`)=link
