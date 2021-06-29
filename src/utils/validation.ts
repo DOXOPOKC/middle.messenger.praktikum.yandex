@@ -9,7 +9,7 @@ enum fieldsTypes {
   email = 'email',
   phone = 'phone',
   firstName = 'firstName',
-  secondName = 'secondName',
+  lastName = 'lastName',
   password = 'password'
 }
 
@@ -18,7 +18,7 @@ enum errorMessages {
   email = 'Неверная почта',
   phone = 'Неверный номер',
   firstName = 'Используйте только буквы',
-  secondName = 'Используйте только буквы',
+  lastName = 'Используйте только буквы',
   password = 'Неверный пароль'
 }
 
@@ -40,7 +40,7 @@ export default (value: string, type: string) => {
       errorMessage = errorMessages[type];
       break;
     case fieldsTypes.firstName:
-    case fieldsTypes.secondName:
+    case fieldsTypes.lastName:
       isValid = nameRegexp.test(value);
       errorMessage = errorMessages[type];
       break;
@@ -48,6 +48,8 @@ export default (value: string, type: string) => {
       isValid = passwordRegexp.test(value);
       errorMessage = errorMessages[type];
       break;
+    default:
+      throw new Error('Неправильный тип поля');
   }
 
   return {isValid, errorMessage};

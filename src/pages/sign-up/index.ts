@@ -3,7 +3,7 @@ import {Input, Button, Form} from '../../components';
 import {render, checkField} from '../../utils';
 import {template} from './template';
 
-const emailField = new Input({
+const email = new Input({
   classNames: 'input',
   name: 'email',
   type: 'email',
@@ -14,7 +14,7 @@ const emailField = new Input({
   settings: {withInternalID: true},
 });
 
-const loginField = new Input({
+const login = new Input({
   classNames: 'input',
   name: 'login',
   type: 'text',
@@ -25,9 +25,9 @@ const loginField = new Input({
   settings: {withInternalID: true},
 });
 
-const firstNameField = new Input({
+const firstName = new Input({
   classNames: 'input',
-  name: 'firstname',
+  name: 'firstName',
   type: 'text',
   label: 'Имя',
   value: 'Иван',
@@ -36,9 +36,9 @@ const firstNameField = new Input({
   settings: {withInternalID: true},
 });
 
-const lastNameField = new Input({
+const lastName = new Input({
   classNames: 'input',
-  name: 'lastname',
+  name: 'lastName',
   type: 'text',
   label: 'Фамилия',
   value: 'Иванов',
@@ -47,7 +47,7 @@ const lastNameField = new Input({
   settings: {withInternalID: true},
 });
 
-const phoneField = new Input({
+const phone = new Input({
   classNames: 'input',
   name: 'phone',
   type: 'phone',
@@ -58,8 +58,8 @@ const phoneField = new Input({
   settings: {withInternalID: true},
 });
 
-const passwordField = new Input({
-  name: 'second-password',
+const password = new Input({
+  name: 'password',
   type: 'password',
   label: 'Пароль',
   value: 'qweqweqweqwe',
@@ -68,13 +68,13 @@ const passwordField = new Input({
   settings: {withInternalID: true},
 });
 
-const secondPasswordField = new Input({
-  name: 'second-password',
+const secondPassword = new Input({
+  name: 'secondPassword',
   type: 'password',
   label: 'Пароль (еще раз)',
   value: 'qweqweqweqwe',
-  classes: ['text-error'],
-  messages: ['Пароли не совпадают'],
+  classes: [],
+  messages: [],
   settings: {withInternalID: true},
 });
 
@@ -92,6 +92,16 @@ const secondBtn = new Button({
   settings: {withInternalID: true},
 });
 
+
+const fieldsMap: { [key: string]: Block } = {
+  email,
+  login,
+  firstName,
+  lastName,
+  phone,
+  password
+};
+
 const formProps = {
   classNames: 'form',
   title: 'Регистрация',
@@ -99,17 +109,25 @@ const formProps = {
   firstBtn,
   secondBtn,
   fields: [
-    emailField,
-    loginField,
-    firstNameField,
-    lastNameField,
-    phoneField,
-    passwordField,
-    secondPasswordField,
+    email,
+    login,
+    firstName,
+    lastName,
+    phone,
+    password,
+    secondPassword,
   ],
 };
-
 const form = new Form(formProps);
+
+const handleEvent = (...fields: HTMLInputElement[]) => {
+  for (const field of fields) {
+    console.log(field, fieldsMap[field.name], field.value, field.name)
+    if (fieldsMap[field.name]) {
+      checkField(fieldsMap[field.name], field.value, field.name);
+    }
+  }
+}
 
 class SignUp extends Block {
   constructor() {
@@ -118,21 +136,28 @@ class SignUp extends Block {
       form,
       events: {
         focusout: (e: Event) => {
-          const {name, value} = e.target;
-
           e.preventDefault();
 
-          if (name === 'login') {}
-          if (name === 'password') {}
+          handleEvent(e.target);
         },
         submit: (e: Event) => {
+          const email = document.querySelector('input[name=\'email\']');
           const login = document.querySelector('input[name=\'login\']');
+          const firstName = document.querySelector('input[name=\'firstName\']');
+          const lastName = document.querySelector('input[name=\'lastName\']');
+          const phone = document.querySelector('input[name=\'phone\']');
           const password = document.querySelector('input[name=\'password\']');
 
           e.preventDefault();
 
-          if (login) {}
-          if (password) {}
+          handleEvent(
+            email,
+            login,
+            firstName,
+            lastName,
+            phone,
+            password,
+          );
         },
       },
     });

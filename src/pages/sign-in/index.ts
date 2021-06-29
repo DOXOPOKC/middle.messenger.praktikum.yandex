@@ -3,7 +3,7 @@ import {Input, Button, Form} from '../../components';
 import {render, checkField} from '../../utils';
 import {template} from './template';
 
-const firstField = new Input({
+const login = new Input({
   classNames: 'input',
   name: 'login',
   type: 'text',
@@ -13,7 +13,7 @@ const firstField = new Input({
   messages: [],
   settings: {withInternalID: true}});
 
-const secondField = new Input({
+const password = new Input({
   classNames: 'input',
   name: 'password',
   type: 'password',
@@ -38,17 +38,28 @@ const secondBtn = new Button({
   settings: {withInternalID: true},
 });
 
-const formProps = {
+const form = new Form({
   classNames: 'form',
   title: 'Вход',
   isRow: false,
   firstBtn,
   secondBtn,
-  fields: [firstField, secondField],
+  fields: [login, password],
   settings: {withInternalID: true},
+});
+
+const fieldsMap: { [key: string]: Block } = {
+  login,
+  password
 };
 
-const form = new Form(formProps);
+const handleEvent = (...fields: HTMLInputElement[]) => {
+  for (const field of fields) {
+    if (fieldsMap[field.name]) {
+      checkField(fieldsMap[field.name], field.value, field.name);
+    }
+  }
+}
 
 class SignIn extends Block {
   constructor() {
@@ -57,17 +68,9 @@ class SignIn extends Block {
       form,
       events: {
         focusout: (e: Event) => {
-          const {name, value} = e.target;
-
           e.preventDefault();
 
-          if (name === 'login') {
-            checkField(firstField, value, 'password');
-          }
-
-          if (name === 'password') {
-            checkField(secondField, value, 'password');
-          }
+          handleEvent(e.target);
         },
         submit: (e: Event) => {
           const login: HTMLInputElement | null = document.querySelector('input[name=\'login\']');
@@ -75,13 +78,7 @@ class SignIn extends Block {
 
           e.preventDefault();
 
-          if (login) {
-            checkField(firstField, login.value, 'login');
-          }
-
-          if (password) {
-            checkField(secondField, password.value, 'password');
-          }
+          handleEvent(login, password);
         },
       },
     });
