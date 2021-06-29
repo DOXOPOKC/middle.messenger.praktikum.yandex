@@ -1,144 +1,144 @@
 .chat {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    height: 100%;
-    margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  height: 100%;
+  margin: 0 20px;
 }
 
 .chat__header {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    height: 54px;
-    border-bottom: 1px solid #EAEAEA;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 54px;
+  border-bottom: 1px solid #EAEAEA;
 }
 
 .chat__user {
-    display: grid;
-    grid-template-columns: 1fr min-content;
-    gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  gap: 10px;
 }
 
 .chat__avatar {
-    height: 34px;
-    width: 34px;
+  height: 34px;
+  width: 34px;
 }
 
 .chat__username {
-    margin: auto;
+  margin: auto;
 }
 
 .chat__header-dropdown {
-    width: 25px;
-    height: 25px;
-    padding: 5px 0;
+  width: 25px;
+  height: 25px;
+  padding: 5px 0;
 
-    background-color: #F5F5F5;
-    border-radius: 50%;
+  background-color: #F5F5F5;
+  border-radius: 50%;
 }
 
 .chat__header-dropdown .icon {
-    fill: #1E1E1E;
+  fill: #1E1E1E;
 }
 
 .chat__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex-grow: 1;
 }
 
 .chat__block {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .chat__date {
-    text-align: center;
-    margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .chat__messages {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
 }
 
 .chat__message {
-    max-width: 402px;
-    min-width: 114px;
-    min-height: 37px;
-    padding: 11px;
-    border-radius: 12px;
-    margin-bottom: 10px;
+  max-width: 402px;
+  min-width: 114px;
+  min-height: 37px;
+  padding: 11px;
+  border-radius: 12px;
+  margin-bottom: 10px;
 }
 
 .chat__message_from {
-    background-color: #F8F8F8;
-    border-top-left-radius: 0;
+  background-color: #F8F8F8;
+  border-top-left-radius: 0;
 }
 
 .chat__message-content {
-    position: relative;
+  position: relative;
 }
 
 .chat__message-content-text {}
 
 .chat__message-info {
-    display: flex;
-    align-items: flex-end;
-    position: absolute;
-    right: 0;
-    bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .chat__message-status {
-    margin-right: 4px;
+  margin-right: 4px;
 }
 
 .chat__message-time {}
 
 .chat__message_image {
-    border-top-left-radius: 12px;
-    border: 1px solid #EAEAEA;
+  border-top-left-radius: 12px;
+  border: 1px solid #EAEAEA;
 }
 .chat__message_to {
-    align-self: flex-end;
-    background: #E4EDFD;
-    border-bottom-right-radius: 0;
+  align-self: flex-end;
+  background: #E4EDFD;
+  border-bottom-right-radius: 0;
 }
 
 .chat__controls {
-    display: grid;
-    grid-template-columns: min-content 1fr min-content;
-    gap: 10px;
-    height: 54px;
-    border-top: 1px solid #EAEAEA;
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  gap: 10px;
+  height: 54px;
+  border-top: 1px solid #EAEAEA;
 }
 
 .chat__attach {
-    width: 32px;
-    height: 32px;
-    margin: auto 0;
+  width: 32px;
+  height: 32px;
+  margin: auto 0;
 }
 
 input.chat__input {
-    height: 32px;
-    background: #EFEFEF;
-    border-radius: 30px;
-    border: none;
-    margin: auto 0;
-    padding-left: 20px;
+  height: 32px;
+  background: #EFEFEF;
+  border-radius: 30px;
+  border: none;
+  margin: auto 0;
+  padding-left: 20px;
 }
 
 .chat__send-button {
-    display: grid;
-    width: 28px;
-    height: 28px;
-    margin: auto 0;
-    transform: rotate(180deg);
+  display: grid;
+  width: 28px;
+  height: 28px;
+  margin: auto 0;
+  transform: rotate(180deg);
 }

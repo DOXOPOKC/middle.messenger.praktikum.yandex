@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="119bea68-3754-4221-9220-ca71f851f4e7" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="EditorConfigPreviewManager">
+    <editorConfig file="$PROJECT_DIR$/.editorconfig" previewFile="$PROJECT_DIR$/.stylelintrc" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Pug File" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="sprint_2" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1u9WexMOUJ4KIEk5asj35xmr5Co" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages/profile-password" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="C:\Users\skorokhod\workspace\middle.messenger.praktikum.yandex\node_modules\typescript\lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\skorokhod\workspace\middle.messenger.praktikum.yandex\src\pages\profile-password" />
+      <recent name="C:\Users\skorokhod\workspace\middle.messenger.praktikum.yandex\src\pages\profile-edit" />
+      <recent name="C:\Users\skorokhod\workspace\middle.messenger.praktikum.yandex\src\pages\profile" />
+      <recent name="C:\Users\skorokhod\workspace\middle.messenger.praktikum.yandex\src\components\sidebar" />
+      <recent name="C:\Users\skorokhod\workspace\middle.messenger.praktikum.yandex\src\components\dropdown" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\skorokhod\workspace\middle.messenger.praktikum.yandex\src\assets" />
+      <recent name="C:\Users\skorokhod\workspace\middle.messenger.praktikum.yandex\src\components\errorBlock" />
+      <recent name="C:\Users\skorokhod\workspace\middle.messenger.praktikum.yandex\src\core" />
+      <recent name="C:\Users\skorokhod\workspace\middle.messenger.praktikum.yandex\src\pages\test" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="119bea68-3754-4221-9220-ca71f851f4e7" name="Default Changelist" comment="" />
+      <created>1624078384106</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1624078384106</updated>
+      <workItem from="1624078386140" duration="4068000" />
+      <workItem from="1624083847825" duration="89407000" />
+      <workItem from="1624433842382" duration="97923000" />
+    </task>
+    <task id="LOCAL-00001" summary="Revert &quot;test&quot;&#10;&#10;This reverts commit 6c6d1e53">
+      <created>1624079697294</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1624079697294</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Добавил конфиги">
+      <created>1624209457357</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1624209457357</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Добавил логику">
+      <created>1624209557549</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1624209557549</updated>
+    </task>
+    <task id="LOCAL-00004" summary="etc">
+      <created>1624445939532</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1624445939532</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Добавил логин и регистрацию">
+      <created>1624464158283</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1624464158283</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Доработал страницы ошибок">
+      <created>1624464202404</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1624464202404</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Добавил скелет чата">
+      <created>1624464712820</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1624464712820</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Добавил скелет профиля">
+      <created>1624465223823</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1624465223824</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Удалил миксины и инклюды из темплейтов">
+      <created>1624470093533</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1624470093533</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Добавил класс для работы с апи">
+      <created>1624472533471</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1624472533471</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Правки">
+      <created>1624472835649</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1624472835649</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Правки">
+      <created>1624473916433</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1624473916433</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Исправил баг с запуском">
+      <created>1624708682220</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1624708682220</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Исправил баг с атрибутами">
+      <created>1624708730015</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1624708730015</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Доделал работу с событиями на логине">
+      <created>1624708802873</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1624708802873</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Добавил валидацию и перенес рендер в utils">
+      <created>1624708937283</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1624708937283</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Настроил логику перерендера компонента">
+      <created>1624722814633</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1624722814633</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Исправил импорты и добавил валидацию">
+      <created>1624775971081</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1624775971081</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Добавил dropdown и настроил работу с svg">
+      <created>1624782446146</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1624782446146</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Добавил первую страницу профиля">
+      <created>1624793795733</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1624793795733</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Доделал профиль">
+      <created>1624811813102</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1624811813102</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Доделал профиль">
+      <created>1624889792553</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1624889792553</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Правки">
+      <created>1624896211511</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1624896211511</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Правки">
+      <created>1624896273894</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1624896273894</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Правки">
+      <created>1624961641759</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1624961641759</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="deploy" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Revert &quot;test&quot;&#10;&#10;This reverts commit 6c6d1e53" />
+    <MESSAGE value="Добавил конфиги" />
+    <MESSAGE value="Добавил логику" />
+    <MESSAGE value="etc" />
+    <MESSAGE value="Добавил логин и регистрацию" />
+    <MESSAGE value="Доработал страницы ошибок" />
+    <MESSAGE value="Добавил скелет чата" />
+    <MESSAGE value="Добавил скелет профиля" />
+    <MESSAGE value="Удалил миксины и инклюды из темплейтов" />
+    <MESSAGE value="Добавил класс для работы с апи" />
+    <MESSAGE value="Исправил баг с запуском" />
+    <MESSAGE value="Исправил баг с атрибутами" />
+    <MESSAGE value="Доделал работу с событиями на логине" />
+    <MESSAGE value="Добавил валидацию и перенес рендер в utils" />
+    <MESSAGE value="Настроил логику перерендера компонента" />
+    <MESSAGE value="Исправил импорты и добавил валидацию" />
+    <MESSAGE value="Добавил dropdown и настроил работу с svg" />
+    <MESSAGE value="Добавил первую страницу профиля" />
+    <MESSAGE value="Доделал профиль" />
+    <MESSAGE value="Правки" />
+    <MESSAGE value="deploy" />
+    <option name="LAST_COMMIT_MESSAGE" value="deploy" />
+  </component>
+</project>
