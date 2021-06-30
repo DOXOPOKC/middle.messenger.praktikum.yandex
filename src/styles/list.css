@@ -20,7 +20,10 @@ li.list__item:last-child {
     border-bottom: none;
 }
 
-.list__text_left {}
+.list__text_left {
+  display: flex;
+  justify-content: space-between;
+}
 
 .list__text_right {
     color: #999999;

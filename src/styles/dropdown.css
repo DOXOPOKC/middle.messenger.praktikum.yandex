@@ -1,58 +1,68 @@
 .dropdown {
-    height: 100%;
+  height: 100%;
+}
+
+.dropdown .image {
+  height: 100%;
+  width: 100%;
 }
 
 .dropdown_right .dropdown__submenu {
-    right: 10px;
+  right: 10px;
 }
 
 .dropdown_top .dropdown__submenu {
-    top: 64px;
+  top: 64px;
 }
 
 .dropdown_left .dropdown__submenu {
-    left: 320px;
+  left: 320px;
 }
 
 .dropdown_bottom .dropdown__submenu {
-    bottom: 64px;
+  bottom: 64px;
 }
 
 input.dropdown__input, .dropdown__submenu  {
-    display: none;
+  display: none;
 }
 
-.dropdown__icon {}
+.dropdown__icon {
+  height: 100%;
+  width: 22px;
+}
 
-label.dropdown__label {
-    cursor: pointer;
-    height: 100%;
-    display: flex;
-    justify-content: center;
+.dropdown__btn {
+  background: none;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .dropdown__submenu {
-    position: absolute;
-    min-width: 210px;
-    background-color: #FFFFFF;
-    box-shadow: 0px 0px 6px rgb(0 0 0 / 14%);
-    border-radius: 12px;
-    padding: 8px 0;
+  position: absolute;
+  min-width: 210px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 0px 6px rgb(0 0 0 / 14%);
+  border-radius: 12px;
+  padding: 8px 0;
 }
 
 .dropdown__item {
-    padding: 8px 0;
-    margin: 0 15px;
-    display: grid;
-    grid-template-columns: min-content 1fr;
-    gap: 15px;
-    cursor: pointer;
+  padding: 8px 0;
+  margin: 0 15px;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  gap: 15px;
+  cursor: pointer;
 }
 
 .dropdown__item-text {
-    margin: auto 0;
+  margin: auto 0;
 }
 
 input.dropdown__input:checked~ul.dropdown__submenu {
-    display: block;
+  display: block;
 }
