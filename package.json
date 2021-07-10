@@ -2,7 +2,7 @@
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
   "scripts": {
-    "dev": "parcel serve src/pages/**/index.pug --no-cache --port 3000",
+    "dev": "parcel serve src/core/index.pug --no-cache --port 3000",
     "start": "parcel build src/pages/**/index.pug --no-cache --no-source-maps && node server.js",
     "lint": "eslint . --fix --ext .ts && stylelint --fix **/*.css"
   },
@@ -38,6 +38,7 @@
     "postcss-import": "^14.0.2",
     "postcss-url": "^10.1.3",
     "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0",
     "typescript": "^4.3.4"
   }
 }
