@@ -1,6 +1,7 @@
 import Block from '../../core/block';
+import router from '../../core';
 import {Input, Button, Form} from '../../components';
-import {render, checkField} from '../../utils';
+import {checkField} from '../../utils';
 import {template} from './template';
 
 const login = new Input({
@@ -50,7 +51,7 @@ const form = new Form({
 
 const fieldsMap: { [key: string]: Block } = {
   login,
-  password
+  password,
 };
 
 const handleEvent = (...fields: HTMLInputElement[]) => {
@@ -59,9 +60,9 @@ const handleEvent = (...fields: HTMLInputElement[]) => {
       checkField(fieldsMap[field.name], field.value, field.name);
     }
   }
-}
+};
 
-class SignIn extends Block {
+export default class SignIn extends Block {
   constructor() {
     super('div', {
       classNames: 'sign-in',
@@ -79,6 +80,8 @@ class SignIn extends Block {
           e.preventDefault();
 
           handleEvent(login, password);
+
+          router().go('/chats');
         },
       },
     });
@@ -88,7 +91,3 @@ class SignIn extends Block {
     return template(this.props);
   }
 }
-
-const signInPage = new SignIn();
-
-render('.app', signInPage);

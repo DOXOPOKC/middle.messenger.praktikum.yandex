@@ -1,8 +1,8 @@
 import Block from '../../core/block';
-import {render} from '../../utils';
 import {template} from './template';
 import {Dropdown, Sidebar} from '../../components';
 
+// Icons
 import verticalDotsIcon from 'url:../../assets/icons/vertical-dots.svg';
 import attachIcon from 'url:../../assets/icons/attach.svg';
 import appendIcon from 'url:../../assets/icons/append.svg';
@@ -32,7 +32,7 @@ const sidebar = new Sidebar({
   classNames: 'sidebar',
 });
 
-class Chats extends Block {
+export default class Chats extends Block {
   constructor() {
     super('div', {
       classNames: 'chats',
@@ -62,7 +62,3 @@ class Chats extends Block {
     return template(this.props);
   }
 }
-
-const page = new Chats();
-
-render('.app', page);

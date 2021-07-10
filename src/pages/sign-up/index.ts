@@ -1,6 +1,6 @@
 import Block from '../../core/block';
 import {Input, Button, Form} from '../../components';
-import {render, checkField} from '../../utils';
+import {checkField} from '../../utils';
 import {template} from './template';
 
 const email = new Input({
@@ -92,14 +92,13 @@ const secondBtn = new Button({
   settings: {withInternalID: true},
 });
 
-
 const fieldsMap: { [key: string]: Block } = {
   email,
   login,
   firstName,
   lastName,
   phone,
-  password
+  password,
 };
 
 const formProps = {
@@ -122,14 +121,14 @@ const form = new Form(formProps);
 
 const handleEvent = (...fields: HTMLInputElement[]) => {
   for (const field of fields) {
-    console.log(field, fieldsMap[field.name], field.value, field.name)
+    console.log(field, fieldsMap[field.name], field.value, field.name);
     if (fieldsMap[field.name]) {
       checkField(fieldsMap[field.name], field.value, field.name);
     }
   }
-}
+};
 
-class SignUp extends Block {
+export default class SignUp extends Block {
   constructor() {
     super('div', {
       classNames: 'sign-in',
@@ -167,7 +166,3 @@ class SignUp extends Block {
     return template(this.props);
   }
 }
-
-const page = new SignUp();
-
-render('.app', page);

@@ -1,6 +1,5 @@
 import Block from '../../core/block';
 import {Form, Input, Sidebar} from '../../components';
-import {render} from '../../utils';
 import {template} from './template';
 
 const sidebar = new Sidebar({
@@ -83,7 +82,7 @@ const formProps = {
 
 const form = new Form(formProps);
 
-class Profile extends Block {
+export default class Profile extends Block {
   constructor() {
     super('div', {
       classNames: 'profile-page',
@@ -101,7 +100,3 @@ class Profile extends Block {
     return template(this.props);
   }
 }
-
-const page = new Profile();
-
-render('.app', page);
