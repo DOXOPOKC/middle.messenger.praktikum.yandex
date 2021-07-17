@@ -3,23 +3,25 @@ import router from '../../core';
 import {Input, Button, Form} from '../../components';
 import {checkField} from '../../utils';
 import {template} from './template';
+import APIClient from '../../core/api/http';
 
 const login = new Input({
   classNames: 'input',
   name: 'login',
   type: 'text',
   label: 'Логин',
-  value: '',
+  value: 'doxopokc',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}});
+  settings: {withInternalID: true}
+});
 
 const password = new Input({
   classNames: 'input',
   name: 'password',
   type: 'password',
   label: 'Пароль',
-  value: '',
+  value: 'diceware1488',
   classes: [],
   messages: [],
   settings: {withInternalID: true},
@@ -73,15 +75,37 @@ export default class SignIn extends Block {
 
           handleEvent(e.target);
         },
-        submit: (e: Event) => {
+        submit: async (e: Event) => {
           const login: HTMLInputElement | null = document.querySelector('input[name=\'login\']');
           const password: HTMLInputElement | null = document.querySelector('input[name=\'password\']');
 
           e.preventDefault();
 
-          handleEvent(login, password);
+          if (login && password) {
+            handleEvent(login, password);
 
-          router().go('/chats');
+            try {
+              const response = await APIClient.post('/auth/signin/', {
+                data: {
+                  login: login.value,
+                  password: password.value,
+                },
+              });
+
+              // console.log(response);
+
+              router().go('/chats');
+            } catch (error) {
+              console.log(error);
+            }
+          }
+        },
+        click: (e: Event) => {
+          if (e.target.dataset.id === secondBtn.getUUID()) {
+            e.preventDefault();
+
+            router().go('/sign_up');
+          }
         },
       },
     });

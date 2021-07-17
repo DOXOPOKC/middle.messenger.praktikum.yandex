@@ -1,17 +1,19 @@
 import Block from '../../core/block';
-import {Input, Button, Form} from '../../components';
-import {checkField} from '../../utils';
-import {template} from './template';
+import { Input, Button, Form } from '../../components';
+import { checkField } from '../../utils';
+import { template } from './template';
+import APIClient from '../../core/api/http';
+import router from '../../core';
 
 const email = new Input({
   classNames: 'input',
   name: 'email',
   type: 'email',
   label: 'Почта',
-  value: 'pochta@yandex.ru',
+  value: 'doxopokc@yandex.ru',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const login = new Input({
@@ -19,10 +21,10 @@ const login = new Input({
   name: 'login',
   type: 'text',
   label: 'Логин',
-  value: 'ivanivanov',
+  value: 'doxopokc',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const firstName = new Input({
@@ -30,10 +32,10 @@ const firstName = new Input({
   name: 'firstName',
   type: 'text',
   label: 'Имя',
-  value: 'Иван',
+  value: 'Даниил',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const lastName = new Input({
@@ -41,10 +43,10 @@ const lastName = new Input({
   name: 'lastName',
   type: 'text',
   label: 'Фамилия',
-  value: 'Иванов',
+  value: 'Скороход',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const phone = new Input({
@@ -52,44 +54,44 @@ const phone = new Input({
   name: 'phone',
   type: 'phone',
   label: 'Телефон',
-  value: '+ 7 (909) 967 30 30',
+  value: '89999991233',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const password = new Input({
   name: 'password',
   type: 'password',
   label: 'Пароль',
-  value: 'qweqweqweqwe',
+  value: 'diceware1488',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const secondPassword = new Input({
   name: 'secondPassword',
   type: 'password',
   label: 'Пароль (еще раз)',
-  value: 'qweqweqweqwe',
+  value: 'diceware1488',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const firstBtn = new Button({
   classNames: 'button body-1 text-light',
   text: 'Зарегистрироваться',
-  attrs: {type: 'submit'},
-  settings: {withInternalID: true},
+  attrs: { type: 'submit' },
+  settings: { withInternalID: true },
 });
 
 const secondBtn = new Button({
   classNames: 'button button_light caption text-link',
   text: 'Войти',
-  attrs: {type: 'button'},
-  settings: {withInternalID: true},
+  attrs: { type: 'button' },
+  settings: { withInternalID: true },
 });
 
 const fieldsMap: { [key: string]: Block } = {
@@ -121,7 +123,6 @@ const form = new Form(formProps);
 
 const handleEvent = (...fields: HTMLInputElement[]) => {
   for (const field of fields) {
-    console.log(field, fieldsMap[field.name], field.value, field.name);
     if (fieldsMap[field.name]) {
       checkField(fieldsMap[field.name], field.value, field.name);
     }
@@ -134,12 +135,19 @@ export default class SignUp extends Block {
       classNames: 'sign-in',
       form,
       events: {
+        click: (e: Event) => {
+          if (e.target.dataset.id === secondBtn.getUUID()) {
+            e.preventDefault();
+
+            router().go('/sign_in');
+          }
+        },
         focusout: (e: Event) => {
           e.preventDefault();
 
           handleEvent(e.target);
         },
-        submit: (e: Event) => {
+        submit: async (e: Event) => {
           const email = document.querySelector('input[name=\'email\']');
           const login = document.querySelector('input[name=\'login\']');
           const firstName = document.querySelector('input[name=\'firstName\']');
@@ -149,14 +157,26 @@ export default class SignUp extends Block {
 
           e.preventDefault();
 
-          handleEvent(
-            email,
-            login,
-            firstName,
-            lastName,
-            phone,
-            password,
-          );
+          if (email && login && firstName && lastName && phone && password) {
+            handleEvent(email, login, firstName, lastName, phone, password);
+
+            try {
+              const response = await APIClient.post('/auth/signup/', {
+                data: {
+                  first_name: firstName.value,
+                  second_name: lastName.value,
+                  email: email.value,
+                  login: login.value,
+                  phone: phone.value,
+                  password: password.value,
+                },
+              });
+
+              router().go('/');
+            } catch (e) {
+              console.warn(e);
+            }
+          }
         },
       },
     });

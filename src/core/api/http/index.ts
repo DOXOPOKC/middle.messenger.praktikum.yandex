@@ -2,13 +2,6 @@ type PlainObject<T = unknown> = {
   [k in string]: T;
 };
 
-const METHODS = {
-  GET: 'GET',
-  PUT: 'PUT',
-  POST: 'POST',
-  DELETE: 'DELETE',
-};
-
 export type Options = {
   data?: PlainObject,
   method?: string,
@@ -21,10 +14,19 @@ export function queryStringify(data: PlainObject) {
   return keys.reduce((result, key, index) => `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`, '?');
 }
 
-export default class HTTPTransport {
+export const baseUrl = 'https://ya-praktikum.tech/api/v2';
+
+const METHODS = {
+  GET: 'GET',
+  PUT: 'PUT',
+  POST: 'POST',
+  DELETE: 'DELETE',
+};
+
+class HTTPTransport {
   baseURL: string;
 
-  constructor(baseURL: string = '') {
+  constructor(baseURL = '') {
     this.baseURL = baseURL;
   }
 
@@ -32,16 +34,16 @@ export default class HTTPTransport {
     ...options,
     method: METHODS.GET,
   }, options.timeout)
-    : this.request(this.baseURL + url, {method: METHODS.GET});
+    : this.request(this.baseURL + url, { method: METHODS.GET });
 
-  put = (url: string, options: Options = {}) => this.request(this.baseURL + url, {...options, method: METHODS.PUT}, options.timeout);
+  put = (url: string, options: Options = {}) => this.request(this.baseURL + url, { ...options, method: METHODS.PUT }, options.timeout);
 
-  post = (url: string, options: Options = {}) => this.request(this.baseURL + url, {...options, method: METHODS.POST}, options.timeout);
+  post = (url: string, options: Options = {}) => this.request(this.baseURL + url, { ...options, method: METHODS.POST }, options.timeout);
 
-  delete = (url: string, options: Options) => this.request(this.baseURL + url, {...options, method: METHODS.DELETE}, options.timeout);
+  delete = (url: string, options: Options) => this.request(this.baseURL + url, { ...options, method: METHODS.DELETE }, options.timeout);
 
   request = (url: string, options: Options = {}, timeout: number | unknown = 5000) => {
-    const {method, data, headers} = options;
+    const { method, data, headers } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -50,24 +52,24 @@ export default class HTTPTransport {
       }
 
       xhr.setRequestHeader('content-type', 'application/json');
+      xhr.withCredentials = true;
 
       if (typeof timeout === 'number') {
         xhr.timeout = timeout;
       }
 
-      xhr.onload = function () {
-        if (xhr.status != 200) {
+      xhr.onload = () => {
+        if (xhr.status === 200) {
+          resolve(xhr);
+        } else {
+          reject();
           throw new Error(`Error ${xhr.status}: ${xhr.statusText}`);
         }
-
-        resolve(xhr);
       };
 
       xhr.onabort = reject;
       xhr.onerror = reject;
       xhr.ontimeout = reject;
-
-      xhr.withCredentials = true;
 
       if (method === METHODS.GET || !data) {
         xhr.send();
@@ -79,3 +81,7 @@ export default class HTTPTransport {
     });
   };
 }
+
+const APIClient = new HTTPTransport(baseUrl);
+
+export default APIClient;

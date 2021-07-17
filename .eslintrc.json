@@ -1,6 +1,11 @@
 {
-  "extends": "xo",
   "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "xo"
+  ],
   "plugins": ["@typescript-eslint"],
   "rules": {
     "max-len": ["error", {
@@ -25,6 +30,7 @@
     "no-var": "error",
     "prefer-const": "error",
     "default-case": "error",
-    "no-unused-vars": ["error", { "args": "none" }]
+    "no-unused-vars": ["error", { "args": "none" }],
+    "object-curly-spacing": ["error", "always"]
   }
 }

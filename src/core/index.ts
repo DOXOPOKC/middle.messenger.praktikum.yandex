@@ -18,11 +18,11 @@ export default function router() {
     routerInstance = new Router('.app');
 
     routerInstance
-      .use('/', SignIn)
+      .use('/sign_in', SignIn)
       .use('/sign_up', SignUp)
       .use('/change_password', ProfilePassword)
       .use('/change_profile_info', ProfileEdit)
-      .use('/chats', Chats)
+      .use('/', Chats)
       .use('/profile', Profile)
       .use('/404', NotFound)
       .use('/500', ServerError)

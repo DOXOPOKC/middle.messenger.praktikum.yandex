@@ -7,6 +7,6 @@ export default function checkField(field: Block, value: string, type: string) {
   if (!validation.isValid) {
     field.setProps({value, messages: [validation.errorMessage]});
   } else {
-    field.setProps({value, messages: []});
+    field.setProps({ value, messages: []});
   }
 }

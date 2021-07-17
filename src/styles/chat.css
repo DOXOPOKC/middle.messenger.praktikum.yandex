@@ -106,6 +106,7 @@
   border-top-left-radius: 12px;
   border: 1px solid #EAEAEA;
 }
+
 .chat__message_to {
   align-self: flex-end;
   background: #E4EDFD;
@@ -126,7 +127,12 @@
   margin: auto 0;
 }
 
-input.chat__input {
+.chat__form {
+  display: flex;
+}
+
+.chat__input {
+  flex: 1;
   height: 32px;
   background: #EFEFEF;
   border-radius: 30px;
@@ -139,6 +145,6 @@ input.chat__input {
   display: grid;
   width: 28px;
   height: 28px;
-  margin: auto 0;
+  margin: auto 0 auto 10px;
   transform: rotate(180deg);
 }

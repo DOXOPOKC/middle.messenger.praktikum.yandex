@@ -52,5 +52,5 @@ export default (value: string, type: string) => {
       throw new Error('Неправильный тип поля');
   }
 
-  return {isValid, errorMessage};
+  return { isValid, errorMessage };
 };

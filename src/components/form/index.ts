@@ -1,5 +1,5 @@
-import Block, {IProps} from '../../core/block';
-import {template} from './template';
+import Block, { IProps } from '../../core/block';
+import { template } from './template';
 
 export default class Form extends Block {
   constructor(props: IProps) {

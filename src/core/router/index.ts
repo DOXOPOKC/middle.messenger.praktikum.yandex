@@ -1,14 +1,15 @@
-import Block from '../../core/block';
-import {render} from '../../utils';
-
+import Block, { IProps } from '../../core/block';
+import { render } from '../../utils';
+import store from '../../store';
+import UserController from '../controllers/users';
 
 class Route {
-  private _pathname: string;
+  _pathname: string;
   readonly _blockClass: any;
   private _block: Block | null;
   private _props: { [key: string]: any };
 
-  constructor(pathname: string, view: any, props: {}) {
+  constructor(pathname: string, view: any, props: IProps) {
     this._pathname = pathname;
     this._blockClass = view;
     this._block = null;
@@ -23,9 +24,13 @@ class Route {
   }
 
   leave(): void {
-    if (this._block) {
-      this._block.hide();
+    const root = document.querySelector(this._props.rootQuery);
+
+    if (root) {
+      root.removeChild(this._block?.element);
     }
+
+    this._block = null;
   }
 
   match(pathname: string) {
@@ -44,22 +49,33 @@ export class Router {
   private history: History | undefined;
   private _currentRoute: Route | null | undefined;
   private readonly _rootQuery: string | undefined;
-  private static __instance: Router;
 
   constructor(rootQuery: string) {
-    if (Router.__instance) {
-      return Router.__instance;
-    }
-
     this.routes = [];
     this.history = window.history;
     this._currentRoute = null;
     this._rootQuery = rootQuery;
-
-    Router.__instance = this;
   }
 
-  use(pathname: string, block: any) {
+  async beforeEnter() {
+    const isAuthRoute = this._currentRoute?._pathname === '/sign_in' || this._currentRoute?._pathname === '/sign_up';
+
+    try {
+      const user = await UserController.getUser(true);
+
+      if (!user && !isAuthRoute) {
+        return this.go('/sign_in');
+      }
+
+      if (user && isAuthRoute) {
+        return this.go('/');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  use(pathname: string, block: Block) {
     const route = new Route(pathname, block, {rootQuery: this._rootQuery});
 
     this.routes?.push(route);
@@ -67,12 +83,13 @@ export class Router {
     return this;
   }
 
-  start() {
+  async start() {
     window.onpopstate = () => {
       this._onRoute(window.location.pathname);
     };
 
     this._onRoute(window.location.pathname);
+    await this.beforeEnter();
   }
 
   _onRoute(pathname: string) {
@@ -91,7 +108,7 @@ export class Router {
   }
 
   go(pathname: string) {
-    this.history?.pushState({}, "", pathname);
+    this.history?.pushState({}, '', pathname);
     this._onRoute(pathname);
   }
 
