@@ -29,7 +29,6 @@ class UserSController {
       const user = JSON.parse(response);
 
       store.set('user', user);
-      console.log('1111111111111111', store.get('user'), user);
 
       return user;
     } catch (error) {
@@ -40,8 +39,6 @@ class UserSController {
   public async searchUser(login: string) {
     try {
       const { response } = await APIClient.post('/user/search', { data: { login } });
-
-      console.log('searchUser', response);
 
       return JSON.parse(response);
     } catch (error) {
@@ -67,7 +64,7 @@ class UserSController {
 
   public async logout() {
     try {
-      await APIClient.post('/user/logout');
+      await APIClient.post('/auth/logout');
     } catch (error) {
       console.log(error);
     }

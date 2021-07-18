@@ -1,8 +1,8 @@
-import Block, { IProps } from '../../core/block';
+import { assert } from 'chai';
+import Block, { IProps } from '../block';
 import { render } from '../../utils';
-import UserController from '../controllers/users';
 
-export class Route {
+class Route {
   _pathname: string;
   readonly _blockClass: any;
   private _block: Block | null;
@@ -43,7 +43,7 @@ export class Route {
   }
 }
 
-export class Router {
+class Router {
   private routes: Route[] | undefined;
   private history: History | undefined;
   private _currentRoute: Route | null | undefined;
@@ -56,39 +56,20 @@ export class Router {
     this._rootQuery = rootQuery;
   }
 
-  async beforeEnter() {
-    const isAuthRoute = this._currentRoute?._pathname === '/sign_in' || this._currentRoute?._pathname === '/sign_up';
-
-    try {
-      const user = await UserController.getUser(true);
-
-      if (!user && !isAuthRoute) {
-        return this.go('/sign_in');
-      }
-
-      if (user && isAuthRoute) {
-        return this.go('/');
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   use(pathname: string, block: Block) {
-    const route = new Route(pathname, block, {rootQuery: this._rootQuery});
+    const route = new Route(pathname, block, { rootQuery: this._rootQuery });
 
     this.routes?.push(route);
 
     return this;
   }
 
-  async start() {
+  start() {
     window.onpopstate = () => {
       this._onRoute(window.location.pathname);
     };
 
     this._onRoute(window.location.pathname);
-    await this.beforeEnter();
   }
 
   _onRoute(pathname: string) {
@@ -125,3 +106,30 @@ export class Router {
     return this.routes?.find(route => route.match(pathname));
   }
 }
+
+class TestBlock extends Block {
+  constructor(props) {
+    super('div', props);
+  }
+
+  render() {
+    return `<div class="first-test">1</div>`;
+  }
+}
+
+describe('check Router', () => {
+  it('init', () => {
+    const router = new Router('.app');
+
+    assert.exists(router);
+  });
+
+  it('check route', () => {
+    const router = new Router('.app');
+    router.use('/first-test', new TestBlock({}));
+
+    const routes = router.routes;
+    assert.lengthOf(routes, 1, 'Added a route');
+    assert.equal(routes[0]._pathname, '/first-test');
+  });
+});

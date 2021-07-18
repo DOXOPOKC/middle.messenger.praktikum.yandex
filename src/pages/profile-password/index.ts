@@ -74,7 +74,6 @@ export default class Profile extends Block {
       events: {
         click: async (e: Event) => {
           const sidebarButton = document.querySelector('.rounded_button');
-          e.preventDefault();
 
           if (e.target === sidebarButton) {
             router().go('/profile');
@@ -87,8 +86,6 @@ export default class Profile extends Block {
 
           if (e.target === formElement) {
             const data = new FormData(formElement);
-
-            console.log(data);
 
             await UserController.changePassword(Object.fromEntries(data.entries()));
 

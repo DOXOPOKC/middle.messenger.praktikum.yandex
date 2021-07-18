@@ -30,12 +30,10 @@ export default class WebSocketService {
   }
 
   send(payload: messagePayload): void {
-    // console.log('Message sent');
     this.socket?.send(JSON.stringify(payload));
   }
 
   onOpen(): void {
-    // console.log('Connection established');
     this.send({
       content: '0',
       type: 'get old',
@@ -43,7 +41,6 @@ export default class WebSocketService {
   }
 
   onMessage(event: unknown): void {
-    // console.log('Data received: ', event);
     const newMessages = JSON.parse(event.data);
     const oldMessages = store.get('messages') || [];
     const messages = oldMessages.concat(newMessages);

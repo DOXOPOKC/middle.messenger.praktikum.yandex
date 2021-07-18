@@ -23,7 +23,7 @@ const METHODS = {
   DELETE: 'DELETE',
 };
 
-class HTTPTransport {
+export class HTTPTransport {
   baseURL: string;
 
   constructor(baseURL = '') {

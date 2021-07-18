@@ -73,8 +73,6 @@ export default class SignIn extends Block {
         focusout: (e: Event) => {
           e.preventDefault();
 
-          console.log(e.target);
-
           handleEvent(e.target);
         },
         submit: async (e: Event) => {
@@ -95,8 +93,6 @@ export default class SignIn extends Block {
               });
 
               // TODO: добавить проверку что response === ok
-              // console.log(response);
-
               router().go('/');
             } catch (error) {
               console.log(error);
@@ -115,8 +111,6 @@ export default class SignIn extends Block {
   }
 
   render() {
-    // console.log('???????????????????', this.props.form === form);
-
     return template(this.props);
   }
 }

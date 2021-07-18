@@ -147,8 +147,6 @@ export default class Chats extends Block {
           const deleteUserDialogForm: HTMLInputElement | null = document.querySelector(`[data-id='${deleteUserForm.getUUID()}']`);
           const chatForm: HTMLInputElement | null = document.querySelector('form.chat__form');
 
-          console.log(e);
-
           if (e.target === chatForm && webSocketConnection) {
             try {
               const chatFormInput = e.target.firstChild;
@@ -198,8 +196,6 @@ export default class Chats extends Block {
           const dialogBackground = document.querySelector('.blur-background');
           const addUserBtn = document.querySelector('[data-action="add-user"]');
           const deleteUserBtn = document.querySelector('[data-action="remove-user"]');
-
-          console.log(e);
 
           if (e.target.offsetParent.className === 'sidebar__chat-inner') {
             const chatElement = e.target.offsetParent;

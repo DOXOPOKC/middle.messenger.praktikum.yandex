@@ -119,7 +119,6 @@ export default class Block {
     this.addEvents();
 
     if (this.element) {
-      // console.log(this.render(newProps));
       this.element.innerHTML = this.render(newProps);
     }
   }

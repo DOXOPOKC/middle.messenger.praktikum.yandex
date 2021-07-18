@@ -122,6 +122,7 @@ export default class Profile extends Block {
           if (e.target === logoutButton) {
             store.clear();
             await UserController.logout();
+            router().go('/sign_in');
           }
         },
       },
