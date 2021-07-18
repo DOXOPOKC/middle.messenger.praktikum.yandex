@@ -1,6 +1,6 @@
-import {v4 as makeUUID} from 'uuid';
+import { v4 as makeUUID } from 'uuid';
 import EventBus from '../eventBus';
-import {cloneDeep} from '../../utils';
+import { cloneDeep, isEqual } from '../../utils';
 
 export interface IProps {
   [key: string]: any
@@ -20,45 +20,18 @@ export default class Block {
   eventBus: () => EventBus;
   props: ProxyHandler<IProps>;
 
-  constructor(tagName: string = 'div', props: IProps) {
+  constructor(tagName = 'div', props: IProps) {
     const eventBus = new EventBus();
-
-    this._id = makeUUID();
-
-    props = this.templateAdapter(props);
-
-    this.meta = {
-      tagName,
-      props,
-    };
-
-    this.props = this.makePropsProxy({...props, __id: this._id});
     this.eventBus = () => eventBus;
-
+    this._id = makeUUID();
+    this.meta = { tagName, props };
+    this.props = this.makePropsProxy({ ...props, __id: this._id });
     this.registerEvents(eventBus);
     eventBus.emit(Block.EVENTS.INIT);
   }
 
   private static createDocumentElement(tagName: string) {
     return document.createElement(tagName);
-  }
-
-  private templateAdapter(props: IProps) {
-    const propsKeys = Object.keys(props);
-
-    if (propsKeys.length) {
-      for (const propKey in props) {
-        if (props.hasOwnProperty(propKey)) {
-          if (props[propKey] instanceof Block) {
-            props[propKey] = props[propKey].getTemplate();
-          } else if (props[propKey] instanceof Array) {
-            props[propKey] = props[propKey].map((prop: Block | unknown) => prop instanceof Block ? prop.getTemplate() : prop);
-          }
-        }
-      }
-    }
-
-    return props;
   }
 
   private registerEvents(eventBus: EventBus) {
@@ -69,7 +42,7 @@ export default class Block {
   }
 
   private createResources() {
-    const {tagName} = this.meta;
+    const { tagName } = this.meta;
     this._element = Block.createDocumentElement(tagName);
   }
 
@@ -87,14 +60,15 @@ export default class Block {
 
   private _componentDidUpdate(oldProps: IProps, props: IProps): void {
     const response = this.componentDidUpdate(oldProps, props);
+    const nextProps = Object.assign(oldProps, props);
 
-    if (response && props?.__id === this._id) {
+    if (response) {
       const elementInDOM = document.querySelector(`[data-id='${this._id}']`);
 
-      this.eventBus().emit(Block.EVENTS.FLOW_RENDER, props);
+      this.eventBus().emit(Block.EVENTS.FLOW_RENDER, nextProps);
 
       if (elementInDOM) {
-        elementInDOM.innerHTML = this.getTemplate();
+        elementInDOM.innerHTML = this.getContent()?.innerHTML;
       }
     }
   }
@@ -104,7 +78,7 @@ export default class Block {
   }
 
   private addEvents() {
-    const {events = {}} = this.props;
+    const { events = {} } = this.props;
 
     Object.keys(events).forEach(eventName => {
       this.element?.addEventListener(eventName, events[eventName]);
@@ -112,7 +86,7 @@ export default class Block {
   }
 
   private removeEvents() {
-    const {events = {}} = this.props;
+    const { events = {} } = this.props;
 
     Object.keys(events).forEach(eventName => {
       this.element?.removeEventListener(eventName, events[eventName]);
@@ -120,7 +94,7 @@ export default class Block {
   }
 
   private _render(newProps = this.props) {
-    const {classNames, attrs, __id} = this.props;
+    const { classNames, attrs, __id } = this.props;
 
     this.removeEvents();
 
@@ -153,7 +127,7 @@ export default class Block {
     return '';
   }
 
-  private makePropsProxy(props: object): ProxyHandler<IProps> {
+  private makePropsProxy(props: IProps): ProxyHandler<IProps> {
     return new Proxy(props, {
       get: (target: IProps, prop: string) => {
         const value = target[prop];
@@ -161,11 +135,8 @@ export default class Block {
         return typeof value === 'function' ? value.bind(target) : value;
       },
       set: (target: IProps, prop: string, value: unknown) => {
-        const oldProps = cloneDeep(target);
-
-        target = this.templateAdapter(target);
+        const oldProps = { ...target };
         target[prop] = value;
-
         this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
 
         return true;
@@ -194,15 +165,23 @@ export default class Block {
     return this.element;
   }
 
+  getUUID() {
+    return this._id;
+  }
+
   show() {
-    if (this.element) {
-      this.element.classList.add('visible');
+    const element = document.querySelector(`[data-id='${this.getUUID()}']`);
+
+    if (element) {
+      element.classList.remove('hidden');
     }
   }
 
   hide() {
-    if (this.element) {
-      this.element.classList.add('hidden');
+    const element = document.querySelector(`[data-id='${this.getUUID()}']`);
+
+    if (element) {
+      element.classList.add('hidden');
     }
   }
 

@@ -1,11 +1,12 @@
-import {ErrorBlock} from '../../components';
-import {render} from '../../utils';
+import { ErrorBlock } from '../../components';
 
-const page = new ErrorBlock({
-  classNames: 'error-block',
-  title: '500',
-  description: 'Мы уже фиксим',
-  linkText: 'Назад к чатам',
-});
-
-render('.app', page);
+export default class ServerError extends ErrorBlock {
+  constructor() {
+    super({
+      classNames: 'error-block',
+      title: '500',
+      description: 'Мы уже фиксим',
+      linkText: 'Назад к чатам',
+    });
+  }
+}

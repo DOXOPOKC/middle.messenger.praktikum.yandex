@@ -1,15 +1,16 @@
-import {compile} from 'pug';
+import { compile } from 'pug';
 
 export const source = `
 if (hasBackground)
   .blur-background
-.dialog__window
+.dialog__window(class=show ? 'visible' : 'hidden')
   if (content)
     .dialog__content
-      != content
+      != content.getTemplate()
   if (actions)
     .dialog__actions
-      != actions
+      each action in actions
+        != action.getTemplate()
   .dialog__messages.messages
     .messages__wrapper
       if (messages)

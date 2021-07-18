@@ -4,6 +4,11 @@ node_modules/
 # logs
 npm-debug.log
 
-#cache
+# cache
 .cache
 .parcel-cache
+
+# idea
+.idea
+
+dist/

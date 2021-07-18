@@ -30,6 +30,7 @@ input.dropdown__input, .dropdown__submenu  {
 .dropdown__icon {
   height: 100%;
   width: 22px;
+  pointer-events: none;
 }
 
 .dropdown__btn {
@@ -48,6 +49,7 @@ input.dropdown__input, .dropdown__submenu  {
   box-shadow: 0px 0px 6px rgb(0 0 0 / 14%);
   border-radius: 12px;
   padding: 8px 0;
+  z-index: 10;
 }
 
 .dropdown__item {
@@ -61,6 +63,7 @@ input.dropdown__input, .dropdown__submenu  {
 
 .dropdown__item-text {
   margin: auto 0;
+  pointer-events: none;
 }
 
 input.dropdown__input:checked~ul.dropdown__submenu {
