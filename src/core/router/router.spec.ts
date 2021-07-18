@@ -128,7 +128,7 @@ describe('check Router', () => {
     const router = new Router('.app');
     router.use('/first-test', new TestBlock({}));
 
-    const routes = router.routes;
+    const { routes } = router;
     assert.lengthOf(routes, 1, 'Added a route');
     assert.equal(routes[0]._pathname, '/first-test');
   });

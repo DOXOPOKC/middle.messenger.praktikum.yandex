@@ -1,7 +1,7 @@
 import Block, { IProps } from '../../core/block';
 import { template } from './template';
 import ChatsControllerInstance from '../../core/controllers/chats';
-import store, {storeEventBus} from '../../store';
+import store, { storeEventBus } from '../../store';
 
 export default class Sidebar extends Block {
   constructor(props: IProps) {

@@ -75,7 +75,7 @@ export class Router {
   }
 
   use(pathname: string, block: Block) {
-    const route = new Route(pathname, block, {rootQuery: this._rootQuery});
+    const route = new Route(pathname, block, { rootQuery: this._rootQuery });
 
     this.routes?.push(route);
 

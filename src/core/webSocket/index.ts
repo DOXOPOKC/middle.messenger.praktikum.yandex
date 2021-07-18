@@ -1,6 +1,5 @@
 import store from '../../store';
 
-
 type messagePayload = {
   content: string,
   type: string

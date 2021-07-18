@@ -1,4 +1,4 @@
-import {ErrorBlock} from '../../components';
+import { ErrorBlock } from '../../components';
 
 export default class NotFound extends ErrorBlock {
   constructor() {
