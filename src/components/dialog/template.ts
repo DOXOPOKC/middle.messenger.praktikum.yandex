@@ -6,11 +6,11 @@ if (hasBackground)
 .dialog__window(class=show ? 'visible' : 'hidden')
   if (content)
     .dialog__content
-      != content
+      != content.getTemplate()
   if (actions)
     .dialog__actions
       each action in actions
-        != action
+        != action.getTemplate()
   .dialog__messages.messages
     .messages__wrapper
       if (messages)

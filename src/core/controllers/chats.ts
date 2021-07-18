@@ -69,9 +69,17 @@ class ChatsController {
 
   async addUsers(data) {
     try {
-      const { response } = await APIClient.put('/chats/users', {
-        data,
-      });
+      const { response } = await APIClient.put('/chats/users', { data });
+
+      return JSON.parse(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async deleteUser(data) {
+    try {
+      const { response } = await APIClient.delete('/chats/users', { data });
 
       return JSON.parse(response);
     } catch (error) {

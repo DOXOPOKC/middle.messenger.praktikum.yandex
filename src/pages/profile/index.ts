@@ -1,6 +1,7 @@
+import router from '../../core';
 import Block from '../../core/block';
-import {Form, Input, Sidebar} from '../../components';
-import {template} from './template';
+import { Form, Input, Sidebar } from '../../components';
+import { template } from './template';
 
 const sidebar = new Sidebar({
   mini: true,
@@ -16,7 +17,7 @@ const emailField = new Input({
   value: 'pochta@yandex.ru',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const loginField = new Input({
@@ -28,7 +29,7 @@ const loginField = new Input({
   value: 'ivanivanov',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const firstNameField = new Input({
@@ -40,7 +41,7 @@ const firstNameField = new Input({
   value: 'Иван',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const lastNameField = new Input({
@@ -52,7 +53,7 @@ const lastNameField = new Input({
   value: 'Иванов',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const phoneField = new Input({
@@ -64,7 +65,7 @@ const phoneField = new Input({
   value: '+ 7 (909) 967 30 30',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const formProps = {
@@ -77,7 +78,7 @@ const formProps = {
     lastNameField,
     phoneField,
   ],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 };
 
 const form = new Form(formProps);
@@ -89,10 +90,22 @@ export default class Profile extends Block {
       sidebar,
       form,
       actions: [
-        {classes: ['text', 'text-link'], text: 'Изменить данные'},
-        {classes: ['text', 'text-link'], text: 'Изменить пароль'},
-        {classes: ['text', 'text-error'], text: 'Выйти'},
+        { classes: ['text', 'text-link'], text: 'Изменить данные' },
+        { classes: ['text', 'text-link'], text: 'Изменить пароль' },
+        { classes: ['text', 'text-error'], text: 'Выйти' },
       ],
+      events: {
+        click: async (e: Event) => {
+          // TODO: брать createChatButton из .sidebar__header
+          const profileButton = document.querySelector('a.sidebar__profile-link.body-2');
+
+          console.log(e);
+
+          if (e.target === profileButton) {
+            router().go('/profile');
+          }
+        },
+      },
     });
   }
 

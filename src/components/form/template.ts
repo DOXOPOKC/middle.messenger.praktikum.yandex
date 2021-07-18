@@ -6,18 +6,18 @@ if (title)
 .form__main
   if (!isRow)
     each field in fields
-      != field
+      != field.getTemplate()
   else
     .list
       ul.list__inner
         each field in fields
           li.list__item
-            != field
+            != field.getTemplate()
 .form__actions
   if (firstBtn)
-    != firstBtn
+    != firstBtn.getTemplate()
   if (secondBtn)
-    != secondBtn
+    != secondBtn.getTemplate()
 `;
 
 export const template = compile(source);

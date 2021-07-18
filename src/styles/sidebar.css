@@ -42,7 +42,6 @@
   background-color: #EFEFEF;
   color: #999999;
   margin: 0;
-  font: 400 13.3333px Arial;
   padding: 0;
   border: none;
   border-radius: 5px;
@@ -52,6 +51,16 @@
 .sidebar__search {
   margin-top: 23px;
   width: 100%;
+}
+
+.floating-label {
+  position: absolute;
+  pointer-events: none;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transition: 0.2s ease all;
 }
 
 .sidebar__chats {

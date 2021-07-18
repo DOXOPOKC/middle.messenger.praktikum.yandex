@@ -1,8 +1,8 @@
 import Block from '../../core/block';
 import router from '../../core';
-import {Input, Button, Form} from '../../components';
-import {checkField} from '../../utils';
-import {template} from './template';
+import { Input, Button, Form } from '../../components';
+import { checkField } from '../../utils';
+import { template } from './template';
 import APIClient from '../../core/api/http';
 
 const login = new Input({
@@ -13,7 +13,7 @@ const login = new Input({
   value: 'doxopokc',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}
+  settings: { withInternalID: true },
 });
 
 const password = new Input({
@@ -24,21 +24,21 @@ const password = new Input({
   value: 'diceware1488',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const firstBtn = new Button({
   classNames: 'button body-1 text-light',
   text: 'Авторизоваться',
-  attrs: {type: 'submit'},
-  settings: {withInternalID: true},
+  attrs: { type: 'submit' },
+  settings: { withInternalID: true },
 });
 
 const secondBtn = new Button({
   classNames: 'button button_light caption text-link',
   text: 'Нет аккаунта?',
-  attrs: {type: 'button'},
-  settings: {withInternalID: true},
+  attrs: { type: 'button' },
+  settings: { withInternalID: true },
 });
 
 const form = new Form({
@@ -48,7 +48,7 @@ const form = new Form({
   firstBtn,
   secondBtn,
   fields: [login, password],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const fieldsMap: { [key: string]: Block } = {
@@ -73,6 +73,8 @@ export default class SignIn extends Block {
         focusout: (e: Event) => {
           e.preventDefault();
 
+          console.log(e.target);
+
           handleEvent(e.target);
         },
         submit: async (e: Event) => {
@@ -92,9 +94,10 @@ export default class SignIn extends Block {
                 },
               });
 
+              // TODO: добавить проверку что response === ok
               // console.log(response);
 
-              router().go('/chats');
+              router().go('/');
             } catch (error) {
               console.log(error);
             }
@@ -112,6 +115,8 @@ export default class SignIn extends Block {
   }
 
   render() {
+    console.log('???????????????????', this.props.form === form);
+
     return template(this.props);
   }
 }

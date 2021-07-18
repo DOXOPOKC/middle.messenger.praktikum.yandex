@@ -12,30 +12,7 @@ export interface IUser {
   avatar:	string | null;
 }
 
-// const loginApi = new LoginAPI();
-// const userLoginValidator = validateLoginFields(validateRules);
-
 class UserSController {
-  // public async login(data: LoginFormModel) {
-  //   try {
-  //     // Запускаем крутилку
-  //
-  //     const validateData = userLoginValidator(data);
-  //
-  //     if (!validateData.isCorrect) {
-  //       throw new Error(validateData);
-  //     }
-  //
-  //     const userID = loginApi.request(prepareDataToRequest(data));
-  //
-  //     RouteManagement.go('/chats');
-  //
-  //     // Останавливаем крутилку
-  //   } catch (error) {
-  //     // TO DO YOUR DEALS WITH ERROR
-  //   }
-  // }
-
   public async getUser(fetch = false) {
     let user: IUser | unknown = store.get('user');
 
@@ -43,14 +20,24 @@ class UserSController {
       user = await this.fetchUser();
     }
 
-    // console.log(user);
-
     return user;
   }
 
   public async fetchUser() {
     try {
       const { response } = await APIClient.get('/auth/user');
+
+      return JSON.parse(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  public async searchUser(login: string) {
+    try {
+      const { response } = await APIClient.post('/user/search', { data: { login } });
+
+      console.log('searchUser', response);
 
       return JSON.parse(response);
     } catch (error) {

@@ -14,7 +14,7 @@ else
     div(style="display: flex;justify-content: space-between; width: 100%;") 
       a.rounded_button.text-light(style="cursor: pointer; width: 24px; height: 24px;") +
       a.sidebar__profile-link.body-2 Профиль >
-    input.sidebar__search.search(placeholder="Поиск")
+    input.sidebar__search.search(type="text" name="search" placeholder="Поиск")
   .sidebar__chats
     if (chats)
       ul.sidebar__list

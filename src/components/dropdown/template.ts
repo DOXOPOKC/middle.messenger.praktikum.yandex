@@ -6,7 +6,7 @@ a.dropdown__btn
 if actions
   ul.dropdown__submenu
     each action in actions
-      li.dropdown__item
+      li.dropdown__item(data-action=action.type)
         .dropdown__icon
           img.image(src=action.icon)
         span.dropdown__item-text= action.text

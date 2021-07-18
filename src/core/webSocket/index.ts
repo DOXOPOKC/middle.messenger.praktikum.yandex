@@ -48,7 +48,12 @@ export default class WebSocketService {
     const oldMessages = store.get('messages') || [];
     const messages = oldMessages.concat(newMessages);
 
-    store.set('messages', messages);
+    store.set('messages', messages.sort((a, b) => {
+      const firstTime = new Date(a.time);
+      const secondTime = new Date(b.time);
+
+      return firstTime - secondTime;
+    }));
   }
 
   onError(event: any): void {
