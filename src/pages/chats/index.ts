@@ -1,18 +1,17 @@
 import Block from '../../core/block';
+import router from '../../core';
 import WebSocketService from '../../core/webSocket';
 import { template } from './template';
 import { Dropdown, Sidebar, Dialog, Form, Input, Button } from '../../components';
 import ChatsControllerInstance from '../../core/controllers/chats';
+import UserController from '../../core/controllers/users';
+import store, { storeEventBus } from '../../store';
 
 // Icons
 import verticalDotsIcon from 'url:../../assets/icons/vertical-dots.svg';
 import attachIcon from 'url:../../assets/icons/attach.svg';
 import appendIcon from 'url:../../assets/icons/append.svg';
 import deleteIcon from 'url:../../assets/icons/delete.svg';
-import APIClient from '../../core/api/http';
-import router from '../../core';
-import store, { storeEventBus } from '../../store';
-import UserController from '../../core/controllers/users';
 
 const input = new Input({
   classNames: 'input',
@@ -174,7 +173,7 @@ export default class Chats extends Block {
               const users = await UserController.searchUser(login);
               const chatId = store.get('chatId');
 
-              await ChatsControllerInstance.addUsers({ users: users.map((user) => user.id), chatId });
+              await ChatsControllerInstance.addUsers({ users: users.map(user => user.id), chatId });
             } catch (error) {
               console.log(error);
             }
@@ -186,7 +185,7 @@ export default class Chats extends Block {
               const users = await UserController.searchUser(login);
               const chatId = store.get('chatId');
 
-              await ChatsControllerInstance.deleteUser({ users: users.map((user) => user.id), chatId });
+              await ChatsControllerInstance.deleteUser({ users: users.map(user => user.id), chatId });
             } catch (error) {
               console.log(error);
             }
@@ -245,8 +244,8 @@ export default class Chats extends Block {
             this.setProps({ dialog });
           }
 
-          if (e.target?.className === 'dropdown__image image') {
-            const dropdown = e.target.parentNode;
+          if (e.target?.className === 'dropdown__btn') {
+            const dropdown = e.target;
             const dropdownList = dropdown.nextElementSibling;
 
             if (dropdownList.style.display) {

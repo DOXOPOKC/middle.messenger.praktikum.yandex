@@ -19,7 +19,7 @@ main.content
         ul.list__inner
           each action in actions
             li.list__item
-              a.list__text_left(class=action.classes href="#")= action.text
+              a.list__text_left(class=action.classes href="/" data-action=action.type)= action.text
 `;
 
 export const template = compile(source);

@@ -26,8 +26,12 @@ class UserSController {
   public async fetchUser() {
     try {
       const { response } = await APIClient.get('/auth/user');
+      const user = JSON.parse(response);
 
-      return JSON.parse(response);
+      store.set('user', user);
+      console.log('1111111111111111', store.get('user'), user);
+
+      return user;
     } catch (error) {
       console.log(error);
     }
@@ -40,6 +44,30 @@ class UserSController {
       console.log('searchUser', response);
 
       return JSON.parse(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  public async changeUserProfile(data) {
+    try {
+      await APIClient.put('/user/profile', { data });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  public async changePassword(data) {
+    try {
+      await APIClient.put('/user/password', { data });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  public async logout() {
+    try {
+      await APIClient.post('/user/logout');
     } catch (error) {
       console.log(error);
     }

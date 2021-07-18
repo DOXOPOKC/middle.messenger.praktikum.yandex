@@ -1,6 +1,8 @@
 import router from '../../core';
 import Block from '../../core/block';
 import { Form, Input, Sidebar } from '../../components';
+import UserController from '../../core/controllers/users';
+import store, { storeEventBus } from '../../store';
 import { template } from './template';
 
 const sidebar = new Sidebar({
@@ -35,7 +37,7 @@ const loginField = new Input({
 const firstNameField = new Input({
   isRow: true,
   classNames: 'input',
-  name: 'firstname',
+  name: 'first_name',
   type: 'text',
   label: 'Имя',
   value: 'Иван',
@@ -47,7 +49,7 @@ const firstNameField = new Input({
 const lastNameField = new Input({
   isRow: true,
   classNames: 'input',
-  name: 'lastname',
+  name: 'second_name',
   type: 'text',
   label: 'Фамилия',
   value: 'Иванов',
@@ -68,16 +70,18 @@ const phoneField = new Input({
   settings: { withInternalID: true },
 });
 
+const fields = [
+  emailField,
+  loginField,
+  firstNameField,
+  lastNameField,
+  phoneField,
+];
+
 const formProps = {
   isRow: true,
   classNames: 'form',
-  fields: [
-    emailField,
-    loginField,
-    firstNameField,
-    lastNameField,
-    phoneField,
-  ],
+  fields,
   settings: { withInternalID: true },
 };
 
@@ -90,22 +94,51 @@ export default class Profile extends Block {
       sidebar,
       form,
       actions: [
-        { classes: ['text', 'text-link'], text: 'Изменить данные' },
-        { classes: ['text', 'text-link'], text: 'Изменить пароль' },
-        { classes: ['text', 'text-error'], text: 'Выйти' },
+        { classes: ['text', 'text-link'], text: 'Изменить данные', type: 'change-data' },
+        { classes: ['text', 'text-link'], text: 'Изменить пароль', type: 'change-password' },
+        { classes: ['text', 'text-error'], text: 'Выйти', type: 'logout' },
       ],
       events: {
         click: async (e: Event) => {
-          // TODO: брать createChatButton из .sidebar__header
-          const profileButton = document.querySelector('a.sidebar__profile-link.body-2');
+          e.preventDefault();
 
-          console.log(e);
+          const profileDataButton = document.querySelector('a[data-action="change-data"]');
+          const profilePasswordButton = document.querySelector('a[data-action="change-password"]');
+          const logoutButton = document.querySelector('a[data-action="logout"]');
+          const sidebarButton = document.querySelector('.rounded_button');
 
-          if (e.target === profileButton) {
-            router().go('/profile');
+          if (e.target === sidebarButton) {
+            router().go('/');
+          }
+
+          if (e.target === profileDataButton) {
+            router().go('/change_profile_info');
+          }
+
+          if (e.target === profilePasswordButton) {
+            router().go('/change_password');
+          }
+
+          if (e.target === logoutButton) {
+            store.clear();
+            await UserController.logout();
           }
         },
       },
+    });
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+
+    storeEventBus.on('flow:state-updated', () => {
+      const user = store.get('user');
+
+      if (user) {
+        fields.forEach((field => {
+          field.setProps({ value: user[field.props.name] });
+        }));
+      }
     });
   }
 

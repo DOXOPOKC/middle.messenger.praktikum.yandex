@@ -1,4 +1,4 @@
-import {Router} from './router';
+import { Router } from './router';
 import {
   Chats,
   NotFound,
@@ -9,7 +9,6 @@ import {
   SignIn,
   SignUp,
 } from '../pages';
-
 
 let routerInstance: Router;
 
