@@ -6,6 +6,7 @@ https://github.com/DOXOPOKC/middle.messenger.praktikum.yandex/pull/2
 Учебный проект Яндекс.Практикума
 
 При сборке dev или start список экранов будет на http://localhost:3000/home/
+Тесты npm run test
 
 ### Ссылки
 - «[Figma](https://www.figma.com/file/WvyKiQqpgMvhIF9iYX6lN1/Chat-doxopokc?node-id=0%3A1)»
