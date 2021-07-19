@@ -9,6 +9,4 @@ npm-debug.log
 .parcel-cache
 
 # idea
-.idea
-
-dist/
+.idea/

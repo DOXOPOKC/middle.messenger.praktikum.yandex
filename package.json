@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "parcel serve src/core/index.pug --no-cache --port 3000",
     "start": "parcel build src/pages/**/index.pug --no-cache --no-source-maps && node server.js",
+    "build": "parcel build src/pages/**/index.pug --no-cache --no-source-maps",
     "lint": "eslint . --fix --ext .ts && stylelint --fix **/*.css",
     "test": "mocha"
   },
