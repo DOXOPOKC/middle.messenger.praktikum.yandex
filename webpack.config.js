@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -38,6 +39,9 @@ module.exports = {
 		],
 	},
 	plugins: [
+		new webpack.ProvidePlugin({
+			process: 'process/browser',
+		}),
 		new HtmlWebpackPlugin({
 			template: 'src/core/index.pug',
 			minify: {
@@ -55,6 +59,7 @@ module.exports = {
 		},
 		fallback: {
 			path: require.resolve('path-browserify'),
+			assert: require.resolve('assert'),
 			fs: false,
 		},
 	},
@@ -62,7 +67,7 @@ module.exports = {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, 'dist'),
 		assetModuleFilename: 'assets/[name][ext]',
-    clean: true,
+		clean: true,
 	},
 	devServer: {
 		contentBase: path.join(__dirname, 'dist'),
