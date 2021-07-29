@@ -2,8 +2,6 @@ import {compile} from 'pug';
 import chatUserAvatar from '@/assets/img/chatuseravatar.png';
 import arrowLeftIcon from '@/assets/icons/arrow-left.svg';
 
-// TODO: Перенести стили в файлы по классам
-
 const source = `
 if (mini)
   .sidebar__button

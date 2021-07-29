@@ -8,12 +8,12 @@ import SignIn from './sign-in';
 import SignUp from './sign-up';
 
 export {
-  Chats,
-  NotFound,
-  Profile,
-  ProfileEdit,
-  ProfilePassword,
-  ServerError,
-  SignIn,
-  SignUp,
+	Chats,
+	NotFound,
+	Profile,
+	ProfileEdit,
+	ProfilePassword,
+	ServerError,
+	SignIn,
+	SignUp,
 };

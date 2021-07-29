@@ -2,73 +2,73 @@ import store from '../../store';
 import APIClient from '../api/http';
 
 export interface IUser {
-  id: number;
-  firstName:	string;
-  secondName:	string;
-  displayName:	string | null;
-  login:	string;
-  email:	string;
-  phone:	string;
-  avatar:	string | null;
+	id: number;
+	firstName:	string;
+	secondName:	string;
+	displayName:	string | null;
+	login:	string;
+	email:	string;
+	phone:	string;
+	avatar:	string | null;
 }
 
 class UserSController {
-  public async getUser(shouldFetch = false) {
-    let user: IUser | unknown = store.get('user');
+	public async getUser(shouldFetch = false) {
+		let user: IUser | unknown = store.get('user');
 
-    if (!user && shouldFetch) {
-      user = await this.fetchUser();
-    }
+		if (!user && shouldFetch) {
+			user = await this.fetchUser();
+		}
 
-    return user;
-  }
+		return user;
+	}
 
-  public async fetchUser() {
-    try {
-      const { response } = await APIClient.get('/auth/user');
-      const user = JSON.parse(response);
+	public async fetchUser() {
+		try {
+			const {response} = await APIClient.get('/auth/user');
+			const user = JSON.parse(response);
 
-      store.set('user', user);
+			store.set('user', user);
 
-      return user;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+			return user;
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
-  public async searchUser(login: string) {
-    try {
-      const { response } = await APIClient.post('/user/search', { data: { login } });
+	public async searchUser(login: string) {
+		try {
+			const {response} = await APIClient.post('/user/search', {data: {login}});
 
-      return JSON.parse(response);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+			return JSON.parse(response);
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
-  public async changeUserProfile(data) {
-    try {
-      await APIClient.put('/user/profile', { data });
-    } catch (error) {
-      console.log(error);
-    }
-  }
+	public async changeUserProfile(data) {
+		try {
+			await APIClient.put('/user/profile', {data});
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
-  public async changePassword(data) {
-    try {
-      await APIClient.put('/user/password', { data });
-    } catch (error) {
-      console.log(error);
-    }
-  }
+	public async changePassword(data) {
+		try {
+			await APIClient.put('/user/password', {data});
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
-  public async logout() {
-    try {
-      await APIClient.post('/auth/logout');
-    } catch (error) {
-      console.log(error);
-    }
-  }
+	public async logout() {
+		try {
+			await APIClient.post('/auth/logout');
+		} catch (error) {
+			console.log(error);
+		}
+	}
 }
 
 const UsersControllerInstance = new UserSController();

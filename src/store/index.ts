@@ -1,14 +1,14 @@
 import Store from '../core/store';
 
 const initProps = {
-  userId: null,
-  userInfo: null,
-  avatar: null,
-  chats: [],
-  currentChatId: null,
-  currentChat: null,
-  messages: [],
-  lastMessage: null,
+	userId: null,
+	userInfo: null,
+	avatar: null,
+	chats: [],
+	currentChatId: null,
+	currentChat: null,
+	messages: [],
+	lastMessage: null,
 };
 
 const store = Store.getInstance(initProps);

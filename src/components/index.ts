@@ -6,4 +6,4 @@ import Input from './input';
 import Sidebar from './sidebar';
 import Dialog from './dialog';
 
-export { Button, ErrorBlock, Form, Input, Dropdown, Sidebar, Dialog };
+export {Button, ErrorBlock, Form, Input, Dropdown, Sidebar, Dialog};

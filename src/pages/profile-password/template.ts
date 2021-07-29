@@ -1,4 +1,4 @@
-import { compile } from 'pug';
+import {compile} from 'pug';
 import profileIcon from '@/assets/icons/image.svg';
 
 const source = `

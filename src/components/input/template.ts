@@ -1,4 +1,4 @@
-import { compile } from 'pug';
+import {compile} from 'pug';
 
 export const source = `
 if (isRow)
