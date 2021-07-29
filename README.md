@@ -1,16 +1,21 @@
-
 ## **PULL REQUEST**
-https://github.com/DOXOPOKC/middle.messenger.praktikum.yandex/pull/3
+https://github.com/DOXOPOKC/middle.messenger.praktikum.yandex/pull/4
 
 ## **Описание**
-Учебный проект Яндекс.Практикума
+Старт проекта - npm run start
 
-При сборке dev или start список экранов будет на http://localhost:3000/home/
-Тесты npm run test
+Сборка проекта - npm run build
+
+Разработка - npm run dev
+
+Линтер - npm run lint:all
+
+Тесты - npm run test
 
 ### Ссылки
 - «[Figma](https://www.figma.com/file/WvyKiQqpgMvhIF9iYX6lN1/Chat-doxopokc?node-id=0%3A1)»
-- «[Netlify](https://hardcore-yalow-bf2127.netlify.app/home/)»
+- «[Netlify](https://hardcore-yalow-bf2127.netlify.app)»
+- «[Heroku](https://doxopokchat.herokuapp.com)»
 
 ### Стэк
-typescript + pug + postCSS + express
+Typescript + Pug + postCSS + express + webpack
