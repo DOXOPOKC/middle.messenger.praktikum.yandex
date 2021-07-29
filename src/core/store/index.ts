@@ -1,6 +1,12 @@
-import Block, { IProps } from '../../core/block';
+import { IProps } from '../block';
 import EventBus from '../eventBus';
-import { cloneDeep } from '../../utils';
+
+interface IState {
+  userId: string | null
+  userInfo: string | null
+  avatar: string | null
+  currentChatId: string | null
+}
 
 class Store {
   private static instance: Store;
@@ -54,19 +60,8 @@ class Store {
     return this.state[prop];
   }
 
-  clear(): void {
-    const iniIProps = {
-      userId: null,
-      userInfo: null,
-      avatar: null,
-      chats: [],
-      currentChatId: null,
-      currentChat: null,
-      messages: [],
-      lastMessage: null,
-    };
-
-    this.state = this.makePropsProxy(iniIProps);
+  clear(defaultState: IState): void {
+    this.state = this.makePropsProxy(defaultState);
   }
 }
 

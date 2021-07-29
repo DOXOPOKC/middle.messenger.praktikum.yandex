@@ -15,10 +15,10 @@ interface IChat {
 }
 
 class ChatsController {
-  async getAll(fetch = false) {
+  async getAll(shouldFetch = false) {
     let chats: IChat[] | unknown = store.get('chats');
 
-    if (!chats?.length || fetch) {
+    if (!chats?.length || shouldFetch) {
       chats = await this.fetchAll();
 
       store.set('chats', chats);
@@ -37,10 +37,10 @@ class ChatsController {
     }
   }
 
-  async get(fetch = false) {
+  async get(shouldFetch = false) {
     let chat: IUser | any = store.get('chat');
 
-    if (!chat || fetch) {
+    if (!chat || shouldFetch) {
       chat = await this.fetch(chat?.id);
     }
 

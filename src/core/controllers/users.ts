@@ -3,9 +3,9 @@ import APIClient from '../api/http';
 
 export interface IUser {
   id: number;
-  first_name:	string;
-  second_name:	string;
-  display_name:	string | null;
+  firstName:	string;
+  secondName:	string;
+  displayName:	string | null;
   login:	string;
   email:	string;
   phone:	string;
@@ -13,10 +13,10 @@ export interface IUser {
 }
 
 class UserSController {
-  public async getUser(fetch = false) {
+  public async getUser(shouldFetch = false) {
     let user: IUser | unknown = store.get('user');
 
-    if (!user && fetch) {
+    if (!user && shouldFetch) {
       user = await this.fetchUser();
     }
 

@@ -5,7 +5,7 @@
     "dev": "parcel serve src/core/index.pug --no-cache --port 3000",
     "start": "parcel build src/core/index.pug --no-cache --no-source-maps && node server.js",
     "lint": "eslint . --fix --ext .ts && stylelint --fix **/*.css",
-    "test": "mocha"
+    "test": "mocha test -r ts-node/register -r jsdom-global/register"
   },
   "repository": {
     "type": "git",
@@ -32,19 +32,22 @@
     "@babel/register": "^7.14.5",
     "@parcel/transformer-image": "^2.0.0-nightly.2332",
     "@parcel/transformer-pug": "^2.0.0-nightly.710",
-    "@types/chai": "^4.2.19",
-    "@types/mocha": "^8.2.2",
+    "@types/chai": "^4.2.21",
+    "@types/jsdom": "^16.2.13",
+    "@types/mocha": "^9.0.0",
     "@types/pug": "^2.0.4",
     "@types/uuid": "^8.3.0",
-    "@typescript-eslint/eslint-plugin": "^4.27.0",
-    "@typescript-eslint/parser": "^4.27.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
     "autoprefixer": "^10.2.6",
-    "chai": "^4.3.3",
-    "eslint": "^7.29.0",
+    "chai": "^4.3.4",
+    "eslint": "^7.31.0",
     "eslint-config-xo": "^0.37.0",
+    "eslint-config-xo-typescript": "^0.43.0",
     "eslint-plugin-import": "^2.23.4",
     "jsdom": "^16.6.0",
-    "mocha": "^8.4.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^9.0.3",
     "parcel": "^2.0.0-beta.3.1",
     "postcss": "^8.3.5",
     "postcss-custom-properties": "^11.0.0",
@@ -54,6 +57,9 @@
     "sinon-chai": "^3.7.0",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
-    "typescript": "^4.3.4"
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5",
+    "webpack": "^5.47.0",
+    "webpack-cli": "^4.7.2"
   }
 }
