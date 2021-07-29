@@ -1,6 +1,6 @@
 {
   "name": "middle.messenger.praktikum.yandex",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scripts": {
     "start": "webpack && node server.js",
     "lint:all": "eslint . --fix --ext .ts && stylelint --fix **/*.css",
