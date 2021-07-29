@@ -1,5 +1,13 @@
-FROM node:14
-WORKDIR /var/www
-COPY . .
+FROM node:12-alpine
+
+WORKDIR /usr/app
+
+COPY package*.json .nvmrc ./
+
+RUN npm install
+
 EXPOSE 3000
-CMD npm ci && npm run start
+
+COPY . .
+
+CMD ["npm", "run", "start"]
