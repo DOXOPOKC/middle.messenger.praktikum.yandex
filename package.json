@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "scripts": {
     "start": "webpack && node server.js",
-    "lint": "eslint . --fix --ext .ts && stylelint --fix **/*.css",
+    "lint:all": "eslint . --fix --ext .ts && stylelint --fix **/*.css",
     "test": "mocha test -r ts-node/register -r jsdom-global/register",
     "build": "webpack",
     "dev": "webpack serve",
-    "prepare": "husky install",
-    "precommit": "lint"
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -20,6 +19,11 @@
     "url": "https://github.com/DOXOPOKC/middle.messenger.praktikum.yandex/issues"
   },
   "homepage": "https://github.com/DOXOPOKC/middle.messenger.praktikum.yandex#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test lint:all"
+    }
+  },
   "dependencies": {
     "express": "^4.17.1",
     "path-browserify": "^1.0.1",
