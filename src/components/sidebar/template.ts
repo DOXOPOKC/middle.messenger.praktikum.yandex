@@ -1,6 +1,6 @@
-import { compile } from 'pug';
-import chatUserAvatar from 'url:../../assets/img/chatuseravatar.png';
-import arrowLeftIcon from 'url:../../assets/icons/arrow-left.svg';
+import {compile} from 'pug';
+import chatUserAvatar from '@/assets/img/chatuseravatar.png';
+import arrowLeftIcon from '@/assets/icons/arrow-left.svg';
 
 // TODO: Перенести стили в файлы по классам
 
