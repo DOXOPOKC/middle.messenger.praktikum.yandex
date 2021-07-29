@@ -1,4 +1,4 @@
-import {compile} from 'pug';
+import { compile } from 'pug';
 
 const source = `
 h1.error-block__title.headline= title

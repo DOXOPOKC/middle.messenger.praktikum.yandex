@@ -1,41 +1,44 @@
 import Block from '../../core/block';
-import {Input, Button, Form} from '../../components';
-import {render, checkField} from '../../utils';
-import {template} from './template';
+import router from '../../core';
+import { Input, Button, Form } from '../../components';
+import { checkField } from '../../utils';
+import { template } from './template';
+import APIClient from '../../core/api/http';
 
 const login = new Input({
   classNames: 'input',
   name: 'login',
   type: 'text',
   label: 'Логин',
-  value: '',
+  value: 'doxopokc',
   classes: [],
   messages: [],
-  settings: {withInternalID: true}});
+  settings: { withInternalID: true },
+});
 
 const password = new Input({
   classNames: 'input',
   name: 'password',
   type: 'password',
   label: 'Пароль',
-  value: '',
+  value: 'diceware1488',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const firstBtn = new Button({
   classNames: 'button body-1 text-light',
   text: 'Авторизоваться',
-  attrs: {type: 'submit'},
-  settings: {withInternalID: true},
+  attrs: { type: 'submit' },
+  settings: { withInternalID: true },
 });
 
 const secondBtn = new Button({
   classNames: 'button button_light caption text-link',
   text: 'Нет аккаунта?',
-  attrs: {type: 'button'},
-  settings: {withInternalID: true},
+  attrs: { type: 'button' },
+  settings: { withInternalID: true },
 });
 
 const form = new Form({
@@ -45,12 +48,12 @@ const form = new Form({
   firstBtn,
   secondBtn,
   fields: [login, password],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const fieldsMap: { [key: string]: Block } = {
   login,
-  password
+  password,
 };
 
 const handleEvent = (...fields: HTMLInputElement[]) => {
@@ -59,9 +62,9 @@ const handleEvent = (...fields: HTMLInputElement[]) => {
       checkField(fieldsMap[field.name], field.value, field.name);
     }
   }
-}
+};
 
-class SignIn extends Block {
+export default class SignIn extends Block {
   constructor() {
     super('div', {
       classNames: 'sign-in',
@@ -72,13 +75,36 @@ class SignIn extends Block {
 
           handleEvent(e.target);
         },
-        submit: (e: Event) => {
+        submit: async (e: Event) => {
           const login: HTMLInputElement | null = document.querySelector('input[name=\'login\']');
           const password: HTMLInputElement | null = document.querySelector('input[name=\'password\']');
 
           e.preventDefault();
 
-          handleEvent(login, password);
+          if (login && password) {
+            handleEvent(login, password);
+
+            try {
+              const response = await APIClient.post('/auth/signin/', {
+                data: {
+                  login: login.value,
+                  password: password.value,
+                },
+              });
+
+              // TODO: добавить проверку что response === ok
+              router().go('/');
+            } catch (error) {
+              console.log(error);
+            }
+          }
+        },
+        click: (e: Event) => {
+          if (e.target.dataset.id === secondBtn.getUUID()) {
+            e.preventDefault();
+
+            router().go('/sign_up');
+          }
         },
       },
     });
@@ -88,7 +114,3 @@ class SignIn extends Block {
     return template(this.props);
   }
 }
-
-const signInPage = new SignIn();
-
-render('.app', signInPage);

@@ -1,8 +1,8 @@
-import {compile} from 'pug';
+import { compile } from 'pug';
 import profileIcon from 'url:../../assets/icons/image.svg';
 
 const source = `
-!= sidebar
+!= sidebar.getTemplate()
 main.content
   .profile
     .profile__avatar-wrapper.avatar
@@ -13,13 +13,13 @@ main.content
         img.image(src="${profileIcon}")
     .profile__title.title Иван
     .profile__main
-      != form
+      != form.getTemplate()
     .profile__actions
       .list
         ul.list__inner
           each action in actions
             li.list__item
-              a.list__text_left(class=action.classes href="#")= action.text
+              a.list__text_left(class=action.classes href="/" data-action=action.type)= action.text
 `;
 
 export const template = compile(source);

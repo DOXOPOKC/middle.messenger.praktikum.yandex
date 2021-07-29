@@ -1,11 +1,13 @@
-import {compile} from 'pug';
+import { compile } from 'pug';
 import messageCamera from 'url:../../assets/img/message-camera.png';
 import chatUserAvatar from 'url:../../assets/img/chatuseravatar.png';
 import messageDone from 'url:../../assets/icons/message-done.svg';
 import arrowLeft from 'url:../../assets/icons/arrow-left.svg';
 
 const source = `
-!= sidebar
+if (dialog)
+  != dialog.getTemplate()
+!= sidebar.getTemplate()
 main.content_chat
   .chat
     .chat__header
@@ -15,41 +17,30 @@ main.content_chat
             src="${chatUserAvatar}",
             alt="chat user"
           )
-        span.chat__username Вадим
+        span.chat__username Чат
       .chat__header-dropdown
-        != topDropdown
+        != topDropdown.getTemplate()
     .chat__content
       .chat__block
-        .chat__date.text-grey 19 июня
+      if messages
         ul.chat__messages
-          li.chat__message.chat__message_from
-            .chat__message-content
-              p.chat__message-content-text
-                | Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
-                br
-                br
-                | Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.
-              .chat__message-info
-                .chat__message-time.overline-1.text-grey 11:56
-          li.chat__message.chat__message_image
-            img.image(
-              src="${messageCamera}",
-              alt="Фото камеры в сообщении от Вадима"
-            )
-          li.chat__message.chat__message_to
-            .chat__message-content
-              p.chat__message-content-text.body-2 Круто!
-              .chat__message-info
-                .chat__message-status
-                  img(src="${messageDone}")
-                span.chat__message-time.overline-1.text-link 12:00
+          each message in messages
+            li.chat__message(class=userId == message.user_id ? "chat__message_to" : "chat__message_from", asd=userId, dsa=message.user_id)
+              .chat__message-content
+                p.chat__message-content-text= message.content
+                .chat__message-info
+                  if message.is_read
+                    .chat__message-status
+                      img(src="${messageDone}")
+                  span.chat__message-time.overline-1.text-link #{prettyDate(message.time)}
     .chat__controls
       .chat__attach
-        != bottomDropdown
-      input.chat__input(placeholder="Сообщение")
-      .chat__send-button
-        button.rounded_button
-          img(src="${arrowLeft}")
+        != bottomDropdown.getTemplate()
+      form.chat__form
+        input.chat__input(placeholder="Сообщение")
+        .chat__send-button
+          button.rounded_button(type="submit")
+            img(src="${arrowLeft}")
 `;
 
 export const template = compile(source);

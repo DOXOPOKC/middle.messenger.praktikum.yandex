@@ -1,13 +1,15 @@
 import Block from '../../core/block';
-import {Button, Form, Input, Sidebar} from '../../components';
-import {render} from '../../utils';
-import {template} from './template';
+import { Button, Form, Input, Sidebar } from '../../components';
+import UserController from '../../core/controllers/users';
+import store, { storeEventBus } from '../../store';
+import { template } from './template';
+import router from '../../core';
 
 const firstBtn = new Button({
   classNames: 'button body-1 text-light button_profile',
   text: 'Сохранить',
-  attrs: {type: 'submit'},
-  settings: {withInternalID: true},
+  attrs: { type: 'submit' },
+  settings: { withInternalID: true },
 });
 
 const sidebar = new Sidebar({
@@ -21,10 +23,10 @@ const emailField = new Input({
   name: 'email',
   type: 'email',
   label: 'Почта',
-  value: 'pochta@yandex.ru',
+  value: '',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const loginField = new Input({
@@ -33,46 +35,46 @@ const loginField = new Input({
   name: 'login',
   type: 'text',
   label: 'Логин',
-  value: 'ivanivanov',
+  value: '',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const firstNameField = new Input({
   isRow: true,
   classNames: 'input',
-  name: 'firstname',
+  name: 'first_name',
   type: 'text',
   label: 'Имя',
-  value: 'Иван',
+  value: '',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const lastNameField = new Input({
   isRow: true,
   classNames: 'input',
-  name: 'lastname',
+  name: 'second_name',
   type: 'text',
   label: 'Фамилия',
-  value: 'Иванов',
+  value: '',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const userNameField = new Input({
   isRow: true,
   classNames: 'input',
-  name: 'lastname',
+  name: 'display_name',
   type: 'text',
   label: 'Имя в чате',
-  value: 'Иван',
+  value: '',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
 
 const phoneField = new Input({
@@ -81,35 +83,73 @@ const phoneField = new Input({
   name: 'phone',
   type: 'phone',
   label: 'Телефон',
-  value: '+ 7 (909) 967 30 30',
+  value: '',
   classes: [],
   messages: [],
-  settings: {withInternalID: true},
+  settings: { withInternalID: true },
 });
+
+const fields = [
+  emailField,
+  loginField,
+  firstNameField,
+  lastNameField,
+  userNameField,
+  phoneField,
+];
 
 const formProps = {
   isRow: true,
   classNames: 'form',
   firstBtn,
-  fields: [
-    emailField,
-    loginField,
-    firstNameField,
-    lastNameField,
-    userNameField,
-    phoneField,
-  ],
-  settings: {withInternalID: true},
+  fields,
+  settings: { withInternalID: true },
 };
 
 const form = new Form(formProps);
 
-class Profile extends Block {
+export default class Profile extends Block {
   constructor() {
     super('div', {
       classNames: 'profile-page',
       sidebar,
       form,
+      events: {
+        click: async (e: Event) => {
+          const sidebarButton = document.querySelector('.rounded_button');
+
+          if (e.target === sidebarButton) {
+            router().go('/profile');
+          }
+        },
+        submit: async (e: Event) => {
+          const formElement: HTMLInputElement | null = document.querySelector(`[data-id='${form.getUUID()}']`);
+
+          e.preventDefault();
+
+          if (e.target === formElement) {
+            const data = new FormData(formElement);
+
+            await UserController.changeUserProfile(Object.fromEntries(data.entries()));
+
+            router().go('/profile');
+          }
+        },
+      },
+    });
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+
+    storeEventBus.on('flow:state-updated', () => {
+      const user = store.get('user');
+
+      if (user) {
+        fields.forEach((field => {
+          field.setProps({ value: user[field.props.name] });
+        }));
+      }
     });
   }
 
@@ -117,7 +157,3 @@ class Profile extends Block {
     return template(this.props);
   }
 }
-
-const page = new Profile();
-
-render('.app', page);

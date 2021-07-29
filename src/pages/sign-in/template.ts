@@ -1,9 +1,9 @@
-import {compile} from 'pug';
+import { compile } from 'pug';
 
 const source = `
 .dialog
   .dialog__window
-    != form
+    != form.getTemplate()
 `;
 
 export const template = compile(source);
