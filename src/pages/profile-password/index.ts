@@ -3,6 +3,7 @@ import {Button, Form, Input, Sidebar} from '../../components';
 import {template} from './template';
 import UserController from '../../core/controllers/users';
 import router from '../../core';
+import {storeEventBus} from '../../store';
 
 const firstBtn = new Button({
 	classNames: 'button body-1 text-light button_profile',
@@ -51,15 +52,17 @@ const repeatPasswordField = new Input({
 	settings: {withInternalID: true},
 });
 
+const fields = [
+	oldPasswordField,
+	newPasswordField,
+	repeatPasswordField,
+];
+
 const formProps = {
 	isRow: true,
 	classNames: 'form',
 	firstBtn,
-	fields: [
-		oldPasswordField,
-		newPasswordField,
-		repeatPasswordField,
-	],
+	fields,
 	settings: {withInternalID: true},
 };
 
@@ -69,6 +72,7 @@ export default class Profile extends Block {
 	constructor() {
 		super('div', {
 			classNames: 'profile-page',
+			shouldAvatar: false,
 			sidebar,
 			form,
 			events: {
@@ -94,6 +98,22 @@ export default class Profile extends Block {
 				},
 			},
 		});
+	}
+
+	async componentDidMount() {
+		storeEventBus.on('flow:state-updated', async state => {
+			this.setProps({avatar: state.user.avatar});
+		});
+
+		const user = await UserController.getUser(true);
+
+		if (user) {
+      this.setProps({avatar: user.avatar});
+
+			fields.forEach((field => {
+				field.setProps({value: user[field.props.name]});
+			}));
+		}
 	}
 
 	render() {

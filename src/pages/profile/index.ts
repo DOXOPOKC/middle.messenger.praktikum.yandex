@@ -91,6 +91,7 @@ export default class Profile extends Block {
 	constructor() {
 		super('div', {
 			classNames: 'profile-page',
+			shouldAvatar: false,
 			sidebar,
 			form,
 			actions: [
@@ -120,7 +121,12 @@ export default class Profile extends Block {
 					}
 
 					if (e.target === logoutButton) {
-						store.clear();
+						store.clear({
+							userId: null,
+							userInfo: null,
+							avatar: null,
+							currentChatId: null,
+						});
 						await UserController.logout();
 						router().go('/sign_in');
 					}
@@ -129,18 +135,20 @@ export default class Profile extends Block {
 		});
 	}
 
-	componentDidMount() {
-		super.componentDidMount();
-
-		storeEventBus.on('flow:state-updated', () => {
-			const user = store.get('user');
-
-			if (user) {
-				fields.forEach((field => {
-					field.setProps({value: user[field.props.name]});
-				}));
-			}
+	async componentDidMount() {
+		storeEventBus.on('flow:state-updated', async state => {
+			this.setProps({avatar: state.user.avatar});
 		});
+
+		const user = await UserController.getUser(true);
+
+		if (user) {
+      this.setProps({avatar: user.avatar});
+
+			fields.forEach((field => {
+				field.setProps({value: user[field.props.name]});
+			}));
+		}
 	}
 
 	render() {

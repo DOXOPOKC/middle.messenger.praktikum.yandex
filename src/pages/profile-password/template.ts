@@ -6,11 +6,16 @@ const source = `
 main.content
   .profile
     .profile__avatar-wrapper.avatar
-      .profile__change-avatar
-        .blur-background
-        span.text-light.avatar__text Поменять аватар
-      .profile__avatar
-        img.image(src="${profileIcon}")
+      if (shouldAvatar)
+        .profile__change-avatar
+          .blur-background
+          span.text-light.avatar__text Поменять аватар
+      if (avatar)
+        .profile__avatar.profile__avatar_full
+          img.image(src=avatar)
+      else
+        .profile__avatar
+          img.image(src="${profileIcon}")
     .profile__title.title Иван
     .profile__main
       != form.getTemplate()

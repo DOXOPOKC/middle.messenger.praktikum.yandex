@@ -98,7 +98,7 @@ export class HTTPTransport {
 				xhr.send();
 			} else {
 				// @ts-expect-error
-				xhr.send(data);
+				xhr.send(JSON.stringify(data));
 			}
 		});
 	};
