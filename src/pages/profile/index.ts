@@ -107,6 +107,8 @@ export default class Profile extends Block {
 					const logoutButton = document.querySelector('a[data-action="logout"]');
 					const sidebarButton = document.querySelector('.rounded_button');
 
+					console.log(e, e.target === logoutButton);
+
 					if (e.target === sidebarButton) {
 						router().go('/');
 					}

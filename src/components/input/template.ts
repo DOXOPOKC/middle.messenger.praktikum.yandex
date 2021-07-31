@@ -1,13 +1,17 @@
 import {compile} from 'pug';
 
 export const source = `
-if (isRow)
+if (isAvatar)
+  label.file-uploader(for=name)= label
+  input(type="file" id=name name=name accept="image/png" required)
+else if (isRow)
   label.list__text_left(for=name)= label
     input.list__text_right(
       class=classes
       value=value
       type=type
       name=name
+      required=required
     )
 else
   label.input__label.form__label(for=name)= label
@@ -16,6 +20,7 @@ else
       type=type
       value=value
       name=name
+      required=required
     )
     .messages
       .messages__wrapper

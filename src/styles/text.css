@@ -60,3 +60,8 @@
 .text-grey {
     color: #8D8D8D;
 }
+
+.file-label {
+  color: #8D8D8D;
+  text-decoration: none;
+}

@@ -73,7 +73,6 @@ const deleteUserDialogBtn = new Button({
 	attrs: {type: 'submit'},
 	settings: {withInternalID: true},
 });
-
 const createChatForm = new Form({
 	classNames: 'form',
 	title: 'Новый чат',

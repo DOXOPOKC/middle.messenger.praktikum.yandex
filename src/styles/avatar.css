@@ -24,6 +24,12 @@
 
 .profile__avatar {
   width: 40px;
+  pointer-events: none;
+}
+
+.profile__avatar_full {
+  width: 100%;
+  pointer-events: none;
 }
 
 .profile__change-avatar {
@@ -35,6 +41,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  pointer-events: none;
 }
 
 .profile__avatar-wrapper:hover .profile__change-avatar {

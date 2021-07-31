@@ -10,7 +10,7 @@ interface IState {
 
 class Store {
 	private static instance: Store;
-	public props: IProps = <IProps>{};
+	public props: IProps = {};
 	state: Record<string, any>;
 	eventBus: () => EventBus;
 
@@ -33,11 +33,25 @@ class Store {
 		return Store.instance;
 	}
 
-	private makePropsProxy(props: IProps): ProxyHandler<IProps> {
+	set(prop: string, data: unknown): void {
+		this.state[prop] = data;
+	}
+
+	get(prop: string): unknown {
+		return this.state[prop];
+	}
+
+	clear(defaultState: IState): void {
+		this.state = this.makePropsProxy(defaultState);
+	}
+
+	private makePropsProxy(props: IProps): IProps {
 		return new Proxy(props, {
 			get: (target: IProps, prop: string) => {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				const value = target[prop];
 
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
 				return typeof value === 'function' ? value.bind(target) : value;
 			},
 			set: (target: IProps, prop: string, value: unknown) => {
@@ -50,18 +64,6 @@ class Store {
 				throw new Error('Отказано в доступе');
 			},
 		});
-	}
-
-	set(prop: string, data: unknown): void {
-		this.state[prop] = data;
-	}
-
-	get(prop: string): unknown {
-		return this.state[prop];
-	}
-
-	clear(defaultState: IState): void {
-		this.state = this.makePropsProxy(defaultState);
 	}
 }
 

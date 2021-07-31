@@ -1,58 +1,55 @@
 import {HTTPTransport} from './index';
 
-import chai from 'chai';
+import chai, {expect} from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
 chai.use(sinonChai);
 
-describe.skip('check HTTPTransport', () => {
+describe('check HTTPTransport', () => {
 	let request: HTTPTransport;
 
 	beforeEach(() => {
 		request = new HTTPTransport('http://localhost');
 	});
 
-	it('check GET', async () => {
-		const requestSpy: any = sinon.spy(request, 'request');
-		await request.get('/test');
-
+	it('check GET', () => {
+		const requestSpy = sinon.spy(request, 'request');
+		request.get('/test');
 		// @ts-expect-error
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-		chai.expect(requestSpy).to.have.been.calledWith('http://localhost/test', {
+		expect(requestSpy).to.have.been.calledWith('http://localhost/test', {
 			method: 'GET',
 		});
 	});
 
-	it('check POST', async () => {
+	it('check POST', () => {
 		const requestSpy = sinon.spy(request, 'request');
-		await request.post('/test', {});
+		request.post('/test', {});
 
 		// @ts-expect-error
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-		chai.expect(requestSpy).to.have.been.calledWith('http://localhost/test', {
+		expect(requestSpy).to.have.been.calledWith('http://localhost/test', {
 			method: 'POST',
 		});
 	});
 
-	it('check PUT', async () => {
+	it('check PUT', () => {
 		const requestSpy = sinon.spy(request, 'request');
-		await request.put('/test', {});
-
+		request.put('/test', {});
 		// @ts-expect-error
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-		chai.expect(requestSpy).to.have.been.calledWith('http://localhost/test', {
+		expect(requestSpy).to.have.been.calledWith('http://localhost/test', {
 			method: 'PUT',
 		});
 	});
 
-	it('check DELETE', async () => {
+	it('check DELETE', () => {
 		const requestSpy = sinon.spy(request, 'request');
-		await request.delete('/test', {});
-
+		request.delete('/test', {});
 		// @ts-expect-error
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-		chai.expect(requestSpy).to.have.been.calledWith('http://localhost/test', {
+		expect(requestSpy).to.have.been.calledWith('http://localhost/test', {
 			method: 'DELETE',
 		});
 	});

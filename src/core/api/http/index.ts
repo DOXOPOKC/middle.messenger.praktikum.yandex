@@ -7,12 +7,24 @@ export type Options = {
 	method?: string;
 	headers?: PlainObject;
 	timeout?: number;
+	options?: string;
 } | PlainObject;
 
 export function queryStringify(data: unknown) {
 	const keys = Object.keys(data);
 	// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 	return keys.reduce((result, key, index) => `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`, '?');
+}
+
+function setHeader(xhr: XMLHttpRequest, header: string): void {
+	switch (header) {
+		case 'json':
+			xhr.setRequestHeader('content-type', 'application/json');
+			break;
+		case 'form-data':
+			xhr.setRequestHeader('content-type', 'multipart/form-data');
+			break;
+	}
 }
 
 export const baseUrl = 'https://ya-praktikum.tech/api/v2';
@@ -31,19 +43,24 @@ export class HTTPTransport {
 		this.baseURL = baseURL;
 	}
 
-	get = async (url: string, options?: Options) => options ? this.request(this.baseURL + url + queryStringify(options?.data), {
-		...options,
-		method: METHODS.GET,
-	}, options.timeout)
+	get = async (url: string, options?: Options): Promise<XMLHttpRequest> => options
+		? this.request(this.baseURL + url + queryStringify(options?.data), {...options, method: METHODS.GET}, options.timeout)
 		: this.request(this.baseURL + url, {method: METHODS.GET});
 
-	put = async (url: string, options: Options = {}) => this.request(this.baseURL + url, {...options, method: METHODS.PUT}, options.timeout);
+	put = async (url: string, options: Options = {}): Promise<XMLHttpRequest> =>
+		this.request(this.baseURL + url, {...options, method: METHODS.PUT}, options.timeout);
 
-	post = async (url: string, options: Options = {}) => this.request(this.baseURL + url, {...options, method: METHODS.POST}, options.timeout);
+	post = async (url: string, options: Options = {}): Promise<XMLHttpRequest> =>
+		this.request(this.baseURL + url, {...options, method: METHODS.POST}, options.timeout);
 
-	delete = async (url: string, options: Options) => this.request(this.baseURL + url, {...options, method: METHODS.DELETE}, options.timeout);
+	delete = async (url: string, options: Options = {}): Promise<XMLHttpRequest> =>
+		this.request(this.baseURL + url, {...options, method: METHODS.DELETE}, options.timeout);
 
-	request = async (url: string, options: Options = {}, timeout: number | unknown = 5000) => {
+	request = async (
+	  url: string,
+		options: Options = {},
+		timeout: number | unknown = 5000,
+	): Promise<XMLHttpRequest> => {
 		const {method, data, headers} = options;
 
 		return new Promise((resolve, reject) => {
@@ -51,9 +68,6 @@ export class HTTPTransport {
 			if (typeof method === 'string') {
 				xhr.open(method, url);
 			}
-
-			xhr.setRequestHeader('content-type', 'application/json');
-			xhr.withCredentials = true;
 
 			if (typeof timeout === 'number') {
 				xhr.timeout = timeout;
@@ -70,13 +84,19 @@ export class HTTPTransport {
 			xhr.onabort = reject;
 			xhr.onerror = reject;
 			xhr.ontimeout = reject;
+			xhr.withCredentials = true;
+
+			if (headers) {
+        Object.entries(headers).forEach(header => {
+					xhr.setRequestHeader(header[0], header[1]);
+				});
+			} else if (headers !== null) {
+				xhr.setRequestHeader('Content-Type', 'application/json');
+			}
 
 			if (method === METHODS.GET || !data) {
 				xhr.send();
-			} else if (!headers) {
-				xhr.send(JSON.stringify(data));
 			} else {
-				// @ts-expect-error
 				xhr.send(data);
 			}
 		});
