@@ -12,7 +12,7 @@ export interface IUser {
 	avatar:	string | null;
 }
 
-const resourceURL = 'https://ya-praktikum.tech/api/v2/resources/'
+const resourceURL = 'https://ya-praktikum.tech/api/v2/resources/';
 
 class UserSController {
 	public async getUser(shouldFetch = false) {
@@ -80,7 +80,7 @@ class UserSController {
 			const {response} = await APIClient.put('/user/profile/avatar', {data, headers: null});
 			const user = JSON.parse(response);
 
-      user.avatar = `${resourceURL}/${user.avatar}`;
+			user.avatar = `${resourceURL}/${user.avatar}`;
 
 			store.set('user', user);
 		} catch (error: unknown) {

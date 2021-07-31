@@ -87,7 +87,7 @@ export class HTTPTransport {
 			xhr.withCredentials = true;
 
 			if (headers) {
-        Object.entries(headers).forEach(header => {
+				Object.entries(headers).forEach(header => {
 					xhr.setRequestHeader(header[0], header[1]);
 				});
 			} else if (headers !== null) {

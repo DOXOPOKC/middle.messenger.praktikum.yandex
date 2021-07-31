@@ -194,11 +194,7 @@ export default class Profile extends Block {
 					}
 				},
 				submit: async (e: Event) => {
-					console.log('111111111111111111111111', e);
-
 					e.preventDefault();
-
-					console.log('222222222222222222', e);
 
 					const formElement: HTMLFormElement | null = document.querySelector(`[data-id='${form.getUUID()}']`);
 					const avatarFormElement: HTMLFormElement | null = document.querySelector(`[data-id='${avatarForm.getUUID()}']`);
@@ -236,8 +232,6 @@ export default class Profile extends Block {
 
 	async componentDidMount() {
 		storeEventBus.on('flow:state-updated', async state => {
-		  console.log(state);
-
 			this.setProps({avatar: state.user.avatar});
 		});
 
