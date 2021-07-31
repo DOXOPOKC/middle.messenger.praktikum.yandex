@@ -57,7 +57,7 @@ export class HTTPTransport {
 		this.request(this.baseURL + url, {...options, method: METHODS.DELETE}, options.timeout);
 
 	request = async (
-	  url: string,
+		url: string,
 		options: Options = {},
 		timeout: number | unknown = 5000,
 	): Promise<XMLHttpRequest> => {
@@ -97,6 +97,7 @@ export class HTTPTransport {
 			if (method === METHODS.GET || !data) {
 				xhr.send();
 			} else {
+				// @ts-expect-error
 				xhr.send(data);
 			}
 		});
