@@ -108,7 +108,7 @@ export default class Profile extends Block {
 		const user = await UserController.getUser(true);
 
 		if (user) {
-      this.setProps({avatar: user.avatar});
+			this.setProps({avatar: user.avatar, title: user.first_name});
 
 			fields.forEach((field => {
 				field.setProps({value: user[field.props.name]});

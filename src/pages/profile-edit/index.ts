@@ -230,6 +230,17 @@ export default class Profile extends Block {
 	}
 
 	async componentDidMount() {
+		const user = await UserController.getUser(true);
+
+		if (user) {
+			fields.forEach((field => {
+				field.setProps({value: user[field.props.name]});
+			}));
+
+			form.setProps({fields});
+			this.setProps({avatar: user.avatar, title: user.first_name, form});
+		}
+
 		storeEventBus.on('flow:state-updated', async state => {
 			if (state.user) {
 				this.setProps({avatar: state.user.avatar});
@@ -237,10 +248,11 @@ export default class Profile extends Block {
 				fields.forEach((field => {
 					field.setProps({value: state.user[field.props.name]});
 				}));
+
+				form.setProps({fields});
+				this.setProps({avatar: state.user.avatar, form});
 			}
 		});
-
-		const user = await UserController.getUser(true);
 	}
 
 	render() {

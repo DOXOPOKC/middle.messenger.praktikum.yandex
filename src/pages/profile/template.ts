@@ -16,7 +16,8 @@ main.content
       else
         .profile__avatar
           img.image(src="${profileIcon}")
-    .profile__title.title Иван
+    if (title)
+      .profile__title.title= title
     .profile__main
       != form.getTemplate()
     .profile__actions
