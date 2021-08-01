@@ -149,7 +149,6 @@ export default class Profile extends Block {
 			classNames: 'profile-page',
 			shouldAvatar: true,
 			sidebar,
-			dialog,
 			form,
 			events: {
 			  change: async e => {
@@ -232,16 +231,16 @@ export default class Profile extends Block {
 
 	async componentDidMount() {
 		storeEventBus.on('flow:state-updated', async state => {
-			this.setProps({avatar: state.user.avatar});
+			if (state.user) {
+				this.setProps({avatar: state.user.avatar});
+
+				fields.forEach((field => {
+					field.setProps({value: state.user[field.props.name]});
+				}));
+			}
 		});
 
 		const user = await UserController.getUser(true);
-
-		if (user) {
-			fields.forEach((field => {
-				field.setProps({value: user[field.props.name]});
-			}));
-		}
 	}
 
 	render() {

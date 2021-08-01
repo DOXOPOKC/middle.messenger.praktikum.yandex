@@ -16,17 +16,6 @@ export function queryStringify(data: unknown) {
 	return keys.reduce((result, key, index) => `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`, '?');
 }
 
-function setHeader(xhr: XMLHttpRequest, header: string): void {
-	switch (header) {
-		case 'json':
-			xhr.setRequestHeader('content-type', 'application/json');
-			break;
-		case 'form-data':
-			xhr.setRequestHeader('content-type', 'multipart/form-data');
-			break;
-	}
-}
-
 export const baseUrl = 'https://ya-praktikum.tech/api/v2';
 
 enum METHODS {
@@ -61,7 +50,7 @@ export class HTTPTransport {
 		options: Options = {},
 		timeout: number | unknown = 5000,
 	): Promise<XMLHttpRequest> => {
-		const {method, data, headers} = options;
+		const {method, data, headers, isFormData} = options;
 
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
@@ -96,6 +85,8 @@ export class HTTPTransport {
 
 			if (method === METHODS.GET || !data) {
 				xhr.send();
+			} else if (isFormData) {
+				xhr.send(data);
 			} else {
 				// @ts-expect-error
 				xhr.send(JSON.stringify(data));

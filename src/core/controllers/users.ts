@@ -77,7 +77,7 @@ class UserSController {
 	public async updateAvatar(data) {
 		try {
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			const {response} = await APIClient.put('/user/profile/avatar', {data, headers: null});
+			const {response} = await APIClient.put('/user/profile/avatar', {data, headers: null, isFormData: true});
 			const user = JSON.parse(response);
 
 			user.avatar = `${resourceURL}/${user.avatar}`;
