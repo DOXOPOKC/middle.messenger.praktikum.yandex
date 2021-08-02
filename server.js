@@ -1,19 +1,17 @@
 const express = require('express');
-const path = require('path');
+
+const HOSTNAME = process.env.HOSTNAME || '0.0.0.0';
+const PORT = process.env.PORT || 3000;
 
 const app = express();
-const PORT = 3000;
 
 app.use(express.static('./dist'));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/dist/home/index.html'));
+app.get('/:page', (req, res) => {
+	res.sendFile('./dist/index.html', {root: __dirname});
 });
 
-app.use('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/dist/not-found/index.html'));
-});
-
-app.listen(PORT, () => {
-  console.log(`Мой текст и порт: ${PORT}!`);
+app.listen(PORT, HOSTNAME, () => {
+	// eslint-disable-next-line
+  console.log(`Server is running on http://${HOSTNAME}:${PORT}/`);
 });

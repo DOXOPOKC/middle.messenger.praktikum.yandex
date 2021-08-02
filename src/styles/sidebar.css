@@ -80,6 +80,7 @@
   cursor: pointer;
   padding: 12px 0;
   margin-bottom: 3px;
+  width: 100%;
 }
 
 .sidebar__chat:hover {

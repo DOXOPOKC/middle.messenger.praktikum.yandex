@@ -1,14 +1,12 @@
-import { compile } from 'pug';
-import chatUserAvatar from 'url:../../assets/img/chatuseravatar.png';
-import arrowLeftIcon from 'url:../../assets/icons/arrow-left.svg';
-
-// TODO: Перенести стили в файлы по классам
+import {compile} from 'pug';
+import '@/assets/img/chatuseravatar.png';
+import '@/assets/icons/arrow-left.svg';
 
 const source = `
 if (mini)
   .sidebar__button
     .rounded_button
-      img.image(src="${arrowLeftIcon}")
+      img.image(src="/assets/arrow-left.svg")
 else
   .sidebar__header
     div(style="display: flex;justify-content: space-between; width: 100%;") 
@@ -22,13 +20,15 @@ else
           li.sidebar__chat()
             .sidebar__chat-inner(data-chat-id=chat.id)
               .sidebar__avatar.avatar
-                img.image(src="${chatUserAvatar}", alt="chat user")
+                img.image(src="/assets/chatuseravatar.png", alt="chat user")
               .sidebar__info
                 .sidebar__username= chat.title
-                .sidebar__last-message.body-2.text-grey Друзья, у меня для вас особенный выпуск новостей!...
+                if (chat.last_message)
+                  .sidebar__last-message.body-2.text-grey= chat.last_message.content
               .sidebar__right
                 .sidebar__last-message-time.overline-1.text-grey 10:49
-                .sidebar__messages-counter.rounded_button.caption.text-light 1
+                if (chat.unread_count)
+                  .sidebar__messages-counter.rounded_button.caption.text-light= chat.unread_count
 `;
 
 export const template = compile(source);

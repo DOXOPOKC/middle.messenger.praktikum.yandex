@@ -1,8 +1,8 @@
-import { compile } from 'pug';
-import messageCamera from 'url:../../assets/img/message-camera.png';
-import chatUserAvatar from 'url:../../assets/img/chatuseravatar.png';
-import messageDone from 'url:../../assets/icons/message-done.svg';
-import arrowLeft from 'url:../../assets/icons/arrow-left.svg';
+import {compile} from 'pug';
+
+import chatUserAvatar from '@/assets/img/chatuseravatar.png';
+import messageDone from '@/assets/icons/message-done.svg';
+import arrowLeft from '@/assets/icons/arrow-left.svg';
 
 const source = `
 if (dialog)
@@ -14,7 +14,7 @@ main.content_chat
       .chat__user
         .chat__avatar.avatar
           img.image(
-            src="${chatUserAvatar}",
+            src="/assets/chatuseravatar.png",
             alt="chat user"
           )
         span.chat__username Чат
@@ -31,7 +31,7 @@ main.content_chat
                 .chat__message-info
                   if message.is_read
                     .chat__message-status
-                      img(src="${messageDone}")
+                      img(src="/assets/message-done.svg")
                   span.chat__message-time.overline-1.text-link #{prettyDate(message.time)}
     .chat__controls
       .chat__attach
@@ -40,7 +40,7 @@ main.content_chat
         input.chat__input(placeholder="Сообщение")
         .chat__send-button
           button.rounded_button(type="submit")
-            img(src="${arrowLeft}")
+            img(src="/assets/arrow-left.svg")
 `;
 
 export const template = compile(source);

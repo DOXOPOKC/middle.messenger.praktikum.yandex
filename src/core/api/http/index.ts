@@ -7,6 +7,7 @@ export type Options = {
 	method?: string;
 	headers?: PlainObject;
 	timeout?: number;
+	options?: string;
 } | PlainObject;
 
 export function queryStringify(data: unknown) {
@@ -31,29 +32,31 @@ export class HTTPTransport {
 		this.baseURL = baseURL;
 	}
 
-	get = async (url: string, options?: Options) => options ? this.request(this.baseURL + url + queryStringify(options?.data), {
-		...options,
-		method: METHODS.GET,
-	}, options.timeout)
+	get = async (url: string, options?: Options): Promise<XMLHttpRequest> => options
+		? this.request(this.baseURL + url + queryStringify(options?.data), {...options, method: METHODS.GET}, options.timeout)
 		: this.request(this.baseURL + url, {method: METHODS.GET});
 
-	put = async (url: string, options: Options = {}) => this.request(this.baseURL + url, {...options, method: METHODS.PUT}, options.timeout);
+	put = async (url: string, options: Options = {}): Promise<XMLHttpRequest> =>
+		this.request(this.baseURL + url, {...options, method: METHODS.PUT}, options.timeout);
 
-	post = async (url: string, options: Options = {}) => this.request(this.baseURL + url, {...options, method: METHODS.POST}, options.timeout);
+	post = async (url: string, options: Options = {}): Promise<XMLHttpRequest> =>
+		this.request(this.baseURL + url, {...options, method: METHODS.POST}, options.timeout);
 
-	delete = async (url: string, options: Options) => this.request(this.baseURL + url, {...options, method: METHODS.DELETE}, options.timeout);
+	delete = async (url: string, options: Options = {}): Promise<XMLHttpRequest> =>
+		this.request(this.baseURL + url, {...options, method: METHODS.DELETE}, options.timeout);
 
-	request = async (url: string, options: Options = {}, timeout: number | unknown = 5000) => {
-		const {method, data, headers} = options;
+	request = async (
+		url: string,
+		options: Options = {},
+		timeout: number | unknown = 5000,
+	): Promise<XMLHttpRequest> => {
+		const {method, data, headers, isFormData} = options;
 
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
 			if (typeof method === 'string') {
 				xhr.open(method, url);
 			}
-
-			xhr.setRequestHeader('content-type', 'application/json');
-			xhr.withCredentials = true;
 
 			if (typeof timeout === 'number') {
 				xhr.timeout = timeout;
@@ -70,14 +73,23 @@ export class HTTPTransport {
 			xhr.onabort = reject;
 			xhr.onerror = reject;
 			xhr.ontimeout = reject;
+			xhr.withCredentials = true;
+
+			if (headers) {
+				Object.entries(headers).forEach(header => {
+					xhr.setRequestHeader(header[0], header[1]);
+				});
+			} else if (headers !== null) {
+				xhr.setRequestHeader('Content-Type', 'application/json');
+			}
 
 			if (method === METHODS.GET || !data) {
 				xhr.send();
-			} else if (!headers) {
-				xhr.send(JSON.stringify(data));
+			} else if (isFormData) {
+				xhr.send(data);
 			} else {
 				// @ts-expect-error
-				xhr.send(data);
+				xhr.send(JSON.stringify(data));
 			}
 		});
 	};

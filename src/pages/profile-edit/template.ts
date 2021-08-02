@@ -1,17 +1,25 @@
-import { compile } from 'pug';
-import profileIcon from 'url:../../assets/icons/image.svg';
+import {compile} from 'pug';
+import profileIcon from '@/assets/icons/image.svg';
 
 const source = `
+if (dialog)
+  != dialog.getTemplate()
 != sidebar.getTemplate()
 main.content
   .profile
     .profile__avatar-wrapper.avatar
-      .profile__change-avatar
-        .blur-background
-        span.text-light.avatar__text Поменять аватар
-      .profile__avatar
-        img.image(src="${profileIcon}")
-    .profile__title.title Иван
+      if (shouldAvatar)
+        .profile__change-avatar
+          .blur-background
+          span.text-light.avatar__text Поменять аватар
+      if (avatar)
+        .profile__avatar.profile__avatar_full
+          img.image(src=avatar)
+      else
+        .profile__avatar
+          img.image(src="${profileIcon}")
+    if (title)
+      .profile__title.title= title
     .profile__main
       != form.getTemplate()
     if (actions)

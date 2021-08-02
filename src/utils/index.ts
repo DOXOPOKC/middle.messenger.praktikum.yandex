@@ -4,4 +4,4 @@ import cloneDeep from './cloneDeep';
 import checkField from './checkField';
 import isEqual from './isEqual';
 
-export { render, validate, cloneDeep, checkField, isEqual };
+export {render, validate, cloneDeep, checkField, isEqual};

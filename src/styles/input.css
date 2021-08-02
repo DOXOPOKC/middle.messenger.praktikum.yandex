@@ -29,3 +29,18 @@
   border-bottom: 1px solid #3369F3;
   outline: none;
 }
+
+input[type='file'] {
+  display: none;
+}
+
+.file-uploader {
+  display: block;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  text-decoration-line: underline;
+  color: #3369F3;
+  margin-bottom: 45px;
+}
