@@ -1,6 +1,3 @@
-## **PULL REQUEST**
-https://github.com/DOXOPOKC/middle.messenger.praktikum.yandex/pull/4
-
 ## **Описание**
 Старт проекта - npm run start
 
